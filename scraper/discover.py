@@ -1,19 +1,18 @@
 """Discovery engine — scans the universe of candidate models, scores by signal strength,
-and writes data/discoveries.json with the top 20 finds for the dashboard Radar section.
+and writes data/discoveries.json for the dashboard Radar section.
 
-Pinned models (data/models.json) are excluded from output; they have their own tracked section.
+Uses AutoTrader UK via Playwright (JS-rendered, no bot-check). Pinned models
+(data/models.json) are excluded from output; they have their own tracked section.
 """
 from __future__ import annotations
 
 import json
 import logging
+import re
 import statistics
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-
-import requests
-from bs4 import BeautifulSoup
 
 log = logging.getLogger(__name__)
 
@@ -23,24 +22,15 @@ UNIVERSE_JSON = DATA_DIR / "universe.json"
 MODELS_JSON = DATA_DIR / "models.json"
 DISCOVERIES_JSON = DATA_DIR / "discoveries.json"
 SNAPSHOTS_DIR = DATA_DIR / "snapshots"
-
-# Previous discoveries snapshot for delta calculations
 PREV_DISCOVERIES_JSON = DATA_DIR / "discoveries_prev.json"
 
-CC_SEARCH_URL = "https://www.carandclassic.com/search"
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-    "Accept-Language": "en-GB,en;q=0.9",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-}
-CRAWL_DELAY = 2.0  # seconds between requests
+AT_SEARCH_URL = "https://www.autotrader.co.uk/car-search"
+AT_POSTCODE   = "SW1A1AA"
+AT_RADIUS     = "1500"   # nationwide
+CRAWL_DELAY   = 3.0      # seconds between Playwright page loads
 
-TOP_N = 20          # models to surface on the radar
-MAX_PRICE = 30_000  # only surface models with median price at or under this
+TOP_N     = 999        # surface all scored models — dashboard filters by signal
+MAX_PRICE = 30_000     # only surface models with median price at or under this
 
 
 # ──────────────────────────────────────────────────────────────
@@ -71,45 +61,41 @@ def load_prev_discoveries() -> dict[str, dict]:
 
 
 # ──────────────────────────────────────────────────────────────
-# Car & Classic scraper (lightweight version)
+# AutoTrader scraper via Playwright
 # ──────────────────────────────────────────────────────────────
 
-def _fetch_cc(session: requests.Session, search_term: str) -> dict:
-    """Returns {listing_count, prices: [int], median_price: int}"""
-    params = {"make": "", "q": search_term}
+def _fetch_at(page, search_term: str) -> dict:
+    """Fetch listing count and prices from AutoTrader using an open Playwright page."""
+    url = (
+        f"{AT_SEARCH_URL}"
+        f"?keywords={search_term.replace(' ', '+')}"
+        f"&postcode={AT_POSTCODE}&radius={AT_RADIUS}"
+        f"&include-delivery-option=on"
+    )
     try:
-        resp = session.get(CC_SEARCH_URL, params=params, timeout=15)
-        resp.raise_for_status()
-    except requests.RequestException as exc:
-        log.warning("C&C fetch failed for '%s': %s", search_term, exc)
+        page.goto(url, timeout=30_000, wait_until="domcontentloaded")
+        page.wait_for_timeout(3000)
+    except Exception as exc:
+        log.warning("AutoTrader page load failed for '%s': %s", search_term, exc)
         return {"listing_count": 0, "prices": [], "median_price": 0}
 
-    soup = BeautifulSoup(resp.text, "html.parser")
+    txt = page.inner_text("body")
 
-    # Listing count
+    # Listing count — AutoTrader renders e.g. "342 cars found"
     count = 0
-    for sel in (".search-count", ".results-count", "[data-testid='search-count']"):
-        el = soup.select_one(sel)
-        if el:
-            import re
-            m = re.search(r"[\d,]+", el.get_text())
-            if m:
-                count = int(m.group().replace(",", ""))
-                break
-    if count == 0:
-        cards = soup.select(".listing-card, [data-listing-id], .search-result")
-        count = len(cards)
-
-    # Prices
-    import re
-    prices: list[int] = []
-    for el in soup.select(".listing-price, .price, [class*='price']"):
-        txt = el.get_text(strip=True)
-        m = re.search(r"£([\d,]+)", txt)
+    for pat in [r"([\d,]+)\s+cars?\s+found", r"([\d,]+)\s+results?", r"([\d,]+)\s+used"]:
+        m = re.search(pat, txt, re.I)
         if m:
-            val = int(m.group(1).replace(",", ""))
-            if 500 < val < 2_000_000:
-                prices.append(val)
+            count = int(m.group(1).replace(",", ""))
+            break
+
+    # Prices — "£18,995" style
+    prices: list[int] = []
+    for m in re.finditer(r"£([\d,]+)", txt):
+        val = int(m.group(1).replace(",", ""))
+        if 500 < val < 2_000_000:
+            prices.append(val)
+    prices = sorted(set(prices))
 
     median_price = int(statistics.median(prices)) if prices else 0
     return {"listing_count": count, "prices": prices, "median_price": median_price}
@@ -172,60 +158,74 @@ def signal_label(score: float, supply: int) -> str:
 # ──────────────────────────────────────────────────────────────
 
 def run() -> None:
+    from playwright.sync_api import sync_playwright
+
     universe = load_universe()
     pinned_ids = load_pinned_ids()
     prev_map = load_prev_discoveries()
 
     log.info("Discovery engine: %d universe models, %d pinned (excluded)", len(universe), len(pinned_ids))
 
-    session = requests.Session()
-    session.headers.update(HEADERS)
-
     scored: list[dict] = []
 
-    for model in universe:
-        if model["id"] in pinned_ids:
-            log.debug("Skipping pinned model: %s", model["id"])
-            continue
-
-        log.info("Scanning: %s (%s)", model["id"], model["cc_search"])
-        cc = _fetch_cc(session, model["cc_search"])
-        time.sleep(CRAWL_DELAY)
-
-        # Skip if median price is known and above the ceiling
-        if cc["median_price"] and cc["median_price"] > MAX_PRICE:
-            log.info("Skipping %s: median £%d > £%d ceiling", model["id"], cc["median_price"], MAX_PRICE)
-            continue
-
-        prev = prev_map.get(model["id"])
-        sc = score_model(cc, prev)
-
-        prev_supply = prev["supply"]["current"] if prev else None
-        supply_delta = (cc["listing_count"] - prev_supply) if prev_supply is not None else 0
-        prev_price = prev["price"]["median"] if prev else None
-        price_delta_pct = (
-            round((cc["median_price"] - prev_price) / prev_price * 100)
-            if prev_price and prev_price > 0 and cc["median_price"] > 0
-            else 0
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(headless=True)
+        context = browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+            ),
+            locale="en-GB",
+            viewport={"width": 1280, "height": 800},
         )
+        page = context.new_page()
 
-        scored.append({
-            "id": model["id"],
-            "name": model["name"],
-            "make": model["make"],
-            "years": f"{model['years'][0]}–{model['years'][1]}",
-            "signal": signal_label(sc, cc["listing_count"]),
-            "score": sc,
-            "supply": {
-                "current": cc["listing_count"],
-                "delta_4w": supply_delta,
-            },
-            "price": {
-                "median": cc["median_price"],
-                "delta_pct": price_delta_pct,
-            },
-            "scraped_at": datetime.now(timezone.utc).isoformat(),
-        })
+        for model in universe:
+            if model["id"] in pinned_ids:
+                log.debug("Skipping pinned model: %s", model["id"])
+                continue
+
+            search_term = model.get("cc_search", model["name"])
+            log.info("Scanning: %s (%s)", model["id"], search_term)
+            cc = _fetch_at(page, search_term)
+            time.sleep(CRAWL_DELAY)
+
+            # Skip if median price is known and above the ceiling
+            if cc["median_price"] and cc["median_price"] > MAX_PRICE:
+                log.info("Skipping %s: median £%d > £%d ceiling", model["id"], cc["median_price"], MAX_PRICE)
+                continue
+
+            prev = prev_map.get(model["id"])
+            sc = score_model(cc, prev)
+
+            prev_supply = prev["supply"]["current"] if prev else None
+            supply_delta = (cc["listing_count"] - prev_supply) if prev_supply is not None else 0
+            prev_price = prev["price"]["median"] if prev else None
+            price_delta_pct = (
+                round((cc["median_price"] - prev_price) / prev_price * 100)
+                if prev_price and prev_price > 0 and cc["median_price"] > 0
+                else 0
+            )
+
+            scored.append({
+                "id": model["id"],
+                "name": model["name"],
+                "make": model["make"],
+                "years": f"{model['years'][0]}–{model['years'][1]}",
+                "signal": signal_label(sc, cc["listing_count"]),
+                "score": sc,
+                "supply": {
+                    "current": cc["listing_count"],
+                    "delta_4w": supply_delta,
+                },
+                "price": {
+                    "median": cc["median_price"],
+                    "delta_pct": price_delta_pct,
+                },
+                "scraped_at": datetime.now(timezone.utc).isoformat(),
+            })
+
+        browser.close()
 
     scored.sort(key=lambda x: x["score"], reverse=True)
     top = scored[:TOP_N]
