@@ -27,7 +27,12 @@ PREV_DISCOVERIES_JSON = DATA_DIR / "discoveries_prev.json"
 AT_SEARCH_URL = "https://www.autotrader.co.uk/car-search"
 AT_POSTCODE   = "SW1A1AA"
 AT_RADIUS     = "1500"   # nationwide
-CRAWL_DELAY   = 3.0      # seconds between Playwright page loads
+CRAWL_DELAY   = 2.5      # seconds between Playwright page loads
+
+
+def _at_make(make: str) -> str:
+    """Convert universe make name to AutoTrader URL format (uppercase, spaces to +)."""
+    return make.upper().replace(" ", "+")
 
 TOP_N     = 999        # surface all scored models — dashboard filters by signal
 MAX_PRICE = 30_000     # only surface models with median price at or under this
@@ -64,36 +69,40 @@ def load_prev_discoveries() -> dict[str, dict]:
 # AutoTrader scraper via Playwright
 # ──────────────────────────────────────────────────────────────
 
-def _fetch_at(page, search_term: str) -> dict:
-    """Fetch listing count and prices from AutoTrader using an open Playwright page."""
+def _fetch_at(page, make: str, year_from: int, year_to: int) -> dict:
+    """Fetch listing count and prices from AutoTrader using make + year range.
+
+    AutoTrader's keyword search doesn't work reliably; make + year range does.
+    """
+    at_make = _at_make(make)
     url = (
         f"{AT_SEARCH_URL}"
-        f"?keywords={search_term.replace(' ', '+')}"
+        f"?make={at_make}&year-from={year_from}&year-to={year_to}"
         f"&postcode={AT_POSTCODE}&radius={AT_RADIUS}"
         f"&include-delivery-option=on"
     )
     try:
         page.goto(url, timeout=30_000, wait_until="domcontentloaded")
-        page.wait_for_timeout(3000)
+        page.wait_for_timeout(2000)
     except Exception as exc:
-        log.warning("AutoTrader page load failed for '%s': %s", search_term, exc)
+        log.warning("AutoTrader page load failed for '%s' %s-%s: %s", make, year_from, year_to, exc)
         return {"listing_count": 0, "prices": [], "median_price": 0}
 
     txt = page.inner_text("body")
 
-    # Listing count — AutoTrader renders e.g. "342 cars found"
+    # Listing count — AutoTrader renders e.g. "342 results"
     count = 0
-    for pat in [r"([\d,]+)\s+cars?\s+found", r"([\d,]+)\s+results?", r"([\d,]+)\s+used"]:
+    for pat in [r"([\d,]+)\s+results?", r"([\d,]+)\s+cars?\s+found"]:
         m = re.search(pat, txt, re.I)
         if m:
             count = int(m.group(1).replace(",", ""))
             break
 
-    # Prices — "£18,995" style
+    # Prices — "£18,995" style (listing prices only, 500–500k range)
     prices: list[int] = []
     for m in re.finditer(r"£([\d,]+)", txt):
         val = int(m.group(1).replace(",", ""))
-        if 500 < val < 2_000_000:
+        if 500 < val < 500_000:
             prices.append(val)
     prices = sorted(set(prices))
 
@@ -185,9 +194,10 @@ def run() -> None:
                 log.debug("Skipping pinned model: %s", model["id"])
                 continue
 
-            search_term = model.get("cc_search", model["name"])
-            log.info("Scanning: %s (%s)", model["id"], search_term)
-            cc = _fetch_at(page, search_term)
+            make = model["make"]
+            year_from, year_to = model["years"][0], model["years"][1]
+            log.info("Scanning: %s (%s %s-%s)", model["id"], make, year_from, year_to)
+            cc = _fetch_at(page, make, year_from, year_to)
             time.sleep(CRAWL_DELAY)
 
             # Skip if median price is known and above the ceiling
