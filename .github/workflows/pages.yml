@@ -27,12 +27,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Build site
+        run: |
+          mkdir -p _site/data
+          cp -r dashboard/. _site/
+          cp data/latest.json _site/data/latest.json 2>/dev/null || true
+          cp data/discoveries.json _site/data/discoveries.json 2>/dev/null || true
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dashboard'
+          path: './_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

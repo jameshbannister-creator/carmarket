@@ -873,8 +873,8 @@ async function init() {
   // Try to load real data from the scraper output
   try {
     const [latestResp, discoveriesResp] = await Promise.allSettled([
-      fetch('../data/latest.json'),
-      fetch('../data/discoveries.json'),
+      fetch('./data/latest.json'),
+      fetch('./data/discoveries.json'),
     ]);
 
     if (latestResp.status === 'fulfilled' && latestResp.value.ok) {
