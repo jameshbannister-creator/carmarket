@@ -34,6 +34,8 @@ jobs:
         run: |
           git config user.name  "Classic Market Bot"
           git config user.email "bot@classic-market"
-          git add data/latest.json data/discoveries.json data/discoveries_prev.json data/snapshots/ || true
+          git add data/latest.json data/snapshots/ || true
+          git add data/discoveries.json || true
+          git add data/discoveries_prev.json || true
           git diff --cached --quiet || git commit -m "data: weekly snapshot $(date +%Y-%m-%d)"
           git push
