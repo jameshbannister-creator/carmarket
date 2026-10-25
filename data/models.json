@@ -1,0 +1,129 @@
+{
+  "models": [
+    {
+      "id": "mercedes-r129-sl",
+      "name": "Mercedes R129 SL",
+      "make": "Mercedes-Benz",
+      "model": "SL",
+      "years": [1989, 2002],
+      "cc_search": "mercedes SL R129",
+      "ebay_search": "Mercedes R129 SL",
+      "bat_search": "mercedes sl r129",
+      "us_rare": false,
+      "notes": "Analysed Oct 2026. 141 C&C listings."
+    },
+    {
+      "id": "bmw-e30-m3",
+      "name": "BMW E30 M3",
+      "make": "BMW",
+      "model": "M3",
+      "years": [1986, 1991],
+      "cc_search": "bmw e30 m3",
+      "ebay_search": "BMW E30 M3",
+      "bat_search": "bmw e30 m3",
+      "us_rare": false,
+      "notes": "Supply very tight. Watch closely."
+    },
+    {
+      "id": "porsche-996-carrera",
+      "name": "Porsche 996 Carrera",
+      "make": "Porsche",
+      "model": "911",
+      "years": [1997, 2004],
+      "cc_search": "porsche 996",
+      "ebay_search": "Porsche 996 Carrera",
+      "bat_search": "porsche 996",
+      "us_rare": false,
+      "notes": "On Hagerty Bull Market list 2025."
+    },
+    {
+      "id": "ford-sierra-rs-cosworth",
+      "name": "Ford Sierra RS Cosworth",
+      "make": "Ford",
+      "model": "Sierra",
+      "years": [1986, 1992],
+      "cc_search": "ford sierra cosworth",
+      "ebay_search": "Ford Sierra RS Cosworth",
+      "bat_search": "ford sierra cosworth",
+      "us_rare": true,
+      "us_import_year": 2017,
+      "notes": "UK-specific. Rare in US. Export play."
+    },
+    {
+      "id": "mazda-rx7-fd",
+      "name": "Mazda RX-7 FD",
+      "make": "Mazda",
+      "model": "RX-7",
+      "years": [1991, 2002],
+      "cc_search": "mazda rx7",
+      "ebay_search": "Mazda RX7 FD",
+      "bat_search": "mazda rx-7 fd",
+      "us_rare": true,
+      "us_import_year": 2024,
+      "notes": "Fully US importable. Big BaT premium."
+    },
+    {
+      "id": "nissan-r34-gtr",
+      "name": "Nissan Skyline R34 GT-R",
+      "make": "Nissan",
+      "model": "Skyline",
+      "years": [1998, 2002],
+      "cc_search": "nissan r34 gtr",
+      "ebay_search": "Nissan Skyline R34 GTR",
+      "bat_search": "nissan skyline r34",
+      "us_rare": true,
+      "us_import_year": 2024,
+      "notes": "Supply critical. US buyers active. Do not miss."
+    },
+    {
+      "id": "honda-nsx",
+      "name": "Honda NSX NA1",
+      "make": "Honda",
+      "model": "NSX",
+      "years": [1990, 2005],
+      "cc_search": "honda nsx",
+      "ebay_search": "Honda NSX",
+      "bat_search": "honda nsx",
+      "us_rare": false,
+      "notes": "Type R variants commanding big premium."
+    },
+    {
+      "id": "land-rover-defender-td5",
+      "name": "Land Rover Defender TD5",
+      "make": "Land Rover",
+      "model": "Defender",
+      "years": [1998, 2007],
+      "cc_search": "land rover defender td5",
+      "ebay_search": "Land Rover Defender TD5",
+      "bat_search": "land rover defender",
+      "us_rare": true,
+      "us_import_year": 2025,
+      "notes": "Now US importable. Monitor for export pressure."
+    },
+    {
+      "id": "alfa-gtv-916",
+      "name": "Alfa Romeo GTV 916",
+      "make": "Alfa Romeo",
+      "model": "GTV",
+      "years": [1994, 2005],
+      "cc_search": "alfa romeo gtv",
+      "ebay_search": "Alfa Romeo GTV",
+      "bat_search": "alfa romeo gtv",
+      "us_rare": true,
+      "us_import_year": 2025,
+      "notes": "Undersupplied appreciation candidate. Patience play."
+    },
+    {
+      "id": "jaguar-etype-s1",
+      "name": "Jaguar E-Type Series 1",
+      "make": "Jaguar",
+      "model": "E-Type",
+      "years": [1961, 1968],
+      "cc_search": "jaguar e-type series 1",
+      "ebay_search": "Jaguar E-Type Series 1",
+      "bat_search": "jaguar e-type series 1",
+      "us_rare": false,
+      "notes": "Established collector market. Benchmark comparison."
+    }
+  ]
+}

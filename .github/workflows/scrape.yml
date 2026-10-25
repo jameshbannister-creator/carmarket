@@ -1,0 +1,39 @@
+name: Weekly market scrape
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'   # every Monday 08:00 UTC
+  workflow_dispatch:        # allow manual runs
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r scraper/requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Run scrapers
+        env:
+          EBAY_SESSION_COOKIE: ${{ secrets.EBAY_SESSION_COOKIE }}
+        run: python scraper/run_all.py
+
+      - name: Commit data snapshot
+        run: |
+          git config user.name  "Classic Market Bot"
+          git config user.email "bot@classic-market"
+          git add data/latest.json data/snapshots/
+          git diff --cached --quiet || git commit -m "data: weekly snapshot $(date +%Y-%m-%d)"
+          git push

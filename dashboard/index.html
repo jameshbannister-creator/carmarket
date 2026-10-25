@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classic Market</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #0B0B0A;
+      --bg-1:        #131312;
+      --bg-2:        #1A1A18;
+      --bg-3:        #222220;
+      --border:      #272724;
+      --border-faint:#1C1C1A;
+      --text-0:      #F0EFE8;
+      --text-1:      #9C9B92;
+      --text-2:      #55544E;
+      --text-3:      #38372F;
+      --gold:        #C4953A;
+      --gold-dim:    rgba(196,149,58,0.10);
+      --gold-border: rgba(196,149,58,0.22);
+      --hot:         #E05555;
+      --hot-bg:      rgba(224,85,85,0.09);
+      --rising:      #D4873A;
+      --rising-bg:   rgba(212,135,58,0.09);
+      --watch:       #5B8FD4;
+      --watch-bg:    rgba(91,143,212,0.09);
+      --stable:      #5A5A54;
+      --stable-bg:   rgba(90,90,84,0.12);
+      --green:       #4DB87A;
+      --red:         #D45F5F;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-0);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+    }
+
+    /* ── Header ───────────────────────────────────────────────── */
+    header {
+      padding: 44px 0 36px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-faint);
+    }
+
+    .brand-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .brand-title {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: var(--text-0);
+    }
+
+    .header-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .header-updated {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-1);
+    }
+
+    .header-next {
+      font-size: 11px;
+      color: var(--text-2);
+    }
+
+    /* ── Stat bar ─────────────────────────────────────────────── */
+    .stat-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border-faint);
+    }
+
+    .stat {
+      padding: 28px 0 24px;
+      border-right: 1px solid var(--border-faint);
+      padding-right: 32px;
+      padding-left: 0;
+    }
+
+    .stat:not(:first-child) {
+      padding-left: 32px;
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-2);
+      margin-bottom: 8px;
+    }
+
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--text-0);
+    }
+
+    .stat-num.gold { color: var(--gold); }
+
+    .stat-sub {
+      font-size: 11px;
+      color: var(--text-2);
+      margin-top: 5px;
+    }
+
+    /* ── Filter row ───────────────────────────────────────────── */
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 18px 0 14px;
+    }
+
+    .filter-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--border);
+      margin: 0 4px;
+    }
+
+    .pill {
+      padding: 4px 11px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-2);
+      transition: color 0.1s, background 0.1s, border-color 0.1s;
+      letter-spacing: 0.01em;
+    }
+
+    .pill:hover { color: var(--text-1); background: var(--bg-2); }
+
+    .pill.active {
+      color: var(--gold);
+      background: var(--gold-dim);
+      border-color: var(--gold-border);
+    }
+
+    /* ── Table ────────────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      padding: 8px 14px 10px;
+      font-size: 9.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--text-3);
+      text-align: left;
+      cursor: pointer;
+      white-space: nowrap;
+      user-select: none;
+      transition: color 0.1s;
+    }
+
+    th:hover { color: var(--text-1); }
+    th.sorted { color: var(--gold); }
+    th:first-child { padding-left: 0; }
+    th.right { text-align: right; }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-faint);
+      transition: background 0.08s;
+    }
+
+    tbody tr:hover { background: var(--bg-1); }
+    tbody tr:last-child { border-bottom: none; }
+
+    td {
+      padding: 15px 14px;
+      vertical-align: middle;
+    }
+
+    td:first-child { padding-left: 0; }
+    td.right { text-align: right; }
+
+    /* ── Model cell ───────────────────────────────────────────── */
+    .model-name {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-0);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .model-years {
+      font-size: 11px;
+      color: var(--text-2);
+      margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 5px;
+      border-radius: 2px;
+      font-size: 8.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .tag-25yr {
+      background: var(--gold-dim);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+    }
+
+    /* ── Supply cell ──────────────────────────────────────────── */
+    .supply-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--text-0);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .supply-delta {
+      font-size: 10.5px;
+      margin-top: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Sparkline ────────────────────────────────────────────── */
+    .spark { display: block; overflow: visible; }
+
+    /* ── Price cell ───────────────────────────────────────────── */
+    .price-main {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--text-0);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .price-delta {
+      font-size: 10.5px;
+      color: var(--text-2);
+      margin-top: 3px;
+    }
+
+    /* ── DOM cell ─────────────────────────────────────────────── */
+    .dom-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--text-0);
+    }
+
+    .dom-sub {
+      font-size: 10.5px;
+      margin-top: 3px;
+    }
+
+    /* ── Demand cell ──────────────────────────────────────────── */
+    .demand-wrap { display: flex; align-items: center; gap: 9px; }
+
+    .demand-track {
+      width: 52px;
+      height: 3px;
+      background: var(--bg-3);
+      border-radius: 2px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .demand-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--gold);
+      opacity: 0.75;
+    }
+
+    .demand-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-1);
+      min-width: 24px;
+    }
+
+    /* ── US Gap cell ──────────────────────────────────────────── */
+    .gap-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .gap-sub {
+      font-size: 10px;
+      color: var(--text-2);
+      margin-top: 3px;
+    }
+
+    /* ── Signal badge ─────────────────────────────────────────── */
+    .signal {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px 4px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+
+    .signal::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .s-hot    { background: var(--hot-bg);    color: var(--hot);    }
+    .s-hot::before    { background: var(--hot);    }
+    .s-rising { background: var(--rising-bg); color: var(--rising); }
+    .s-rising::before { background: var(--rising); }
+    .s-stable { background: var(--stable-bg); color: var(--stable); }
+    .s-stable::before { background: var(--stable); }
+    .s-watch  { background: var(--watch-bg);  color: var(--watch);  }
+    .s-watch::before  { background: var(--watch);  }
+
+    /* ── Delta colours ────────────────────────────────────────── */
+    .pos { color: var(--green); }
+    .neg { color: var(--red); }
+    .neu { color: var(--text-2); }
+
+    /* ── Alerts ───────────────────────────────────────────────── */
+    .section {
+      margin-top: 44px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-2);
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border-faint);
+    }
+
+    .alert-list { display: flex; flex-direction: column; gap: 6px; }
+
+    .alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 13px 16px;
+      background: var(--bg-1);
+      border: 1px solid var(--border-faint);
+      border-radius: 5px;
+    }
+
+    .alert-pip {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .pip-hot    { background: var(--hot);    }
+    .pip-rising { background: var(--rising); }
+    .pip-watch  { background: var(--watch);  }
+
+    .alert-body {
+      flex: 1;
+      font-size: 12.5px;
+      color: var(--text-1);
+      line-height: 1.45;
+    }
+
+    .alert-body strong { color: var(--text-0); font-weight: 500; }
+
+    .alert-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-2);
+      flex-shrink: 0;
+      padding-top: 3px;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      margin-top: 52px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-faint);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text {
+      font-size: 10.5px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    .empty { text-align: center; padding: 60px 0; color: var(--text-2); font-size: 12px; }
+
+    /* ── Scrollbar ────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--bg-3); border-radius: 3px; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="brand-eyebrow">Classic Market</div>
+      <div class="brand-title">UK Classic Car Intelligence</div>
+    </div>
+    <div class="header-right">
+      <div class="header-updated" id="last-updated">Loading…</div>
+      <div class="header-next" id="next-update"></div>
+    </div>
+  </header>
+
+  <div class="stat-bar">
+    <div class="stat">
+      <div class="stat-label">Models tracked</div>
+      <div class="stat-num" id="s-models">—</div>
+      <div class="stat-sub">across all makes</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Active alerts</div>
+      <div class="stat-num gold" id="s-alerts">—</div>
+      <div class="stat-sub" id="s-alerts-sub">—</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Avg days on market</div>
+      <div class="stat-num" id="s-dom">—</div>
+      <div class="stat-sub" id="s-dom-sub">—</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">US 25yr eligible</div>
+      <div class="stat-num gold" id="s-25yr">—</div>
+      <div class="stat-sub">importable models</div>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <button class="pill active" onclick="filter('all',this)">All</button>
+    <button class="pill" onclick="filter('hot',this)">Hot</button>
+    <button class="pill" onclick="filter('rising',this)">Rising</button>
+    <button class="pill" onclick="filter('watch',this)">Watch</button>
+    <div class="filter-divider"></div>
+    <button class="pill" onclick="filter('25yr',this)">25YR Pipeline</button>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th onclick="sort('name')">Model <span id="th-name"></span></th>
+          <th onclick="sort('supply')">Supply <span id="th-supply"></span></th>
+          <th>4W Trend</th>
+          <th onclick="sort('price')">Med. Price <span id="th-price"></span></th>
+          <th onclick="sort('dom')">Days on Mkt <span id="th-dom"></span></th>
+          <th onclick="sort('demand')">Demand <span id="th-demand"></span></th>
+          <th onclick="sort('gap')">US Gap <span id="th-gap"></span></th>
+          <th onclick="sort('signal')">Signal <span id="th-signal"></span></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-label">Active alerts</span>
+      <div class="section-rule"></div>
+    </div>
+    <div class="alert-list" id="alerts"></div>
+  </div>
+
+  <footer>
+    <div class="footer-text">
+      Sources: Car &amp; Classic · eBay UK · Bring a Trailer · Google Trends<br>
+      Updated weekly via GitHub Actions · Private use only
+    </div>
+    <div class="footer-text" style="text-align:right">
+      James Bannister
+    </div>
+  </footer>
+
+</div>
+<script>
+// ──────────────────────────────────────────────────────────────
+// DATA — replaced weekly by scraper writing data/latest.json
+// To use a real data file: replace DATA block with:
+//   const DATA = await fetch('../data/latest.json').then(r=>r.json());
+// ──────────────────────────────────────────────────────────────
+const DATA = {
+  generated_at: "2026-10-25T09:00:00Z",
+  models: [
+    {
+      id:"nissan-r34-gtr", name:"Nissan Skyline R34 GT-R", years:"1998–2002",
+      tags:["25yr"], signal:"hot",
+      supply:{ current:8, delta_4w:-3, history:[14,12,10,9,8] },
+      price:{ median:78000, delta_6mo:38 },
+      dom:{ median:14, trend:"down" },
+      demand:{ score:97 },
+      us_gap:{ pct:52, dir:"uk_cheaper" },
+      alerts:["Critical supply. 8 UK listings only. US buyers actively importing at significant premium."]
+    },
+    {
+      id:"bmw-e30-m3", name:"BMW E30 M3", years:"1986–1991",
+      tags:[], signal:"hot",
+      supply:{ current:24, delta_4w:-4, history:[31,29,27,25,24] },
+      price:{ median:52000, delta_6mo:21 },
+      dom:{ median:22, trend:"down" },
+      demand:{ score:91 },
+      us_gap:{ pct:8, dir:"uk_cheaper" },
+      alerts:["Supply at 5-year low. 22-day median DOM. Buyers absorbing stock."]
+    },
+    {
+      id:"mazda-rx7-fd", name:"Mazda RX-7 FD", years:"1991–2002",
+      tags:["25yr"], signal:"hot",
+      supply:{ current:31, delta_4w:-6, history:[41,39,36,34,31] },
+      price:{ median:24000, delta_6mo:31 },
+      dom:{ median:29, trend:"down" },
+      demand:{ score:88 },
+      us_gap:{ pct:44, dir:"uk_cheaper" },
+      alerts:["US import eligible. BaT median USD 42,000 vs UK £24,000. Export arbitrage window open."]
+    },
+    {
+      id:"porsche-996", name:"Porsche 996 Carrera", years:"1997–2004",
+      tags:[], signal:"rising",
+      supply:{ current:89, delta_4w:-5, history:[102,98,95,91,89] },
+      price:{ median:28500, delta_6mo:18 },
+      dom:{ median:45, trend:"down" },
+      demand:{ score:68 },
+      us_gap:{ pct:-3, dir:"us_cheaper" },
+      alerts:[]
+    },
+    {
+      id:"mercedes-r129-sl", name:"Mercedes R129 SL", years:"1989–2002",
+      tags:[], signal:"rising",
+      supply:{ current:141, delta_4w:-9, history:[162,158,151,148,141] },
+      price:{ median:18995, delta_6mo:12 },
+      dom:{ median:38, trend:"down" },
+      demand:{ score:72 },
+      us_gap:{ pct:16, dir:"uk_cheaper" },
+      alerts:[]
+    },
+    {
+      id:"honda-nsx", name:"Honda NSX NA1", years:"1990–2005",
+      tags:["25yr"], signal:"rising",
+      supply:{ current:22, delta_4w:-2, history:[26,25,24,23,22] },
+      price:{ median:44000, delta_6mo:14 },
+      dom:{ median:51, trend:"stable" },
+      demand:{ score:63 },
+      us_gap:{ pct:9, dir:"uk_cheaper" },
+      alerts:[]
+    },
+    {
+      id:"jaguar-etype-s1", name:"Jaguar E-Type Series 1", years:"1961–1968",
+      tags:[], signal:"stable",
+      supply:{ current:12, delta_4w:-1, history:[14,14,13,13,12] },
+      price:{ median:72000, delta_6mo:3 },
+      dom:{ median:71, trend:"stable" },
+      demand:{ score:51 },
+      us_gap:{ pct:-12, dir:"us_cheaper" },
+      alerts:[]
+    },
+    {
+      id:"defender-td5", name:"Land Rover Defender TD5", years:"1998–2007",
+      tags:["25yr"], signal:"stable",
+      supply:{ current:67, delta_4w:3, history:[62,63,65,65,67] },
+      price:{ median:28000, delta_6mo:-2 },
+      dom:{ median:42, trend:"up" },
+      demand:{ score:38 },
+      us_gap:{ pct:2, dir:"uk_cheaper" },
+      alerts:[]
+    },
+    {
+      id:"sierra-rs-cosw", name:"Ford Sierra RS Cosworth", years:"1986–1992",
+      tags:[], signal:"watch",
+      supply:{ current:18, delta_4w:1, history:[17,16,18,19,18] },
+      price:{ median:35000, delta_6mo:4 },
+      dom:{ median:61, trend:"stable" },
+      demand:{ score:44 },
+      us_gap:{ pct:28, dir:"uk_cheaper" },
+      alerts:["High DOM. Supply building slightly. Buyer pool thin at current prices."]
+    },
+    {
+      id:"alfa-gtv-916", name:"Alfa Romeo GTV 916", years:"1994–2005",
+      tags:[], signal:"watch",
+      supply:{ current:41, delta_4w:4, history:[36,37,39,40,41] },
+      price:{ median:9500, delta_6mo:-5 },
+      dom:{ median:58, trend:"up" },
+      demand:{ score:22 },
+      us_gap:{ pct:5, dir:"uk_cheaper" },
+      alerts:[]
+    }
+  ],
+  alerts: [
+    { type:"hot",    text:"<strong>R34 GT-R:</strong> Supply dropped to 8 UK listings. US buyers active. 14-day median DOM.", time:"Today" },
+    { type:"rising", text:"<strong>Mazda RX-7 FD:</strong> BaT comps 44% above UK asking. Export arbitrage window open.", time:"Today" },
+    { type:"watch",  text:"<strong>Sierra RS Cosworth:</strong> 3 new listings added this week vs 1 sold. Supply building.", time:"3 days ago" }
+  ]
+};
+
+// ──────────────────────────────────────────────────────────────
+// Helpers
+// ──────────────────────────────────────────────────────────────
+const fmtGBP = n => '£' + n.toLocaleString('en-GB');
+const signalRank = { hot:0, rising:1, watch:2, stable:3 };
+
+function spark(history, signal) {
+  const W=80, H=22, P=1.5;
+  const min=Math.min(...history), max=Math.max(...history), rng=max-min||1;
+  const pts = history.map((v,i)=>{
+    const x = P + (i/(history.length-1))*(W-P*2);
+    const y = P + (1-(v-min)/rng)*(H-P*2);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+  const isGood = signal==='hot'||signal==='rising';
+  const col = isGood ? '#4DB87A' : '#3A3A36';
+  return `<svg class="spark" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+    <polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.5"
+      stroke-linejoin="round" stroke-linecap="round"/>
+  </svg>`;
+}
+
+function row(m) {
+  const sd = m.supply.delta_4w;
+  const supClass = sd < 0 ? 'pos' : sd > 0 ? 'neg' : 'neu';
+  const supArrow = sd < 0 ? '↓' : sd > 0 ? '↑' : '→';
+
+  const pd = m.price.delta_6mo;
+  const prClass = pd > 0 ? 'pos' : pd < 0 ? 'neg' : 'neu';
+
+  const domArrow = m.dom.trend==='down' ? '↓ falling' : m.dom.trend==='up' ? '↑ rising' : '→ stable';
+  const domClass = m.dom.trend==='down' ? 'pos' : m.dom.trend==='up' ? 'neg' : 'neu';
+
+  const gapClass  = m.us_gap.dir==='uk_cheaper' ? 'pos' : 'neu';
+  const gapSign   = m.us_gap.dir==='uk_cheaper' ? '+' : '';
+  const gapLabel  = m.us_gap.dir==='uk_cheaper' ? 'UK cheaper' : 'US cheaper';
+
+  const tags = m.tags.includes('25yr')
+    ? `<span class="tag tag-25yr">25yr</span>` : '';
+
+  return `<tr data-signal="${m.signal}" data-25yr="${m.tags.includes('25yr')}">
+    <td>
+      <div class="model-name">${m.name} ${tags}</div>
+      <div class="model-years">${m.years}</div>
+    </td>
+    <td>
+      <div class="supply-num">${m.supply.current}</div>
+      <div class="supply-delta ${supClass}">${supArrow} ${Math.abs(sd)} / 4w</div>
+    </td>
+    <td>${spark(m.supply.history, m.signal)}</td>
+    <td>
+      <div class="price-main">${fmtGBP(m.price.median)}</div>
+      <div class="price-delta ${prClass}">${pd>0?'+':''}${pd}% / 6mo</div>
+    </td>
+    <td>
+      <div class="dom-num">${m.dom.median}d</div>
+      <div class="dom-sub ${domClass}">${domArrow}</div>
+    </td>
+    <td>
+      <div class="demand-wrap">
+        <div class="demand-track">
+          <div class="demand-fill" style="width:${m.demand.score}%"></div>
+        </div>
+        <span class="demand-score">${m.demand.score}</span>
+      </div>
+    </td>
+    <td>
+      <div class="gap-num ${gapClass}">${gapSign}${m.us_gap.pct}%</div>
+      <div class="gap-sub">${gapLabel}</div>
+    </td>
+    <td><span class="signal s-${m.signal}">${m.signal}</span></td>
+  </tr>`;
+}
+
+// ──────────────────────────────────────────────────────────────
+// State
+// ──────────────────────────────────────────────────────────────
+let currentFilter = 'all';
+let sortKey = null;
+let sortDir = 1;
+
+function filter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+const SORT_KEYS = ['name','supply',null,'price','dom','demand','gap','signal'];
+
+function sort(key) {
+  if (sortKey===key) { sortDir*=-1; } else { sortKey=key; sortDir=1; }
+  ['name','supply','price','dom','demand','gap','signal'].forEach(k=>{
+    const el=document.getElementById('th-'+k);
+    if(el) el.textContent = k===sortKey ? (sortDir>0?'↑':'↓') : '';
+    const th = el?.closest('th');
+    if(th) th.classList.toggle('sorted', k===sortKey);
+  });
+  render();
+}
+
+function getSortVal(m, k) {
+  switch(k){
+    case 'name':   return m.name;
+    case 'supply': return m.supply.current;
+    case 'price':  return m.price.median;
+    case 'dom':    return m.dom.median;
+    case 'demand': return m.demand.score;
+    case 'gap':    return m.us_gap.dir==='uk_cheaper' ? m.us_gap.pct : -m.us_gap.pct;
+    case 'signal': return signalRank[m.signal]??9;
+    default: return 0;
+  }
+}
+
+function render() {
+  let ms = [...DATA.models];
+  if (currentFilter==='hot')    ms = ms.filter(m=>m.signal==='hot');
+  if (currentFilter==='rising') ms = ms.filter(m=>m.signal==='hot'||m.signal==='rising');
+  if (currentFilter==='watch')  ms = ms.filter(m=>m.signal==='watch');
+  if (currentFilter==='25yr')   ms = ms.filter(m=>m.tags.includes('25yr'));
+
+  if (sortKey) {
+    ms.sort((a,b)=>{
+      const av=getSortVal(a,sortKey), bv=getSortVal(b,sortKey);
+      return (typeof av==='string' ? av.localeCompare(bv) : av-bv) * sortDir;
+    });
+  } else {
+    ms.sort((a,b)=>signalRank[a.signal]-signalRank[b.signal]);
+  }
+
+  const tb = document.getElementById('tbody');
+  tb.innerHTML = ms.length
+    ? ms.map(row).join('')
+    : `<tr><td colspan="8" class="empty">No models match this filter</td></tr>`;
+}
+
+// ──────────────────────────────────────────────────────────────
+// Init
+// ──────────────────────────────────────────────────────────────
+function init() {
+  const d = new Date(DATA.generated_at);
+  const opts = { weekday:'short', day:'numeric', month:'short', year:'numeric' };
+  document.getElementById('last-updated').textContent =
+    'Updated ' + d.toLocaleDateString('en-GB', opts) + ' · 09:00';
+
+  const next = new Date(d);
+  next.setDate(next.getDate() + 7);
+  document.getElementById('next-update').textContent =
+    'Next run ' + next.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+
+  document.getElementById('s-models').textContent = DATA.models.length;
+  document.getElementById('s-alerts').textContent = DATA.alerts.length;
+  document.getElementById('s-alerts-sub').textContent =
+    DATA.alerts.filter(a=>a.type==='hot').length + ' critical, ' +
+    DATA.alerts.filter(a=>a.type==='rising').length + ' rising';
+
+  const doms = DATA.models.map(m=>m.dom.median);
+  const avgDom = Math.round(doms.reduce((a,b)=>a+b,0)/doms.length);
+  document.getElementById('s-dom').textContent = avgDom + 'd';
+  document.getElementById('s-dom-sub').textContent = 'across all models';
+
+  document.getElementById('s-25yr').textContent =
+    DATA.models.filter(m=>m.tags.includes('25yr')).length;
+
+  document.getElementById('alerts').innerHTML = DATA.alerts.map(a=>`
+    <div class="alert">
+      <div class="alert-pip pip-${a.type}"></div>
+      <div class="alert-body">${a.text}</div>
+      <div class="alert-time">${a.time}</div>
+    </div>`).join('');
+
+  render();
+}
+
+init();
+</script>
+</body>
+</html>
