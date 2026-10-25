@@ -39,7 +39,8 @@ HEADERS = {
 }
 CRAWL_DELAY = 2.0  # seconds between requests
 
-TOP_N = 20  # models to surface on the radar
+TOP_N = 20          # models to surface on the radar
+MAX_PRICE = 30_000  # only surface models with median price at or under this
 
 
 # ──────────────────────────────────────────────────────────────
@@ -190,6 +191,11 @@ def run() -> None:
         log.info("Scanning: %s (%s)", model["id"], model["cc_search"])
         cc = _fetch_cc(session, model["cc_search"])
         time.sleep(CRAWL_DELAY)
+
+        # Skip if median price is known and above the ceiling
+        if cc["median_price"] and cc["median_price"] > MAX_PRICE:
+            log.info("Skipping %s: median £%d > £%d ceiling", model["id"], cc["median_price"], MAX_PRICE)
+            continue
 
         prev = prev_map.get(model["id"])
         sc = score_model(cc, prev)

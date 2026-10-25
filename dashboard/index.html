@@ -482,57 +482,55 @@
 
   <div class="stat-bar">
     <div class="stat">
-      <div class="stat-label">Models tracked</div>
-      <div class="stat-num" id="s-models">—</div>
-      <div class="stat-sub">across all makes</div>
+      <div class="stat-label">Signals found</div>
+      <div class="stat-num gold" id="s-models">—</div>
+      <div class="stat-sub">under £30k · this week</div>
     </div>
     <div class="stat">
-      <div class="stat-label">Active alerts</div>
-      <div class="stat-num gold" id="s-alerts">—</div>
-      <div class="stat-sub" id="s-alerts-sub">—</div>
+      <div class="stat-label">Hot</div>
+      <div class="stat-num" id="s-hot">—</div>
+      <div class="stat-sub" id="s-hot-sub">supply falling fast</div>
     </div>
     <div class="stat">
-      <div class="stat-label">Avg days on market</div>
-      <div class="stat-num" id="s-dom">—</div>
-      <div class="stat-sub" id="s-dom-sub">—</div>
+      <div class="stat-label">Rising</div>
+      <div class="stat-num" id="s-alerts">—</div>
+      <div class="stat-sub" id="s-alerts-sub">price or supply moving</div>
     </div>
     <div class="stat">
-      <div class="stat-label">US 25yr eligible</div>
-      <div class="stat-num gold" id="s-25yr">—</div>
-      <div class="stat-sub">importable models</div>
+      <div class="stat-label">Universe scanned</div>
+      <div class="stat-num" id="s-25yr">—</div>
+      <div class="stat-sub">candidate models</div>
     </div>
   </div>
 
-  <div class="filter-row">
-    <button class="pill active" onclick="filter('all',this)">All</button>
-    <button class="pill" onclick="filter('hot',this)">Hot</button>
-    <button class="pill" onclick="filter('rising',this)">Rising</button>
-    <button class="pill" onclick="filter('watch',this)">Watch</button>
-    <div class="filter-divider"></div>
-    <button class="pill" onclick="filter('25yr',this)">25YR Pipeline</button>
-  </div>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th onclick="sort('name')">Model <span id="th-name"></span></th>
-          <th onclick="sort('supply')">Supply <span id="th-supply"></span></th>
-          <th>4W Trend</th>
-          <th onclick="sort('price')">Med. Price <span id="th-price"></span></th>
-          <th onclick="sort('dom')">Days on Mkt <span id="th-dom"></span></th>
-          <th onclick="sort('demand')">Demand <span id="th-demand"></span></th>
-          <th onclick="sort('gap')">US Gap <span id="th-gap"></span></th>
-          <th onclick="sort('signal')">Signal <span id="th-signal"></span></th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
+  <div class="section" id="radar-section">
+    <div class="section-head">
+      <span class="section-label">Discovery radar &mdash; appreciating models under £30k</span>
+      <div class="section-rule"></div>
+    </div>
+    <div id="radar-empty" style="padding:40px 0;color:var(--text-2);font-size:12px">
+      Waiting for first scrape run. Data loads each Monday at 08:00 UTC.
+    </div>
+    <div class="table-wrap" id="radar-table-wrap" style="display:none">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Supply</th>
+            <th>Med. Price</th>
+            <th>4W Change</th>
+            <th>Score</th>
+            <th>Signal</th>
+          </tr>
+        </thead>
+        <tbody id="radar-tbody"></tbody>
+      </table>
+    </div>
   </div>
 
   <div class="section">
     <div class="section-head">
-      <span class="section-label">Active alerts</span>
+      <span class="section-label">Alerts</span>
       <div class="section-rule"></div>
     </div>
     <div class="alert-list" id="alerts"></div>
@@ -550,36 +548,12 @@
             <th>Model</th>
             <th>Supply</th>
             <th>4W Trend</th>
-            <th onclick="sort('price')">Med. Price</th>
+            <th>Med. Price</th>
             <th>Demand</th>
             <th>Signal</th>
           </tr>
         </thead>
         <tbody id="personal-tbody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section" id="radar-section" style="display:none">
-    <div class="section-head">
-      <span class="section-label">Radar &mdash; discovery engine</span>
-      <div class="section-rule"></div>
-    </div>
-    <p style="font-size:11px;color:var(--text-2);margin-bottom:14px">
-      Models surfaced by signal score from a universe of ~65 candidates. Not yet tracked; shown for awareness.
-    </p>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Supply</th>
-            <th>Med. Price</th>
-            <th>Signal score</th>
-            <th>Signal</th>
-          </tr>
-        </thead>
-        <tbody id="radar-tbody"></tbody>
       </table>
     </div>
   </div>
@@ -860,19 +834,21 @@ function radarRow(m) {
   const supArrow = sd < 0 ? '↓' : sd > 0 ? '↑' : '→';
   const pd = m.price.delta_pct || 0;
   const prClass = pd > 0 ? 'pos' : pd < 0 ? 'neg' : 'neu';
+  const changeText = sd !== 0
+    ? `<div class="supply-delta ${supClass}">${supArrow} ${Math.abs(sd)} supply / 4w</div>`
+    : `<div class="supply-delta neu">First reading</div>`;
   return `<tr>
     <td>
       <div class="model-name">${m.name}</div>
       <div class="model-years">${m.years}</div>
     </td>
     <td>
-      <div class="supply-num">${m.supply.current}</div>
-      <div class="supply-delta ${supClass}">${supArrow} ${Math.abs(sd)} / 4w</div>
+      <div class="supply-num">${m.supply.current || '—'}</div>
     </td>
     <td>
-      ${m.price.median ? `<div class="price-main">£${m.price.median.toLocaleString('en-GB')}</div>
-      <div class="price-delta ${prClass}">${pd>0?'+':''}${pd}% vs prev</div>` : '<div class="price-main" style="color:var(--text-2)">—</div>'}
+      ${m.price.median ? `<div class="price-main">£${m.price.median.toLocaleString('en-GB')}</div>` : '<div class="price-main" style="color:var(--text-2)">—</div>'}
     </td>
+    <td>${changeText}</td>
     <td>
       <div class="demand-wrap">
         <div class="demand-track"><div class="demand-fill" style="width:${m.score}%"></div></div>
@@ -920,10 +896,18 @@ function renderPersonal(models) {
 
 function renderRadar(discoveries) {
   if (!discoveries || !discoveries.models || discoveries.models.length === 0) return;
-  const sec = document.getElementById('radar-section');
   const tb = document.getElementById('radar-tbody');
-  sec.style.display = '';
+  document.getElementById('radar-empty').style.display = 'none';
+  document.getElementById('radar-table-wrap').style.display = '';
   tb.innerHTML = discoveries.models.map(radarRow).join('');
+
+  // Update stat bar from discovery data
+  document.getElementById('s-models').textContent = discoveries.models.length;
+  document.getElementById('s-25yr').textContent = discoveries.universe_size || '—';
+  const hot = discoveries.models.filter(m => m.signal === 'hot').length;
+  const rising = discoveries.models.filter(m => m.signal === 'rising').length;
+  document.getElementById('s-hot').textContent = hot;
+  document.getElementById('s-alerts').textContent = rising;
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -961,19 +945,7 @@ async function init() {
   document.getElementById('next-update').textContent =
     'Next run ' + next.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
 
-  document.getElementById('s-models').textContent = DATA.models.length;
-  document.getElementById('s-alerts').textContent = DATA.alerts.length;
-  document.getElementById('s-alerts-sub').textContent =
-    DATA.alerts.filter(a=>a.type==='hot').length + ' critical, ' +
-    DATA.alerts.filter(a=>a.type==='rising').length + ' rising';
-
-  const doms = DATA.models.map(m=>m.dom.median).filter(v=>v>0);
-  const avgDom = doms.length ? Math.round(doms.reduce((a,b)=>a+b,0)/doms.length) : 0;
-  document.getElementById('s-dom').textContent = avgDom ? avgDom + 'd' : '—';
-  document.getElementById('s-dom-sub').textContent = 'across all models';
-
-  document.getElementById('s-25yr').textContent =
-    DATA.models.filter(m=>m.tags.includes('25yr')).length;
+  // Stat bar is populated by renderRadar() once discoveries load.
 
   document.getElementById('alerts').innerHTML = DATA.alerts.length
     ? DATA.alerts.map(a=>`
@@ -983,8 +955,6 @@ async function init() {
           <div class="alert-time">${a.time}</div>
         </div>`).join('')
     : '<p style="color:var(--text-2);font-size:12px;padding:12px 0">No alerts this week.</p>';
-
-  render();
 }
 
 init();
