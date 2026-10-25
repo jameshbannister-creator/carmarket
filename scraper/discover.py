@@ -1,14 +1,15 @@
-"""Discovery engine — scans the universe of candidate models, scores by signal strength,
-and writes data/discoveries.json for the dashboard Radar section.
+"""Discovery engine — scans universe models via Car & Classic (Playwright),
+scores by signal strength, writes data/discoveries.json for the dashboard.
 
-Uses AutoTrader UK via Playwright (JS-rendered, no bot-check). Pinned models
-(data/models.json) are excluded from output; they have their own tracked section.
+Uses the cc_search field in universe.json for model-specific queries.
+Pinned models (data/models.json) are excluded — they have their own tracked section.
 """
 from __future__ import annotations
 
 import json
 import logging
 import re
+import shutil
 import statistics
 import time
 from datetime import datetime, timezone
@@ -21,26 +22,13 @@ DATA_DIR = PROJECT_ROOT / "data"
 UNIVERSE_JSON = DATA_DIR / "universe.json"
 MODELS_JSON = DATA_DIR / "models.json"
 DISCOVERIES_JSON = DATA_DIR / "discoveries.json"
-SNAPSHOTS_DIR = DATA_DIR / "snapshots"
 PREV_DISCOVERIES_JSON = DATA_DIR / "discoveries_prev.json"
 
-AT_SEARCH_URL = "https://www.autotrader.co.uk/car-search"
-AT_POSTCODE   = "SW1A1AA"
-AT_RADIUS     = "1500"   # nationwide
-CRAWL_DELAY   = 2.5      # seconds between Playwright page loads
+CC_BASE = "https://www.carandclassic.com/search"
+CRAWL_DELAY = 3.0
+TOP_N = 999
+MAX_PRICE = 30_000
 
-
-def _at_make(make: str) -> str:
-    """Convert universe make name to AutoTrader URL format (uppercase, spaces to +)."""
-    return make.upper().replace(" ", "+")
-
-TOP_N     = 999        # surface all scored models — dashboard filters by signal
-MAX_PRICE = 30_000     # only surface models with median price at or under this
-
-
-# ──────────────────────────────────────────────────────────────
-# Config loading
-# ──────────────────────────────────────────────────────────────
 
 def load_universe() -> list[dict]:
     with UNIVERSE_JSON.open() as f:
@@ -53,7 +41,6 @@ def load_pinned_ids() -> set[str]:
 
 
 def load_prev_discoveries() -> dict[str, dict]:
-    """Returns {model_id: record} from last run's discoveries, for delta tracking."""
     for path in (PREV_DISCOVERIES_JSON, DISCOVERIES_JSON):
         if path.exists():
             try:
@@ -65,54 +52,46 @@ def load_prev_discoveries() -> dict[str, dict]:
     return {}
 
 
-# ──────────────────────────────────────────────────────────────
-# AutoTrader scraper via Playwright
-# ──────────────────────────────────────────────────────────────
+def _fetch_cc(page, make: str, query: str) -> dict:
+    """Fetch listing count and prices from Car & Classic for a specific model."""
+    make_param = make.lower().replace(" ", "+")
+    query_param = query.replace(" ", "+")
+    url = f"{CC_BASE}?make={make_param}&q={query_param}"
 
-def _fetch_at(page, make: str, year_from: int, year_to: int) -> dict:
-    """Fetch listing count and prices from AutoTrader using make + year range.
-
-    AutoTrader's keyword search doesn't work reliably; make + year range does.
-    """
-    at_make = _at_make(make)
-    url = (
-        f"{AT_SEARCH_URL}"
-        f"?make={at_make}&year-from={year_from}&year-to={year_to}"
-        f"&postcode={AT_POSTCODE}&radius={AT_RADIUS}"
-        f"&include-delivery-option=on"
-    )
     try:
         page.goto(url, timeout=30_000, wait_until="domcontentloaded")
         page.wait_for_timeout(2000)
     except Exception as exc:
-        log.warning("AutoTrader page load failed for '%s' %s-%s: %s", make, year_from, year_to, exc)
-        return {"listing_count": 0, "prices": [], "median_price": 0}
+        log.warning("C&C load failed for '%s': %s", query, exc)
+        return {"listing_count": 0, "prices": []}
 
-    txt = page.inner_text("body")
-
-    # Listing count — AutoTrader renders e.g. "342 results"
+    # Listing count — C&C shows "Showing X listings for Make" in an h2
     count = 0
-    for pat in [r"([\d,]+)\s+results?", r"([\d,]+)\s+cars?\s+found"]:
-        m = re.search(pat, txt, re.I)
+    for h2 in page.query_selector_all("h2"):
+        text = h2.inner_text()
+        m = re.search(r"([\d,]+)\s+listings?", text, re.IGNORECASE)
         if m:
             count = int(m.group(1).replace(",", ""))
             break
 
-    # Prices — "£18,995" style (listing prices only, 500–500k range)
+    # Prices — pull leaf elements whose full text is a £ amount
+    raw_prices: list[str] = page.evaluate(
+        "() => [...document.querySelectorAll('*')]"
+        ".filter(el => el.children.length === 0 && el.innerText"
+        "  && /^£[\\d,]+$/.test(el.innerText.trim()))"
+        ".map(el => el.innerText.trim())"
+    )
     prices: list[int] = []
-    for m in re.finditer(r"£([\d,]+)", txt):
-        val = int(m.group(1).replace(",", ""))
-        if 500 < val < 500_000:
-            prices.append(val)
-    prices = sorted(set(prices))
+    for p_str in raw_prices:
+        try:
+            val = int(p_str.replace("£", "").replace(",", ""))
+            if 500 < val < 2_000_000:
+                prices.append(val)
+        except ValueError:
+            pass
 
-    median_price = int(statistics.median(prices)) if prices else 0
-    return {"listing_count": count, "prices": prices, "median_price": median_price}
+    return {"listing_count": count, "prices": prices}
 
-
-# ──────────────────────────────────────────────────────────────
-# Scoring
-# ──────────────────────────────────────────────────────────────
 
 def score_model(current: dict, prev: dict | None) -> float:
     """
@@ -127,19 +106,15 @@ def score_model(current: dict, prev: dict | None) -> float:
     supply = current["listing_count"]
     price = current["median_price"]
 
-    # Supply scarcity score: <20 listings = 25pts, scales down to 200+
     scarcity = max(0.0, 1.0 - (supply / 200)) * 25
 
-    # Supply contraction vs previous run
     contraction = 0.0
     if prev and prev.get("supply", {}).get("current", 0) > 0:
         prev_supply = prev["supply"]["current"]
-        if prev_supply > 0:
-            pct_change = (supply - prev_supply) / prev_supply
-            if pct_change < 0:
-                contraction = min(35.0, abs(pct_change) * 200)
+        pct_change = (supply - prev_supply) / prev_supply
+        if pct_change < 0:
+            contraction = min(35.0, abs(pct_change) * 200)
 
-    # Price momentum vs previous run
     momentum = 0.0
     if prev and prev.get("price", {}).get("median", 0) > 0 and price > 0:
         prev_price = prev["price"]["median"]
@@ -147,11 +122,9 @@ def score_model(current: dict, prev: dict | None) -> float:
         if pct_change > 0:
             momentum = min(25.0, pct_change * 150)
 
-    # Absolute supply floor bonus: <10 is critical
     floor_bonus = 15.0 if supply < 10 else (10.0 if supply < 20 else 0.0)
 
-    total = scarcity + contraction + momentum + floor_bonus
-    return round(min(100.0, total), 1)
+    return round(min(100.0, scarcity + contraction + momentum + floor_bonus), 1)
 
 
 def signal_label(score: float, supply: int) -> str:
@@ -162,10 +135,6 @@ def signal_label(score: float, supply: int) -> str:
     return "watch"
 
 
-# ──────────────────────────────────────────────────────────────
-# Main
-# ──────────────────────────────────────────────────────────────
-
 def run() -> None:
     from playwright.sync_api import sync_playwright
 
@@ -173,7 +142,11 @@ def run() -> None:
     pinned_ids = load_pinned_ids()
     prev_map = load_prev_discoveries()
 
-    log.info("Discovery engine: %d universe models, %d pinned (excluded)", len(universe), len(pinned_ids))
+    candidates = [m for m in universe if m["id"] not in pinned_ids]
+    log.info(
+        "Discovery: %d candidates (%d universe, %d pinned excluded)",
+        len(candidates), len(universe), len(pinned_ids),
+    )
 
     scored: list[dict] = []
 
@@ -181,68 +154,78 @@ def run() -> None:
         browser = pw.chromium.launch(headless=True)
         context = browser.new_context(
             user_agent=(
-                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-                "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/124.0.0.0 Safari/537.36"
             ),
             locale="en-GB",
             viewport={"width": 1280, "height": 800},
         )
         page = context.new_page()
 
-        for model in universe:
-            if model["id"] in pinned_ids:
-                log.debug("Skipping pinned model: %s", model["id"])
-                continue
+        for model in candidates:
+            mid = model["id"]
+            make = model.get("make", "")
+            query = model.get("cc_search", model["name"])
 
-            make = model["make"]
-            year_from, year_to = model["years"][0], model["years"][1]
-            log.info("Scanning: %s (%s %s-%s)", model["id"], make, year_from, year_to)
-            cc = _fetch_at(page, make, year_from, year_to)
+            log.info("Scanning C&C: %s (%s)", mid, query)
+            cc = _fetch_cc(page, make, query)
             time.sleep(CRAWL_DELAY)
 
-            # Skip if median price is known and above the ceiling
-            if cc["median_price"] and cc["median_price"] > MAX_PRICE:
-                log.info("Skipping %s: median £%d > £%d ceiling", model["id"], cc["median_price"], MAX_PRICE)
+            supply = cc["listing_count"]
+            raw_prices = cc["prices"]
+
+            # True median before ceiling filter — used to decide whether to skip
+            true_median = int(statistics.median(raw_prices)) if raw_prices else 0
+            if true_median and true_median > MAX_PRICE:
+                log.info(
+                    "Skipping %s: median £%d > £%d ceiling", mid, true_median, MAX_PRICE
+                )
                 continue
 
-            prev = prev_map.get(model["id"])
-            sc = score_model(cc, prev)
+            # Display median uses only sub-ceiling prices
+            display_prices = [p for p in raw_prices if p <= MAX_PRICE]
+            median_price = (
+                int(statistics.median(display_prices)) if display_prices else true_median
+            )
+
+            prev = prev_map.get(mid)
+            sc = score_model({"listing_count": supply, "median_price": median_price}, prev)
 
             prev_supply = prev["supply"]["current"] if prev else None
-            supply_delta = (cc["listing_count"] - prev_supply) if prev_supply is not None else 0
+            supply_delta = (supply - prev_supply) if prev_supply is not None else 0
             prev_price = prev["price"]["median"] if prev else None
             price_delta_pct = (
-                round((cc["median_price"] - prev_price) / prev_price * 100)
-                if prev_price and prev_price > 0 and cc["median_price"] > 0
+                round((median_price - prev_price) / prev_price * 100)
+                if prev_price and prev_price > 0 and median_price > 0
                 else 0
             )
 
             scored.append({
-                "id": model["id"],
+                "id": mid,
                 "name": model["name"],
-                "make": model["make"],
+                "make": make,
                 "years": f"{model['years'][0]}–{model['years'][1]}",
-                "signal": signal_label(sc, cc["listing_count"]),
+                "signal": signal_label(sc, supply),
                 "score": sc,
-                "supply": {
-                    "current": cc["listing_count"],
-                    "delta_4w": supply_delta,
-                },
-                "price": {
-                    "median": cc["median_price"],
-                    "delta_pct": price_delta_pct,
-                },
+                "supply": {"current": supply, "delta_4w": supply_delta},
+                "price": {"median": median_price, "delta_pct": price_delta_pct},
                 "scraped_at": datetime.now(timezone.utc).isoformat(),
             })
+            log.info(
+                "  → %d listings, median £%s, score %.1f (%s)",
+                supply,
+                f"{median_price:,}" if median_price else "n/a",
+                sc,
+                signal_label(sc, supply),
+            )
 
         browser.close()
 
     scored.sort(key=lambda x: x["score"], reverse=True)
     top = scored[:TOP_N]
 
-    # Preserve previous discoveries before overwriting
     if DISCOVERIES_JSON.exists():
-        import shutil
         shutil.copy(DISCOVERIES_JSON, PREV_DISCOVERIES_JSON)
 
     output = {
@@ -257,8 +240,8 @@ def run() -> None:
     hot = sum(1 for m in top if m["signal"] == "hot")
     rising = sum(1 for m in top if m["signal"] == "rising")
     log.info(
-        "Discovery: scanned %d models, top %d surfaced. %d hot, %d rising.",
-        len(scored), len(top), hot, rising,
+        "Discovery: scored %d models. %d hot, %d rising.",
+        len(top), hot, rising,
     )
 
 
