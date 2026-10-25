@@ -538,6 +538,30 @@
     <div class="alert-list" id="alerts"></div>
   </div>
 
+  <div class="section" id="radar-section" style="display:none">
+    <div class="section-head">
+      <span class="section-label">Radar &mdash; discovery engine</span>
+      <div class="section-rule"></div>
+    </div>
+    <p style="font-size:11px;color:var(--text-2);margin-bottom:14px">
+      Models surfaced by signal score from a universe of ~65 candidates. Not yet tracked; shown for awareness.
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Supply</th>
+            <th>Med. Price</th>
+            <th>Signal score</th>
+            <th>Signal</th>
+          </tr>
+        </thead>
+        <tbody id="radar-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-text">
       Sources: Car &amp; Classic · eBay UK · Bring a Trailer · Google Trends<br>
@@ -551,11 +575,9 @@
 </div>
 <script>
 // ──────────────────────────────────────────────────────────────
-// DATA — replaced weekly by scraper writing data/latest.json
-// To use a real data file: replace DATA block with:
-//   const DATA = await fetch('../data/latest.json').then(r=>r.json());
+// Fallback data shown if fetch fails (e.g. local file:// open)
 // ──────────────────────────────────────────────────────────────
-const DATA = {
+const FALLBACK_DATA = {
   generated_at: "2026-10-25T09:00:00Z",
   models: [
     {
@@ -665,6 +687,8 @@ const DATA = {
     { type:"watch",  text:"<strong>Sierra RS Cosworth:</strong> 3 new listings added this week vs 1 sold. Supply building.", time:"3 days ago" }
   ]
 };
+
+let DATA = FALLBACK_DATA;
 
 // ──────────────────────────────────────────────────────────────
 // Helpers
@@ -803,9 +827,68 @@ function render() {
 }
 
 // ──────────────────────────────────────────────────────────────
+// Radar section (discovery engine output)
+// ──────────────────────────name: ─────────────────────────────────
+function radarRow(m) {
+  const sd = m.supply.delta_4w;
+  const supClass = sd < 0 ? 'pos' : sd > 0 ? 'neg' : 'neu';
+  const supArrow = sd < 0 ? '↓' : sd > 0 ? '↑' : '→';
+  const pd = m.price.delta_pct || 0;
+  const prClass = pd > 0 ? 'pos' : pd < 0 ? 'neg' : 'neu';
+  return `<tr>
+    <td>
+      <div class="model-name">${m.name}</div>
+      <div class="model-years">${m.years}</div>
+    </td>
+    <td>
+      <div class="supply-num">${m.supply.current}</div>
+      <div class="supply-delta ${supClass}">${supArrow} ${Math.abs(sd)} / 4w</div>
+    </td>
+    <td>
+      ${m.price.median ? `<div class="price-main">£${m.price.median.toLocaleString('en-GB')}</div>
+      <div class="price-delta ${prClass}">${pd>0?'+':''}${pd}% vs prev</div>` : '<div class="price-main" style="color:var(--text-2)">—</div>'}
+    </td>
+    <td>
+      <div class="demand-wrap">
+        <div class="demand-track"><div class="demand-fill" style="width:${m.score}%"></div></div>
+        <span class="demand-score">${m.score}</span>
+      </div>
+    </td>
+    <td><span class="signal s-${m.signal}">${m.signal}</span></td>
+  </tr>`;
+}
+
+function renderRadar(discoveries) {
+  if (!discoveries || !discoveries.models || discoveries.models.length === 0) return;
+  const sec = document.getElementById('radar-section');
+  const tb = document.getElementById('radar-tbody');
+  sec.style.display = '';
+  tb.innerHTML = discoveries.models.map(radarRow).join('');
+}
+
+// ──────────────────────────────────────────────────────────────
 // Init
 // ──────────────────────────────────────────────────────────────
-function init() {
+async function init() {
+  // Try to load real data from the scraper output
+  try {
+    const [latestResp, discoveriesResp] = await Promise.allSettled([
+      fetch('../data/latest.json'),
+      fetch('../data/discoveries.json'),
+    ]);
+
+    if (latestResp.status === 'fulfilled' && latestResp.value.ok) {
+      DATA = await latestResp.value.json();
+    }
+
+    if (discoveriesResp.status === 'fulfilled' && discoveriesResp.value.ok) {
+      const discoveries = await discoveriesResp.value.json();
+      renderRadar(discoveries);
+    }
+  } catch (_) {
+    // falls back to FALLBACK_DATA already assigned
+  }
+
   const d = new Date(DATA.generated_at);
   const opts = { weekday:'short', day:'numeric', month:'short', year:'numeric' };
   document.getElementById('last-updated').textContent =
@@ -822,20 +905,22 @@ function init() {
     DATA.alerts.filter(a=>a.type==='hot').length + ' critical, ' +
     DATA.alerts.filter(a=>a.type==='rising').length + ' rising';
 
-  const doms = DATA.models.map(m=>m.dom.median);
-  const avgDom = Math.round(doms.reduce((a,b)=>a+b,0)/doms.length);
-  document.getElementById('s-dom').textContent = avgDom + 'd';
+  const doms = DATA.models.map(m=>m.dom.median).filter(v=>v>0);
+  const avgDom = doms.length ? Math.round(doms.reduce((a,b)=>a+b,0)/doms.length) : 0;
+  document.getElementById('s-dom').textContent = avgDom ? avgDom + 'd' : '—';
   document.getElementById('s-dom-sub').textContent = 'across all models';
 
   document.getElementById('s-25yr').textContent =
     DATA.models.filter(m=>m.tags.includes('25yr')).length;
 
-  document.getElementById('alerts').innerHTML = DATA.alerts.map(a=>`
-    <div class="alert">
-      <div class="alert-pip pip-${a.type}"></div>
-      <div class="alert-body">${a.text}</div>
-      <div class="alert-time">${a.time}</div>
-    </div>`).join('');
+  document.getElementById('alerts').innerHTML = DATA.alerts.length
+    ? DATA.alerts.map(a=>`
+        <div class="alert">
+          <div class="alert-pip pip-${a.type}"></div>
+          <div class="alert-body">${a.text}</div>
+          <div class="alert-time">${a.time}</div>
+        </div>`).join('')
+    : '<p style="color:var(--text-2);font-size:12px;padding:12px 0">No alerts this week.</p>';
 
   render();
 }

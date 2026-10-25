@@ -12,6 +12,7 @@ import cc_scraper
 import bat_scraper
 import ebay_scraper
 import trends as trends_scraper
+import discover
 
 logging.basicConfig(
     level=logging.INFO,
@@ -289,6 +290,13 @@ def main() -> None:
     hot_count = sum(1 for m in models_out if m["signal"] == "hot")
     rising_count = sum(1 for m in models_out if m["signal"] == "rising")
     log.info("Done. %d models. %d hot, %d rising, %d alerts.", len(models_out), hot_count, rising_count, len(alerts))
+
+    # Run discovery engine across the broader universe
+    log.info("Running discovery engine…")
+    try:
+        discover.run()
+    except Exception as exc:
+        log.error("Discovery engine failed (non-fatal): %s", exc)
 
 
 if __name__ == "__main__":
