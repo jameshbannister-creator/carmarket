@@ -114,6 +114,18 @@
       "notes": "Undersupplied appreciation candidate. Patience play."
     },
     {
+      "id": "mercedes-w210-e55",
+      "name": "Mercedes-Benz E55 AMG (W210)",
+      "make": "Mercedes-Benz",
+      "model": "E55 AMG",
+      "years": [1999, 2003],
+      "cc_search": "mercedes e55 amg w210",
+      "ebay_search": "Mercedes E55 AMG W210",
+      "bat_search": "mercedes e55 amg",
+      "us_rare": false,
+      "notes": "Future classic. Hand-built M113 V8. Watching for floor formation."
+    },
+    {
       "id": "jaguar-etype-s1",
       "name": "Jaguar E-Type Series 1",
       "make": "Jaguar",
