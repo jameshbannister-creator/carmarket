@@ -760,6 +760,9 @@ function row(m) {
     <td>
       <div class="supply-num">${m.supply.current}</div>
       <div class="supply-delta ${supClass}">${supArrow} ${Math.abs(sd)} / 4w</div>
+      ${(m.supply.cc||0) > 0 && (m.supply.gumtree||0) > 0
+        ? `<div class="supply-delta neu" style="font-size:9.5px;margin-top:2px">${m.supply.cc} C&amp;C · ${m.supply.gumtree} GT</div>`
+        : ''}
     </td>
     <td>${spark(m.supply.history, m.signal)}</td>
     <td>

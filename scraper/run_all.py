@@ -11,6 +11,7 @@ from pathlib import Path
 import cc_scraper
 import bat_scraper
 import ebay_scraper
+import gumtree_scraper
 import trends as trends_scraper
 import discover
 
@@ -191,6 +192,9 @@ def main() -> None:
     log.info("Running eBay UK scraper…")
     ebay_data = ebay_scraper.scrape(models_cfg)
 
+    log.info("Running Gumtree UK scraper…")
+    gumtree_data = gumtree_scraper.scrape(models_cfg)
+
     log.info("Running Google Trends…")
     trends_data = trends_scraper.scrape(models_cfg)
 
@@ -202,18 +206,24 @@ def main() -> None:
         cc = cc_data.get(mid, {})
         bat = bat_data.get(mid, {})
         ebay = ebay_data.get(mid, {})
+        gumtree = gumtree_data.get(mid, {})
         trend = trends_data.get(mid, {})
 
-        # Supply
-        supply_now = cc.get("listing_count", 0)
+        # Supply — combine C&C and Gumtree counts
+        cc_supply = cc.get("listing_count", 0)
+        gumtree_supply = gumtree.get("listing_count", 0)
+        supply_now = cc_supply + gumtree_supply
         prev_supply = get_prev_supply(prev, mid)
         prev_history = get_prev_history(prev, mid)
         history = (prev_history + [supply_now])[-8:]  # keep last 8 weeks
         delta_4w = supply_now - prev_history[-4] if len(prev_history) >= 4 else 0
 
-        # Price — use C&C prices if available
+        # Price — blend C&C and Gumtree prices; Gumtree skews private-seller
         prices = [p for p in cc.get("prices", []) if p > 0]
-        median_gbp = int(statistics.median(prices)) if prices else get_prev_price(prev, mid) or 0
+        gumtree_prices = [p for p in gumtree.get("prices", []) if p > 0]
+        all_prices = prices + gumtree_prices
+        median_gbp = int(statistics.median(all_prices)) if all_prices else get_prev_price(prev, mid) or 0
+        gumtree_median = gumtree.get("median_price", 0)
         prev_price = get_prev_price(prev, mid) or median_gbp
         price_delta_pct = round((median_gbp - prev_price) / prev_price * 100) if prev_price else 0
 
@@ -250,9 +260,12 @@ def main() -> None:
             "signal": signal,
             "supply": {
                 "current": supply_now,
+                "cc": cc_supply,
+                "gumtree": gumtree_supply,
                 "delta_4w": delta_4w,
                 "history": history,
             },
+            "gumtree_median": gumtree_median,
             "price": {
                 "median": median_gbp,
                 "delta_6mo": price_delta_pct,
