@@ -246,6 +246,7 @@ def main() -> None:
             "name": model["name"],
             "years": f"{model['years'][0]}–{model['years'][1]}",
             "tags": tags,
+            "personal": model.get("personal", False),
             "signal": signal,
             "supply": {
                 "current": supply_now,

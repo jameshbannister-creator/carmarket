@@ -538,6 +538,28 @@
     <div class="alert-list" id="alerts"></div>
   </div>
 
+  <div class="section" id="personal-section" style="display:none">
+    <div class="section-head">
+      <span class="section-label">Personal watchlist</span>
+      <div class="section-rule"></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Supply</th>
+            <th>4W Trend</th>
+            <th onclick="sort('price')">Med. Price</th>
+            <th>Demand</th>
+            <th>Signal</th>
+          </tr>
+        </thead>
+        <tbody id="personal-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
   <div class="section" id="radar-section" style="display:none">
     <div class="section-head">
       <span class="section-label">Radar &mdash; discovery engine</span>
@@ -858,6 +880,41 @@ function radarRow(m) {
   </tr>`;
 }
 
+function renderPersonal(models) {
+  const personal = models.filter(m => m.personal);
+  if (!personal.length) return;
+  document.getElementById('personal-section').style.display = '';
+  document.getElementById('personal-tbody').innerHTML = personal.map(m => {
+    const sd = m.supply.delta_4w;
+    const supClass = sd < 0 ? 'pos' : sd > 0 ? 'neg' : 'neu';
+    const supArrow = sd < 0 ? '↓' : sd > 0 ? '↑' : '→';
+    const pd = m.price.delta_6mo;
+    const prClass = pd > 0 ? 'pos' : pd < 0 ? 'neg' : 'neu';
+    return `<tr data-signal="${m.signal}">
+      <td>
+        <div class="model-name">${m.name}</div>
+        <div class="model-years">${m.years}</div>
+      </td>
+      <td>
+        <div class="supply-num">${m.supply.current || '—'}</div>
+        <div class="supply-delta ${supClass}">${supArrow} ${Math.abs(sd)} / 4w</div>
+      </td>
+      <td>${spark(m.supply.history || [m.supply.current], m.signal)}</td>
+      <td>
+        <div class="price-main">${m.price.median ? fmtGBP(m.price.median) : '—'}</div>
+        <div class="price-delta ${prClass}">${pd > 0 ? '+' : ''}${pd}% / 6mo</div>
+      </td>
+      <td>
+        <div class="demand-wrap">
+          <div class="demand-track"><div class="demand-fill" style="width:${m.demand.score}%"></div></div>
+          <span class="demand-score">${m.demand.score}</span>
+        </div>
+      </td>
+      <td><span class="signal s-${m.signal}">${m.signal}</span></td>
+    </tr>`;
+  }).join('');
+}
+
 function renderRadar(discoveries) {
   if (!discoveries || !discoveries.models || discoveries.models.length === 0) return;
   const sec = document.getElementById('radar-section');
@@ -880,6 +937,8 @@ async function init() {
     if (latestResp.status === 'fulfilled' && latestResp.value.ok) {
       DATA = await latestResp.value.json();
     }
+
+    renderPersonal(DATA.models);
 
     if (discoveriesResp.status === 'fulfilled' && discoveriesResp.value.ok) {
       const discoveries = await discoveriesResp.value.json();
