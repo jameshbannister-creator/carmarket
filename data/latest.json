@@ -1,22 +1,28 @@
 {
-  "generated_at": "2026-10-25T10:26:39.732954+00:00",
+  "generated_at": "2026-10-26T14:03:37.446700+00:00",
   "models": [
     {
-      "id": "mercedes-r129-sl",
-      "name": "Mercedes R129 SL",
-      "years": "1989\u20132002",
+      "id": "mercedes-w210-e55",
+      "name": "Mercedes-Benz E55 AMG (W210)",
+      "years": "1999\u20132003",
       "tags": [],
+      "personal": true,
       "signal": "stable",
       "supply": {
         "current": 0,
+        "cc": 0,
+        "gumtree": 0,
         "delta_4w": 0,
         "history": [
           0
         ]
       },
+      "gumtree_median": 0,
       "price": {
         "median": 0,
-        "delta_6mo": 0
+        "delta_6mo": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
       "dom": {
         "median": 0,
@@ -32,83 +38,29 @@
       "alerts": []
     },
     {
-      "id": "bmw-e30-m3",
-      "name": "BMW E30 M3",
-      "years": "1986\u20131991",
-      "tags": [],
-      "signal": "stable",
-      "supply": {
-        "current": 0,
-        "delta_4w": 0,
-        "history": [
-          0
-        ]
-      },
-      "price": {
-        "median": 0,
-        "delta_6mo": 0
-      },
-      "dom": {
-        "median": 0,
-        "trend": "stable"
-      },
-      "demand": {
-        "score": 30
-      },
-      "us_gap": {
-        "pct": 0,
-        "dir": "uk_cheaper"
-      },
-      "alerts": []
-    },
-    {
-      "id": "porsche-996-carrera",
-      "name": "Porsche 996 Carrera",
-      "years": "1997\u20132004",
-      "tags": [],
-      "signal": "stable",
-      "supply": {
-        "current": 0,
-        "delta_4w": 0,
-        "history": [
-          0
-        ]
-      },
-      "price": {
-        "median": 0,
-        "delta_6mo": 0
-      },
-      "dom": {
-        "median": 0,
-        "trend": "stable"
-      },
-      "demand": {
-        "score": 30
-      },
-      "us_gap": {
-        "pct": 0,
-        "dir": "uk_cheaper"
-      },
-      "alerts": []
-    },
-    {
-      "id": "ford-sierra-rs-cosworth",
-      "name": "Ford Sierra RS Cosworth",
-      "years": "1986\u20131992",
+      "id": "alfa-156-gta",
+      "name": "Alfa Romeo 156 GTA",
+      "years": "2002\u20132005",
       "tags": [
         "25yr"
       ],
+      "personal": true,
       "signal": "stable",
       "supply": {
-        "current": 0,
+        "current": 2,
+        "cc": 0,
+        "gumtree": 2,
         "delta_4w": 0,
         "history": [
-          0
+          2
         ]
       },
+      "gumtree_median": 0,
       "price": {
         "median": 0,
-        "delta_6mo": 0
+        "delta_6mo": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
       "dom": {
         "median": 0,
@@ -124,179 +76,27 @@
       "alerts": []
     },
     {
-      "id": "mazda-rx7-fd",
-      "name": "Mazda RX-7 FD",
-      "years": "1991\u20132002",
-      "tags": [
-        "25yr"
-      ],
-      "signal": "stable",
-      "supply": {
-        "current": 0,
-        "delta_4w": 0,
-        "history": [
-          0
-        ]
-      },
-      "price": {
-        "median": 0,
-        "delta_6mo": 0
-      },
-      "dom": {
-        "median": 0,
-        "trend": "stable"
-      },
-      "demand": {
-        "score": 30
-      },
-      "us_gap": {
-        "pct": 0,
-        "dir": "uk_cheaper"
-      },
-      "alerts": []
-    },
-    {
-      "id": "nissan-r34-gtr",
-      "name": "Nissan Skyline R34 GT-R",
-      "years": "1998\u20132002",
-      "tags": [
-        "25yr"
-      ],
-      "signal": "stable",
-      "supply": {
-        "current": 0,
-        "delta_4w": 0,
-        "history": [
-          0
-        ]
-      },
-      "price": {
-        "median": 0,
-        "delta_6mo": 0
-      },
-      "dom": {
-        "median": 0,
-        "trend": "stable"
-      },
-      "demand": {
-        "score": 30
-      },
-      "us_gap": {
-        "pct": 0,
-        "dir": "uk_cheaper"
-      },
-      "alerts": []
-    },
-    {
-      "id": "honda-nsx",
-      "name": "Honda NSX NA1",
-      "years": "1990\u20132005",
+      "id": "toyota-rav4-mk1",
+      "name": "Toyota RAV4 Mk1",
+      "years": "1994\u20132000",
       "tags": [],
+      "personal": true,
       "signal": "stable",
       "supply": {
         "current": 0,
+        "cc": 0,
+        "gumtree": 0,
         "delta_4w": 0,
         "history": [
           0
         ]
       },
+      "gumtree_median": 0,
       "price": {
         "median": 0,
-        "delta_6mo": 0
-      },
-      "dom": {
-        "median": 0,
-        "trend": "stable"
-      },
-      "demand": {
-        "score": 30
-      },
-      "us_gap": {
-        "pct": 0,
-        "dir": "uk_cheaper"
-      },
-      "alerts": []
-    },
-    {
-      "id": "land-rover-defender-td5",
-      "name": "Land Rover Defender TD5",
-      "years": "1998\u20132007",
-      "tags": [
-        "25yr"
-      ],
-      "signal": "stable",
-      "supply": {
-        "current": 0,
-        "delta_4w": 0,
-        "history": [
-          0
-        ]
-      },
-      "price": {
-        "median": 0,
-        "delta_6mo": 0
-      },
-      "dom": {
-        "median": 0,
-        "trend": "stable"
-      },
-      "demand": {
-        "score": 30
-      },
-      "us_gap": {
-        "pct": 0,
-        "dir": "uk_cheaper"
-      },
-      "alerts": []
-    },
-    {
-      "id": "alfa-gtv-916",
-      "name": "Alfa Romeo GTV 916",
-      "years": "1994\u20132005",
-      "tags": [
-        "25yr"
-      ],
-      "signal": "stable",
-      "supply": {
-        "current": 0,
-        "delta_4w": 0,
-        "history": [
-          0
-        ]
-      },
-      "price": {
-        "median": 0,
-        "delta_6mo": 0
-      },
-      "dom": {
-        "median": 0,
-        "trend": "stable"
-      },
-      "demand": {
-        "score": 30
-      },
-      "us_gap": {
-        "pct": 0,
-        "dir": "uk_cheaper"
-      },
-      "alerts": []
-    },
-    {
-      "id": "jaguar-etype-s1",
-      "name": "Jaguar E-Type Series 1",
-      "years": "1961\u20131968",
-      "tags": [],
-      "signal": "stable",
-      "supply": {
-        "current": 0,
-        "delta_4w": 0,
-        "history": [
-          0
-        ]
-      },
-      "price": {
-        "median": 0,
-        "delta_6mo": 0
+        "delta_6mo": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
       "dom": {
         "median": 0,

@@ -556,15 +556,19 @@ def _load_hnh_lots(page) -> list[dict]:
                 log.warning("H&H archive fallback also failed: %s", exc2)
                 continue
 
-        entries = page.evaluate(
-            "() => [...document.querySelectorAll('a[href*=\"/auction/\"]')]"
-            ".filter(a => a.textContent.trim() === 'View Auction Results')"
-            ".map(a => {"
-            "  const parent = a.closest('section') || a.parentElement?.parentElement?.parentElement;"
-            "  const dateMatch = parent?.innerText?.match(/Date:\\s*(.+?)[\\n\\r]/);"
-            "  return {href: a.href, dateText: dateMatch?.[1] || ''};"
-            "})"
-        )
+        try:
+            entries = page.evaluate(
+                "() => [...document.querySelectorAll('a[href*=\"/auction/\"]')]"
+                ".filter(a => a.textContent.trim() === 'View Auction Results')"
+                ".map(a => {"
+                "  const parent = a.closest('section') || a.parentElement?.parentElement?.parentElement;"
+                "  const dateMatch = parent?.innerText?.match(/Date:\\s*(.+?)[\\n\\r]/);"
+                "  return {href: a.href, dateText: dateMatch?.[1] || ''};"
+                "})"
+            )
+        except Exception as exc:
+            log.warning("H&H archive evaluate failed: %s", exc)
+            continue
 
         for entry in entries:
             date_text = entry.get("dateText", "")
@@ -596,7 +600,11 @@ def _load_hnh_lots(page) -> list[dict]:
             log.warning("H&H lot page failed %s: %s", url, exc)
             continue
 
-        text = page.evaluate("() => document.body.innerText")
+        try:
+            text = page.evaluate("() => document.body.innerText")
+        except Exception as exc:
+            log.warning("H&H lot page evaluate failed %s: %s", url, exc)
+            continue
         # Format: "{Year} {Make} {Model}\n...\nSold for\n£X,XXX"
         for m in re.finditer(r"(\d{4}\s+[A-Za-z].{5,80}?)\n.*?Sold for\s*\n\s*£([\d,]+)", text, re.DOTALL):
             title = m.group(1).strip()

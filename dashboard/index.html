@@ -302,31 +302,9 @@
       margin-top: 3px;
     }
 
-    /* ── Demand cell ──────────────────────────────────────────── */
-    .demand-wrap { display: flex; align-items: center; gap: 9px; }
-
-    .demand-track {
-      width: 52px;
-      height: 3px;
-      background: var(--bg-3);
-      border-radius: 2px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .demand-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: var(--gold);
-      opacity: 0.75;
-    }
-
-    .demand-score {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text-1);
-      min-width: 24px;
-    }
+    /* ── Trend sparkline ─────────────────────────────────────── */
+    .spark-wrap { display: flex; align-items: center; gap: 7px; }
+    .spark-delta { font-size: 10.5px; font-variant-numeric: tabular-nums; }
 
     /* ── US Gap cell ──────────────────────────────────────────── */
     .gap-num {
@@ -519,8 +497,8 @@
             <th>Supply</th>
             <th>Med. Price</th>
             <th>Sold (6m)</th>
+            <th>Trend</th>
             <th>4W Change</th>
-            <th>Score</th>
             <th>Signal</th>
           </tr>
         </thead>
@@ -829,15 +807,29 @@ function render() {
 // ──────────────────────────────────────────────────────────────
 // Radar section (discovery engine output)
 // ──────────────────────────name: ─────────────────────────────────
+function sparkline(delta) {
+  const w = 52, h = 24, pad = 3;
+  const prev = 50, curr = Math.max(pad, Math.min(h - pad, 50 - delta * 0.18));
+  const x1 = pad, y1 = prev, x2 = w - pad, y2 = curr;
+  const col = delta > 2 ? '#4DB87A' : delta < -2 ? '#D45F5F' : '#55544E';
+  const r = 2.5;
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="${x1}" cy="${y1}" r="${r}" fill="${col}" opacity="0.5"/>
+    <circle cx="${x2}" cy="${y2}" r="${r}" fill="${col}"/>
+  </svg>`;
+}
+
 function radarRow(m) {
   const sd = m.supply.delta_4w;
   const supClass = sd < 0 ? 'pos' : sd > 0 ? 'neg' : 'neu';
   const supArrow = sd < 0 ? '↓' : sd > 0 ? '↑' : '→';
   const pd = m.price.delta_pct || 0;
-  const prClass = pd > 0 ? 'pos' : pd < 0 ? 'neg' : 'neu';
+  const pdClass = pd > 0 ? 'pos' : pd < 0 ? 'neg' : 'neu';
   const changeText = sd !== 0
     ? `<div class="supply-delta ${supClass}">${supArrow} ${Math.abs(sd)} supply / 4w</div>`
     : `<div class="supply-delta neu">First reading</div>`;
+  const pdLabel = pd !== 0 ? `<span class="spark-delta ${pdClass}">${pd > 0 ? '+' : ''}${pd}%</span>` : '';
   return `<tr>
     <td>
       <div class="model-name">${m.name}</div>
@@ -852,13 +844,8 @@ function radarRow(m) {
     <td>
       ${m.price && m.price.sold_median_6m ? `<div class="price-main">£${m.price.sold_median_6m.toLocaleString('en-GB')}</div><div class="model-years">${m.price.sold_count_6m} lots</div>` : '<div class="price-main" style="color:var(--text-2)">—</div>'}
     </td>
+    <td><div class="spark-wrap">${sparkline(pd)}${pdLabel}</div></td>
     <td>${changeText}</td>
-    <td>
-      <div class="demand-wrap">
-        <div class="demand-track"><div class="demand-fill" style="width:${m.score}%"></div></div>
-        <span class="demand-score">${m.score}</span>
-      </div>
-    </td>
     <td><span class="signal s-${m.signal}">${m.signal}</span></td>
   </tr>`;
 }
