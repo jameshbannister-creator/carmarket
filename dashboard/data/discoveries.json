@@ -117,25 +117,6 @@
       "scraped_at": "2026-10-26T08:01:19.513581+00:00"
     },
     {
-      "id": "mitsubishi-evo6",
-      "name": "Mitsubishi Lancer Evo VI",
-      "make": "Mitsubishi",
-      "years": "1999\u20132001",
-      "signal": "rising",
-      "score": 51.0,
-      "supply": {
-        "current": 19,
-        "delta_4w": -1
-      },
-      "price": {
-        "median": 23750,
-        "delta_pct": 6,
-        "sold_median_6m": 22125,
-        "sold_count_6m": 2
-      },
-      "scraped_at": "2026-10-26T07:58:22.623220+00:00"
-    },
-    {
       "id": "honda-s2000",
       "name": "Honda S2000",
       "make": "Honda",
@@ -212,25 +193,6 @@
       "scraped_at": "2026-10-26T08:41:09.369820+00:00"
     },
     {
-      "id": "mercedes-w124-e60",
-      "name": "Mercedes E60 AMG (W124)",
-      "make": "Mercedes-Benz",
-      "years": "1994\u20131996",
-      "signal": "hot",
-      "score": 40.0,
-      "supply": {
-        "current": 0,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 0,
-        "delta_pct": 0,
-        "sold_median_6m": null,
-        "sold_count_6m": 0
-      },
-      "scraped_at": "2026-10-26T07:54:14.111261+00:00"
-    },
-    {
       "id": "mercedes-w201-190e",
       "name": "Mercedes 190E 2.3-16",
       "make": "Mercedes-Benz",
@@ -267,25 +229,6 @@
         "sold_count_6m": 0
       },
       "scraped_at": "2026-10-26T07:54:43.433621+00:00"
-    },
-    {
-      "id": "mercedes-w129-600sl",
-      "name": "Mercedes 600 SL (R129)",
-      "make": "Mercedes-Benz",
-      "years": "1992\u20131998",
-      "signal": "hot",
-      "score": 40.0,
-      "supply": {
-        "current": 0,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 0,
-        "delta_pct": 0,
-        "sold_median_6m": null,
-        "sold_count_6m": 0
-      },
-      "scraped_at": "2026-10-26T07:54:58.385329+00:00"
     },
     {
       "id": "mercedes-w211-e55",
@@ -343,25 +286,6 @@
         "sold_count_6m": 0
       },
       "scraped_at": "2026-10-26T07:59:38.550477+00:00"
-    },
-    {
-      "id": "de-tomaso-pantera",
-      "name": "De Tomaso Pantera",
-      "make": "De Tomaso",
-      "years": "1971\u20131993",
-      "signal": "hot",
-      "score": 40.0,
-      "supply": {
-        "current": 0,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 0,
-        "delta_pct": 0,
-        "sold_median_6m": null,
-        "sold_count_6m": 0
-      },
-      "scraped_at": "2026-10-26T08:03:15.459859+00:00"
     },
     {
       "id": "alfa-spider-916",
@@ -457,25 +381,6 @@
         "sold_count_6m": 0
       },
       "scraped_at": "2026-10-26T08:22:49.630160+00:00"
-    },
-    {
-      "id": "land-rover-defender",
-      "name": "Land Rover Defender 90/110",
-      "make": "Land Rover",
-      "years": "1983\u20132016",
-      "signal": "hot",
-      "score": 40.0,
-      "supply": {
-        "current": 0,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 0,
-        "delta_pct": 0,
-        "sold_median_6m": 23598,
-        "sold_count_6m": 2
-      },
-      "scraped_at": "2026-10-26T08:23:04.677007+00:00"
     },
     {
       "id": "land-rover-discovery-1",
@@ -932,25 +837,6 @@
         "sold_count_6m": 4
       },
       "scraped_at": "2026-10-26T07:57:07.025381+00:00"
-    },
-    {
-      "id": "opel-omega-evo",
-      "name": "Opel Omega Evolution 500",
-      "make": "Opel",
-      "years": "1990\u20131991",
-      "signal": "hot",
-      "score": 39.9,
-      "supply": {
-        "current": 1,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 0,
-        "delta_pct": 0,
-        "sold_median_6m": null,
-        "sold_count_6m": 0
-      },
-      "scraped_at": "2026-10-26T08:12:12.260510+00:00"
     },
     {
       "id": "jeep-cherokee-xj",
