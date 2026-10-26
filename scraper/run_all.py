@@ -13,6 +13,7 @@ import bat_scraper
 import ebay_scraper
 import gumtree_scraper
 import trends as trends_scraper
+import sold_scraper
 import discover
 
 logging.basicConfig(
@@ -198,6 +199,9 @@ def main() -> None:
     log.info("Running Google Trends…")
     trends_data = trends_scraper.scrape(models_cfg)
 
+    log.info("Running sold price scraper…")
+    sold_data = sold_scraper.scrape(models_cfg)
+
     # Build output models
     models_out: list[dict] = []
 
@@ -208,6 +212,7 @@ def main() -> None:
         ebay = ebay_data.get(mid, {})
         gumtree = gumtree_data.get(mid, {})
         trend = trends_data.get(mid, {})
+        sold = sold_data.get(mid, {})
 
         # Supply — combine C&C and Gumtree counts
         cc_supply = cc.get("listing_count", 0)
@@ -269,6 +274,8 @@ def main() -> None:
             "price": {
                 "median": median_gbp,
                 "delta_6mo": price_delta_pct,
+                "sold_median_6m": sold.get("sold_median_6m"),
+                "sold_count_6m": sold.get("sold_count_6m", 0),
             },
             "dom": {
                 "median": prev_dom,
