@@ -1,23 +1,158 @@
 {
-  "generated_at": "2026-10-25T17:17:14.876127+00:00",
+  "generated_at": "2026-10-26T09:07:14.504829+00:00",
   "universe_size": 140,
   "models": [
+    {
+      "id": "mitsubishi-shogun-mk2",
+      "name": "Mitsubishi Shogun Mk2",
+      "make": "Mitsubishi",
+      "years": "1991\u20132000",
+      "signal": "hot",
+      "score": 75.0,
+      "supply": {
+        "current": 0,
+        "delta_4w": -1
+      },
+      "price": {
+        "median": 0,
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
+      },
+      "scraped_at": "2026-10-26T08:29:00.032852+00:00"
+    },
+    {
+      "id": "fiat-uno-turbo",
+      "name": "Fiat Uno Turbo",
+      "make": "Fiat",
+      "years": "1985\u20131989",
+      "signal": "hot",
+      "score": 67.8,
+      "supply": {
+        "current": 6,
+        "delta_4w": -1
+      },
+      "price": {
+        "median": 8950,
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
+      },
+      "scraped_at": "2026-10-26T09:05:00.770050+00:00"
+    },
     {
       "id": "honda-crx",
       "name": "Honda CRX VTEC",
       "make": "Honda",
       "years": "1987\u20131991",
       "signal": "hot",
-      "score": 64.5,
+      "score": 64.4,
       "supply": {
-        "current": 4,
-        "delta_4w": 1
+        "current": 5,
+        "delta_4w": 2
       },
       "price": {
-        "median": 10997,
-        "delta_pct": 145
+        "median": 14450,
+        "delta_pct": 221,
+        "sold_median_6m": 5675,
+        "sold_count_6m": 2
       },
-      "scraped_at": "2026-10-25T17:14:21.707931+00:00"
+      "scraped_at": "2026-10-26T08:59:19.850460+00:00"
+    },
+    {
+      "id": "tvr-griffith-500",
+      "name": "TVR Griffith 500",
+      "make": "TVR",
+      "years": "1990\u20132002",
+      "signal": "hot",
+      "score": 60.5,
+      "supply": {
+        "current": 11,
+        "delta_4w": -1
+      },
+      "price": {
+        "median": 23495,
+        "delta_pct": 7,
+        "sold_median_6m": 12000,
+        "sold_count_6m": 1
+      },
+      "scraped_at": "2026-10-26T08:04:57.986652+00:00"
+    },
+    {
+      "id": "renault-clio-wms2",
+      "name": "Renault Clio Williams S2",
+      "make": "Renault",
+      "years": "1993\u20131998",
+      "signal": "rising",
+      "score": 58.2,
+      "supply": {
+        "current": 14,
+        "delta_4w": -2
+      },
+      "price": {
+        "median": 22000,
+        "delta_pct": 0,
+        "sold_median_6m": 13500,
+        "sold_count_6m": 5
+      },
+      "scraped_at": "2026-10-26T08:00:34.582354+00:00"
+    },
+    {
+      "id": "peugeot-306-rallye",
+      "name": "Peugeot 306 Rallye",
+      "make": "Peugeot",
+      "years": "1993\u20132000",
+      "signal": "hot",
+      "score": 54.3,
+      "supply": {
+        "current": 1,
+        "delta_4w": 0
+      },
+      "price": {
+        "median": 4000,
+        "delta_pct": 10,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
+      },
+      "scraped_at": "2026-10-26T08:01:19.513581+00:00"
+    },
+    {
+      "id": "honda-s2000",
+      "name": "Honda S2000",
+      "make": "Honda",
+      "years": "1999\u20132009",
+      "signal": "rising",
+      "score": 49.3,
+      "supply": {
+        "current": 17,
+        "delta_4w": -1
+      },
+      "price": {
+        "median": 14495,
+        "delta_pct": 4,
+        "sold_median_6m": 11775,
+        "sold_count_6m": 1
+      },
+      "scraped_at": "2026-10-26T07:59:23.365648+00:00"
+    },
+    {
+      "id": "peugeot-106-rallye",
+      "name": "Peugeot 106 Rallye S2",
+      "make": "Peugeot",
+      "years": "1994\u20132003",
+      "signal": "rising",
+      "score": 48.9,
+      "supply": {
+        "current": 12,
+        "delta_4w": -1
+      },
+      "price": {
+        "median": 16972,
+        "delta_pct": 0,
+        "sold_median_6m": 10300,
+        "sold_count_6m": 2
+      },
+      "scraped_at": "2026-10-26T09:03:17.280964+00:00"
     },
     {
       "id": "toyota-celica-gt4",
@@ -32,26 +167,30 @@
       },
       "price": {
         "median": 20250,
-        "delta_pct": 9
+        "delta_pct": 9,
+        "sold_median_6m": 7290,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:14:05.703387+00:00"
+      "scraped_at": "2026-10-26T08:58:34.608590+00:00"
     },
     {
-      "id": "mercedes-w124-e60",
-      "name": "Mercedes E60 AMG (W124)",
-      "make": "Mercedes-Benz",
-      "years": "1994\u20131996",
-      "signal": "hot",
-      "score": 40.0,
+      "id": "bmw-e30-325i",
+      "name": "BMW E30 325i",
+      "make": "BMW",
+      "years": "1985\u20131994",
+      "signal": "rising",
+      "score": 41.7,
       "supply": {
-        "current": 0,
-        "delta_4w": 0
+        "current": 49,
+        "delta_4w": -2
       },
       "price": {
-        "median": 0,
-        "delta_pct": 0
+        "median": 21995,
+        "delta_pct": 10,
+        "sold_median_6m": 11170,
+        "sold_count_6m": 10
       },
-      "scraped_at": "2026-10-25T17:04:54.158347+00:00"
+      "scraped_at": "2026-10-26T08:41:09.369820+00:00"
     },
     {
       "id": "mercedes-w201-190e",
@@ -66,9 +205,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:04:59.509994+00:00"
+      "scraped_at": "2026-10-26T07:54:28.724482+00:00"
     },
     {
       "id": "mercedes-w126-500se",
@@ -83,26 +224,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:05:04.849071+00:00"
-    },
-    {
-      "id": "mercedes-w129-600sl",
-      "name": "Mercedes 600 SL (R129)",
-      "make": "Mercedes-Benz",
-      "years": "1992\u20131998",
-      "signal": "hot",
-      "score": 40.0,
-      "supply": {
-        "current": 0,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 0,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:05:10.172896+00:00"
+      "scraped_at": "2026-10-26T07:54:43.433621+00:00"
     },
     {
       "id": "mercedes-w211-e55",
@@ -117,9 +243,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:05:15.481570+00:00"
+      "scraped_at": "2026-10-26T07:55:13.154022+00:00"
     },
     {
       "id": "nissan-200sx-s14",
@@ -134,9 +262,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:06:42.513128+00:00"
+      "scraped_at": "2026-10-26T07:58:07.541278+00:00"
     },
     {
       "id": "mazda-mx5-na",
@@ -151,26 +281,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:07:25.818820+00:00"
-    },
-    {
-      "id": "de-tomaso-pantera",
-      "name": "De Tomaso Pantera",
-      "make": "De Tomaso",
-      "years": "1971\u20131993",
-      "signal": "hot",
-      "score": 40.0,
-      "supply": {
-        "current": 0,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 0,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:08:42.445085+00:00"
+      "scraped_at": "2026-10-26T07:59:38.550477+00:00"
     },
     {
       "id": "alfa-spider-916",
@@ -185,9 +300,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:09:26.433073+00:00"
+      "scraped_at": "2026-10-26T08:07:05.135811+00:00"
     },
     {
       "id": "vauxhall-cavalier-gsi",
@@ -202,9 +319,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:09:58.733070+00:00"
+      "scraped_at": "2026-10-26T08:13:27.907549+00:00"
     },
     {
       "id": "vauxhall-astra-gsi",
@@ -219,9 +338,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:10:04.267738+00:00"
+      "scraped_at": "2026-10-26T08:13:42.805116+00:00"
     },
     {
       "id": "ford-capri-280",
@@ -236,9 +357,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:10:09.612505+00:00"
+      "scraped_at": "2026-10-26T08:13:57.892102+00:00"
     },
     {
       "id": "range-rover-classic",
@@ -253,26 +376,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:10:14.916935+00:00"
-    },
-    {
-      "id": "land-rover-defender",
-      "name": "Land Rover Defender 90/110",
-      "make": "Land Rover",
-      "years": "1983\u20132016",
-      "signal": "hot",
-      "score": 40.0,
-      "supply": {
-        "current": 0,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 0,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:10:20.263180+00:00"
+      "scraped_at": "2026-10-26T08:22:49.630160+00:00"
     },
     {
       "id": "land-rover-discovery-1",
@@ -287,9 +395,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 14062,
+        "sold_count_6m": 2
       },
-      "scraped_at": "2026-10-25T17:10:25.636053+00:00"
+      "scraped_at": "2026-10-26T08:23:19.778571+00:00"
     },
     {
       "id": "suzuki-vitara",
@@ -304,9 +414,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:11:03.240520+00:00"
+      "scraped_at": "2026-10-26T08:30:31.306503+00:00"
     },
     {
       "id": "mercedes-r129-sl",
@@ -321,9 +433,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 10406,
+        "sold_count_6m": 2
       },
-      "scraped_at": "2026-10-25T17:11:08.533278+00:00"
+      "scraped_at": "2026-10-26T08:30:46.296085+00:00"
     },
     {
       "id": "mercedes-slk-r170",
@@ -338,9 +452,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:11:13.910204+00:00"
+      "scraped_at": "2026-10-26T08:38:53.063590+00:00"
     },
     {
       "id": "mercedes-c36-amg",
@@ -355,9 +471,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:11:19.281834+00:00"
+      "scraped_at": "2026-10-26T08:39:08.049882+00:00"
     },
     {
       "id": "mercedes-c43-amg",
@@ -372,9 +490,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:11:24.647317+00:00"
+      "scraped_at": "2026-10-26T08:40:53.683654+00:00"
     },
     {
       "id": "vw-golf-vr6-mk3",
@@ -389,9 +509,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 17700,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:12:36.648857+00:00"
+      "scraped_at": "2026-10-26T08:55:24.228106+00:00"
     },
     {
       "id": "seat-ibiza-cupra",
@@ -406,9 +528,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:12:47.709698+00:00"
+      "scraped_at": "2026-10-26T08:55:53.654218+00:00"
     },
     {
       "id": "skoda-octavia-vrs-mk1",
@@ -423,9 +547,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:12:53.031038+00:00"
+      "scraped_at": "2026-10-26T08:56:08.588390+00:00"
     },
     {
       "id": "toyota-starlet-gt",
@@ -440,9 +566,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:14:00.347524+00:00"
+      "scraped_at": "2026-10-26T08:58:19.661750+00:00"
     },
     {
       "id": "honda-beat",
@@ -457,9 +585,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:14:32.558551+00:00"
+      "scraped_at": "2026-10-26T08:59:49.798957+00:00"
     },
     {
       "id": "mazda-rx7-fc",
@@ -474,9 +604,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:14:37.873970+00:00"
+      "scraped_at": "2026-10-26T09:00:04.639582+00:00"
     },
     {
       "id": "mazda-323-gtr",
@@ -491,9 +623,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:14:48.693227+00:00"
+      "scraped_at": "2026-10-26T09:00:34.225493+00:00"
     },
     {
       "id": "mitsubishi-gto",
@@ -508,9 +642,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:14:59.291916+00:00"
+      "scraped_at": "2026-10-26T09:01:03.731479+00:00"
     },
     {
       "id": "nissan-skyline-r32-gtst",
@@ -525,9 +661,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:15:04.710417+00:00"
+      "scraped_at": "2026-10-26T09:01:18.439181+00:00"
     },
     {
       "id": "subaru-legacy-rs",
@@ -542,9 +680,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:15:20.853486+00:00"
+      "scraped_at": "2026-10-26T09:02:02.834848+00:00"
     },
     {
       "id": "renault-megane-rs-mk1",
@@ -559,9 +699,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:15:37.273659+00:00"
+      "scraped_at": "2026-10-26T09:02:47.434949+00:00"
     },
     {
       "id": "peugeot-306-gti6",
@@ -576,9 +718,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:15:42.608750+00:00"
+      "scraped_at": "2026-10-26T09:03:02.435410+00:00"
     },
     {
       "id": "citroen-bx-gti-16v",
@@ -593,9 +737,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 5400,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:15:53.325127+00:00"
+      "scraped_at": "2026-10-26T09:03:32.230983+00:00"
     },
     {
       "id": "renault-alpine-a610",
@@ -610,9 +756,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:15:58.634413+00:00"
+      "scraped_at": "2026-10-26T09:03:46.991324+00:00"
     },
     {
       "id": "alfa-gtv-916",
@@ -627,9 +775,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:16:04.109214+00:00"
+      "scraped_at": "2026-10-26T09:04:01.737233+00:00"
     },
     {
       "id": "alfa-75-v6",
@@ -644,9 +794,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 7650,
+        "sold_count_6m": 5
       },
-      "scraped_at": "2026-10-25T17:16:09.638616+00:00"
+      "scraped_at": "2026-10-26T09:04:16.472366+00:00"
     },
     {
       "id": "alfa-brera",
@@ -661,9 +813,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:16:14.956269+00:00"
+      "scraped_at": "2026-10-26T09:04:31.185860+00:00"
     },
     {
       "id": "vw-corrado-vr6",
@@ -678,43 +832,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 13375,
+        "sold_count_6m": 4
       },
-      "scraped_at": "2026-10-25T17:06:09.942410+00:00"
-    },
-    {
-      "id": "peugeot-306-rallye",
-      "name": "Peugeot 306 Rallye",
-      "make": "Peugeot",
-      "years": "1993\u20132000",
-      "signal": "hot",
-      "score": 39.9,
-      "supply": {
-        "current": 1,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 3650,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:08:09.574130+00:00"
-    },
-    {
-      "id": "opel-omega-evo",
-      "name": "Opel Omega Evolution 500",
-      "make": "Opel",
-      "years": "1990\u20131991",
-      "signal": "hot",
-      "score": 39.9,
-      "supply": {
-        "current": 1,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 0,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:09:53.409377+00:00"
+      "scraped_at": "2026-10-26T07:57:07.025381+00:00"
     },
     {
       "id": "jeep-cherokee-xj",
@@ -729,9 +851,11 @@
       },
       "price": {
         "median": 4000,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 3250,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:10:31.092640+00:00"
+      "scraped_at": "2026-10-26T08:26:54.065693+00:00"
     },
     {
       "id": "toyota-hilux-surf",
@@ -746,26 +870,11 @@
       },
       "price": {
         "median": 10500,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:10:47.195360+00:00"
-    },
-    {
-      "id": "mitsubishi-shogun-mk2",
-      "name": "Mitsubishi Shogun Mk2",
-      "make": "Mitsubishi",
-      "years": "1991\u20132000",
-      "signal": "hot",
-      "score": 39.9,
-      "supply": {
-        "current": 1,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 8000,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:10:52.549418+00:00"
+      "scraped_at": "2026-10-26T08:28:44.959698+00:00"
     },
     {
       "id": "isuzu-trooper",
@@ -780,9 +889,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:10:57.928541+00:00"
+      "scraped_at": "2026-10-26T08:29:15.017714+00:00"
     },
     {
       "id": "rover-220-turbo",
@@ -797,9 +908,11 @@
       },
       "price": {
         "median": 8493,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:13:49.549420+00:00"
+      "scraped_at": "2026-10-26T08:57:50.221312+00:00"
     },
     {
       "id": "honda-prelude-5th",
@@ -814,9 +927,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:14:27.233730+00:00"
+      "scraped_at": "2026-10-26T08:59:34.815912+00:00"
     },
     {
       "id": "mitsubishi-fto",
@@ -831,9 +946,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:14:53.966503+00:00"
+      "scraped_at": "2026-10-26T09:00:49.022038+00:00"
     },
     {
       "id": "nissan-pulsar-gtir",
@@ -848,9 +965,11 @@
       },
       "price": {
         "median": 27995,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:15:10.039426+00:00"
+      "scraped_at": "2026-10-26T09:01:33.198206+00:00"
     },
     {
       "id": "nissan-primera-gt",
@@ -865,9 +984,11 @@
       },
       "price": {
         "median": 7995,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:15:15.359515+00:00"
+      "scraped_at": "2026-10-26T09:01:48.068708+00:00"
     },
     {
       "id": "audi-s2-coupe",
@@ -882,9 +1003,11 @@
       },
       "price": {
         "median": 12747,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 1300,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:05:59.257758+00:00"
+      "scraped_at": "2026-10-26T07:56:37.205175+00:00"
     },
     {
       "id": "toyota-mr2-sw20",
@@ -899,9 +1022,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 9000,
+        "sold_count_6m": 2
       },
-      "scraped_at": "2026-10-25T17:06:21.008475+00:00"
+      "scraped_at": "2026-10-26T07:57:27.239114+00:00"
     },
     {
       "id": "honda-civic-ek9",
@@ -916,9 +1041,11 @@
       },
       "price": {
         "median": 12197,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:07:09.572373+00:00"
+      "scraped_at": "2026-10-26T07:58:53.416118+00:00"
     },
     {
       "id": "ford-puma",
@@ -933,9 +1060,11 @@
       },
       "price": {
         "median": 18995,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 15250,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:07:36.814160+00:00"
+      "scraped_at": "2026-10-26T07:59:59.112905+00:00"
     },
     {
       "id": "ford-mustang-foxbody",
@@ -950,9 +1079,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:13:21.716419+00:00"
+      "scraped_at": "2026-10-26T08:56:54.607210+00:00"
     },
     {
       "id": "toyota-soarer",
@@ -967,9 +1098,11 @@
       },
       "price": {
         "median": 7500,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 4752,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:14:16.275018+00:00"
+      "scraped_at": "2026-10-26T08:59:04.420243+00:00"
     },
     {
       "id": "daihatsu-charade-gtti",
@@ -984,9 +1117,11 @@
       },
       "price": {
         "median": 0,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:15:31.751459+00:00"
+      "scraped_at": "2026-10-26T09:02:32.693649+00:00"
     },
     {
       "id": "honda-integra-dc2",
@@ -1001,9 +1136,11 @@
       },
       "price": {
         "median": 19000,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:07:14.889939+00:00"
+      "scraped_at": "2026-10-26T07:59:08.197619+00:00"
     },
     {
       "id": "citroen-saxo-vts",
@@ -1018,9 +1155,11 @@
       },
       "price": {
         "median": 9990,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:08:15.104715+00:00"
+      "scraped_at": "2026-10-26T08:01:34.529339+00:00"
     },
     {
       "id": "toyota-ae86",
@@ -1035,9 +1174,11 @@
       },
       "price": {
         "median": 13999,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:13:55.003634+00:00"
+      "scraped_at": "2026-10-26T08:58:04.908523+00:00"
     },
     {
       "id": "mazda-rx7-fd",
@@ -1052,9 +1193,11 @@
       },
       "price": {
         "median": 10867,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:14:43.256207+00:00"
+      "scraped_at": "2026-10-26T09:00:19.420989+00:00"
     },
     {
       "id": "volvo-c70-t5",
@@ -1069,9 +1212,11 @@
       },
       "price": {
         "median": 1925,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:16:53.272712+00:00"
+      "scraped_at": "2026-10-26T09:06:14.969227+00:00"
     },
     {
       "id": "vauxhall-calibra-turbo",
@@ -1086,9 +1231,11 @@
       },
       "price": {
         "median": 8995,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:16:58.585873+00:00"
+      "scraped_at": "2026-10-26T09:06:29.760920+00:00"
     },
     {
       "id": "volvo-s70-v70-t5",
@@ -1103,9 +1250,11 @@
       },
       "price": {
         "median": 4950,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 10000,
+        "sold_count_6m": 2
       },
-      "scraped_at": "2026-10-25T17:09:48.030722+00:00"
+      "scraped_at": "2026-10-26T08:11:57.354855+00:00"
     },
     {
       "id": "vauxhall-nova-gsi",
@@ -1120,9 +1269,11 @@
       },
       "price": {
         "median": 13250,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:17:03.906670+00:00"
+      "scraped_at": "2026-10-26T09:06:44.606592+00:00"
     },
     {
       "id": "ford-focus-rs-mk1",
@@ -1137,9 +1288,11 @@
       },
       "price": {
         "median": 16245,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 22000,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:07:42.132794+00:00"
+      "scraped_at": "2026-10-26T08:00:14.219697+00:00"
     },
     {
       "id": "volvo-850-t5r",
@@ -1154,9 +1307,11 @@
       },
       "price": {
         "median": 19000,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:09:42.532877+00:00"
+      "scraped_at": "2026-10-26T08:11:42.208563+00:00"
     },
     {
       "id": "vw-scirocco-mk2",
@@ -1171,9 +1326,11 @@
       },
       "price": {
         "median": 6500,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 4000,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:12:42.184168+00:00"
+      "scraped_at": "2026-10-26T08:55:38.873552+00:00"
     },
     {
       "id": "ford-fiesta-xr2i",
@@ -1188,9 +1345,11 @@
       },
       "price": {
         "median": 6645,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 5400,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:13:16.385765+00:00"
+      "scraped_at": "2026-10-26T08:56:39.738885+00:00"
     },
     {
       "id": "saab-9000-aero",
@@ -1205,9 +1364,11 @@
       },
       "price": {
         "median": 8350,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:16:47.943595+00:00"
+      "scraped_at": "2026-10-26T09:06:00.157219+00:00"
     },
     {
       "id": "fiat-coupe-turbo",
@@ -1222,9 +1383,11 @@
       },
       "price": {
         "median": 4500,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:09:37.177056+00:00"
+      "scraped_at": "2026-10-26T08:07:25.522494+00:00"
     },
     {
       "id": "toyota-land-cruiser-90",
@@ -1239,26 +1402,11 @@
       },
       "price": {
         "median": 26495,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 7875,
+        "sold_count_6m": 2
       },
-      "scraped_at": "2026-10-25T17:10:41.879343+00:00"
-    },
-    {
-      "id": "fiat-uno-turbo",
-      "name": "Fiat Uno Turbo",
-      "make": "Fiat",
-      "years": "1985\u20131989",
-      "signal": "hot",
-      "score": 39.1,
-      "supply": {
-        "current": 7,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 8950,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:16:26.031249+00:00"
+      "scraped_at": "2026-10-26T08:28:30.100498+00:00"
     },
     {
       "id": "toyota-gt86",
@@ -1273,9 +1421,11 @@
       },
       "price": {
         "median": 14362,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:06:26.365030+00:00"
+      "scraped_at": "2026-10-26T07:57:41.996988+00:00"
     },
     {
       "id": "mg-tf",
@@ -1290,9 +1440,11 @@
       },
       "price": {
         "median": 5795,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 1700,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:13:38.509891+00:00"
+      "scraped_at": "2026-10-26T08:57:29.701997+00:00"
     },
     {
       "id": "toyota-supra-mk3",
@@ -1307,9 +1459,11 @@
       },
       "price": {
         "median": 19250,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 9600,
+        "sold_count_6m": 3
       },
-      "scraped_at": "2026-10-25T17:14:11.032933+00:00"
+      "scraped_at": "2026-10-26T08:58:49.506631+00:00"
     },
     {
       "id": "audi-b5-rs4",
@@ -1324,9 +1478,11 @@
       },
       "price": {
         "median": 13000,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 28000,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:06:04.660044+00:00"
+      "scraped_at": "2026-10-26T07:56:52.133938+00:00"
     },
     {
       "id": "jaguar-xj6-x300",
@@ -1341,9 +1497,11 @@
       },
       "price": {
         "median": 8000,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 4250,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:12:20.058858+00:00"
+      "scraped_at": "2026-10-26T08:54:39.402898+00:00"
     },
     {
       "id": "vw-golf-gti-mk1",
@@ -1358,43 +1516,11 @@
       },
       "price": {
         "median": 7777,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 16000,
+        "sold_count_6m": 11
       },
-      "scraped_at": "2026-10-25T17:12:25.596560+00:00"
-    },
-    {
-      "id": "tvr-griffith-500",
-      "name": "TVR Griffith 500",
-      "make": "TVR",
-      "years": "1990\u20132002",
-      "signal": "rising",
-      "score": 33.5,
-      "supply": {
-        "current": 12,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 21995,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:08:58.629967+00:00"
-    },
-    {
-      "id": "peugeot-106-rallye",
-      "name": "Peugeot 106 Rallye S2",
-      "make": "Peugeot",
-      "years": "1994\u20132003",
-      "signal": "rising",
-      "score": 33.4,
-      "supply": {
-        "current": 13,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 16972,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:15:48.052096+00:00"
+      "scraped_at": "2026-10-26T08:54:54.293847+00:00"
     },
     {
       "id": "bmw-850i",
@@ -1409,9 +1535,11 @@
       },
       "price": {
         "median": 15993,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 15500,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:11:35.621917+00:00"
+      "scraped_at": "2026-10-26T08:42:47.439578+00:00"
     },
     {
       "id": "saab-900-turbo",
@@ -1426,43 +1554,11 @@
       },
       "price": {
         "median": 7500,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:16:42.478103+00:00"
-    },
-    {
-      "id": "renault-clio-wms2",
-      "name": "Renault Clio Williams S2",
-      "make": "Renault",
-      "years": "1993\u20131998",
-      "signal": "rising",
-      "score": 33.0,
-      "supply": {
-        "current": 16,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 22000,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:07:53.208722+00:00"
-    },
-    {
-      "id": "honda-s2000",
-      "name": "Honda S2000",
-      "make": "Honda",
-      "years": "1999\u20132009",
-      "signal": "rising",
-      "score": 32.8,
-      "supply": {
-        "current": 18,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 13995,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:07:20.454439+00:00"
+      "scraped_at": "2026-10-26T09:05:45.405184+00:00"
     },
     {
       "id": "porsche-924-turbo",
@@ -1470,16 +1566,18 @@
       "make": "Porsche",
       "years": "1979\u20131982",
       "signal": "rising",
-      "score": 32.8,
+      "score": 32.9,
       "supply": {
-        "current": 18,
-        "delta_4w": 1
+        "current": 17,
+        "delta_4w": 0
       },
       "price": {
         "median": 19492,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 13500,
+        "sold_count_6m": 3
       },
-      "scraped_at": "2026-10-25T17:11:57.960089+00:00"
+      "scraped_at": "2026-10-26T08:45:13.139209+00:00"
     },
     {
       "id": "renault-5-gt-turbo",
@@ -1494,26 +1592,11 @@
       },
       "price": {
         "median": 25497,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 10987,
+        "sold_count_6m": 4
       },
-      "scraped_at": "2026-10-25T17:07:58.691515+00:00"
-    },
-    {
-      "id": "bmw-z3",
-      "name": "BMW Z3",
-      "make": "BMW",
-      "years": "1996\u20132002",
-      "signal": "watch",
-      "score": 31.0,
-      "supply": {
-        "current": 74,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 8147,
-        "delta_pct": 10
-      },
-      "scraped_at": "2026-10-25T17:11:41.363643+00:00"
+      "scraped_at": "2026-10-26T08:00:49.370262+00:00"
     },
     {
       "id": "porsche-928-s4",
@@ -1528,26 +1611,11 @@
       },
       "price": {
         "median": 19472,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 18786,
+        "sold_count_6m": 4
       },
-      "scraped_at": "2026-10-25T17:05:26.315319+00:00"
-    },
-    {
-      "id": "mitsubishi-evo6",
-      "name": "Mitsubishi Lancer Evo VI",
-      "make": "Mitsubishi",
-      "years": "1999\u20132001",
-      "signal": "rising",
-      "score": 22.5,
-      "supply": {
-        "current": 20,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 22500,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:06:47.882667+00:00"
+      "scraped_at": "2026-10-26T07:55:44.704765+00:00"
     },
     {
       "id": "vw-golf-gti-mk2",
@@ -1562,9 +1630,11 @@
       },
       "price": {
         "median": 12500,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 15310,
+        "sold_count_6m": 9
       },
-      "scraped_at": "2026-10-25T17:12:31.149511+00:00"
+      "scraped_at": "2026-10-26T08:55:09.366484+00:00"
     },
     {
       "id": "bmw-e34-m5",
@@ -1579,26 +1649,30 @@
       },
       "price": {
         "median": 22995,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:04:26.814345+00:00"
+      "scraped_at": "2026-10-26T07:53:08.720702+00:00"
     },
     {
-      "id": "ford-escort-rs2000",
-      "name": "Ford Escort RS2000",
-      "make": "Ford",
-      "years": "1991\u20131996",
-      "signal": "rising",
+      "id": "bmw-e46-m3",
+      "name": "BMW E46 M3",
+      "make": "BMW",
+      "years": "2000\u20132006",
+      "signal": "watch",
       "score": 22.2,
       "supply": {
-        "current": 27,
-        "delta_4w": 0
+        "current": 63,
+        "delta_4w": -1
       },
       "price": {
-        "median": 12550,
-        "delta_pct": 0
+        "median": 18745,
+        "delta_pct": 1,
+        "sold_median_6m": 9500,
+        "sold_count_6m": 13
       },
-      "scraped_at": "2026-10-25T17:07:31.310360+00:00"
+      "scraped_at": "2026-10-26T07:53:59.265497+00:00"
     },
     {
       "id": "bmw-z3-m-roadster",
@@ -1613,9 +1687,11 @@
       },
       "price": {
         "median": 13995,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 13750,
+        "sold_count_6m": 4
       },
-      "scraped_at": "2026-10-25T17:11:46.904513+00:00"
+      "scraped_at": "2026-10-26T08:43:19.043295+00:00"
     },
     {
       "id": "pontiac-trans-am",
@@ -1630,9 +1706,11 @@
       },
       "price": {
         "median": 19475,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 6000,
+        "sold_count_6m": 1
       },
-      "scraped_at": "2026-10-25T17:17:14.814284+00:00"
+      "scraped_at": "2026-10-26T09:07:14.441286+00:00"
     },
     {
       "id": "lancia-montecarlo",
@@ -1647,9 +1725,11 @@
       },
       "price": {
         "median": 18971,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:16:31.573099+00:00"
+      "scraped_at": "2026-10-26T09:05:15.666359+00:00"
     },
     {
       "id": "bmw-e39-m5",
@@ -1664,9 +1744,11 @@
       },
       "price": {
         "median": 12000,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 15228,
+        "sold_count_6m": 3
       },
-      "scraped_at": "2026-10-25T17:04:37.608042+00:00"
+      "scraped_at": "2026-10-26T07:53:38.887843+00:00"
     },
     {
       "id": "lotus-elise-s1",
@@ -1681,26 +1763,11 @@
       },
       "price": {
         "median": 22990,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 18900,
+        "sold_count_6m": 3
       },
-      "scraped_at": "2026-10-25T17:08:53.278220+00:00"
-    },
-    {
-      "id": "audi-ur-quattro",
-      "name": "Audi Ur-Quattro",
-      "make": "Audi",
-      "years": "1980\u20131991",
-      "signal": "watch",
-      "score": 21.1,
-      "supply": {
-        "current": 31,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 12749,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:05:53.864770+00:00"
+      "scraped_at": "2026-10-26T08:03:35.742365+00:00"
     },
     {
       "id": "porsche-944-turbo",
@@ -1715,9 +1782,11 @@
       },
       "price": {
         "median": 23000,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 13500,
+        "sold_count_6m": 2
       },
-      "scraped_at": "2026-10-25T17:05:20.918182+00:00"
+      "scraped_at": "2026-10-26T07:55:28.090795+00:00"
     },
     {
       "id": "fiat-barchetta",
@@ -1725,16 +1794,18 @@
       "make": "Fiat",
       "years": "1995\u20132005",
       "signal": "watch",
-      "score": 20.5,
+      "score": 20.8,
       "supply": {
-        "current": 36,
-        "delta_4w": 2
+        "current": 34,
+        "delta_4w": 0
       },
       "price": {
         "median": 7605,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:16:20.529730+00:00"
+      "scraped_at": "2026-10-26T09:04:45.999871+00:00"
     },
     {
       "id": "porsche-968",
@@ -1749,9 +1820,11 @@
       },
       "price": {
         "median": 17245,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 14875,
+        "sold_count_6m": 2
       },
-      "scraped_at": "2026-10-25T17:12:03.374018+00:00"
+      "scraped_at": "2026-10-26T08:46:59.508534+00:00"
     },
     {
       "id": "tvr-chimaera",
@@ -1766,9 +1839,11 @@
       },
       "price": {
         "median": 19295,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 12000,
+        "sold_count_6m": 3
       },
-      "scraped_at": "2026-10-25T17:13:27.279213+00:00"
+      "scraped_at": "2026-10-26T08:57:09.433323+00:00"
     },
     {
       "id": "bmw-e36-m3",
@@ -1776,16 +1851,18 @@
       "make": "BMW",
       "years": "1992\u20131999",
       "signal": "watch",
-      "score": 19.6,
+      "score": 19.5,
       "supply": {
-        "current": 43,
-        "delta_4w": 0
+        "current": 44,
+        "delta_4w": 1
       },
       "price": {
         "median": 19995,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 11750,
+        "sold_count_6m": 7
       },
-      "scraped_at": "2026-10-25T17:04:32.226154+00:00"
+      "scraped_at": "2026-10-26T07:53:23.899836+00:00"
     },
     {
       "id": "maserati-biturbo",
@@ -1800,26 +1877,11 @@
       },
       "price": {
         "median": 11357,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": null,
+        "sold_count_6m": 0
       },
-      "scraped_at": "2026-10-25T17:16:37.119253+00:00"
-    },
-    {
-      "id": "bmw-e30-325i",
-      "name": "BMW E30 325i",
-      "make": "BMW",
-      "years": "1985\u20131994",
-      "signal": "watch",
-      "score": 18.6,
-      "supply": {
-        "current": 51,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 19995,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:11:30.136876+00:00"
+      "scraped_at": "2026-10-26T09:05:30.489895+00:00"
     },
     {
       "id": "peugeot-205-gti",
@@ -1834,9 +1896,11 @@
       },
       "price": {
         "median": 15875,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 9000,
+        "sold_count_6m": 9
       },
-      "scraped_at": "2026-10-25T17:08:04.241422+00:00"
+      "scraped_at": "2026-10-26T08:01:04.559525+00:00"
     },
     {
       "id": "subaru-impreza-wrx",
@@ -1844,33 +1908,18 @@
       "make": "Subaru",
       "years": "2001\u20132007",
       "signal": "watch",
-      "score": 17.8,
+      "score": 17.1,
       "supply": {
-        "current": 58,
-        "delta_4w": 0
+        "current": 63,
+        "delta_4w": 5
       },
       "price": {
-        "median": 24985,
-        "delta_pct": 0
+        "median": 22492,
+        "delta_pct": -10,
+        "sold_median_6m": 16500,
+        "sold_count_6m": 6
       },
-      "scraped_at": "2026-10-25T17:15:26.388131+00:00"
-    },
-    {
-      "id": "bmw-e46-m3",
-      "name": "BMW E46 M3",
-      "make": "BMW",
-      "years": "2000\u20132006",
-      "signal": "watch",
-      "score": 17.0,
-      "supply": {
-        "current": 64,
-        "delta_4w": 0
-      },
-      "price": {
-        "median": 18500,
-        "delta_pct": 0
-      },
-      "scraped_at": "2026-10-25T17:04:48.711744+00:00"
+      "scraped_at": "2026-10-26T09:02:18.044348+00:00"
     },
     {
       "id": "corvette-c4",
@@ -1878,16 +1927,37 @@
       "make": "Chevrolet",
       "years": "1984\u20131996",
       "signal": "watch",
-      "score": 16.4,
+      "score": 16.2,
       "supply": {
-        "current": 69,
-        "delta_4w": 0
+        "current": 70,
+        "delta_4w": 1
       },
       "price": {
         "median": 17995,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 8650,
+        "sold_count_6m": 2
       },
-      "scraped_at": "2026-10-25T17:17:09.488339+00:00"
+      "scraped_at": "2026-10-26T09:06:59.604171+00:00"
+    },
+    {
+      "id": "bmw-z3",
+      "name": "BMW Z3",
+      "make": "BMW",
+      "years": "1996\u20132002",
+      "signal": "watch",
+      "score": 15.8,
+      "supply": {
+        "current": 74,
+        "delta_4w": 0
+      },
+      "price": {
+        "median": 7395,
+        "delta_pct": 0,
+        "sold_median_6m": 7120,
+        "sold_count_6m": 11
+      },
+      "scraped_at": "2026-10-26T08:43:03.035282+00:00"
     },
     {
       "id": "porsche-boxster-s",
@@ -1902,9 +1972,11 @@
       },
       "price": {
         "median": 9590,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 5300,
+        "sold_count_6m": 8
       },
-      "scraped_at": "2026-10-25T17:05:43.024370+00:00"
+      "scraped_at": "2026-10-26T07:56:11.407542+00:00"
     },
     {
       "id": "jaguar-xk8",
@@ -1912,16 +1984,18 @@
       "make": "Jaguar",
       "years": "1996\u20132006",
       "signal": "watch",
-      "score": 12.6,
+      "score": 14.8,
       "supply": {
-        "current": 99,
-        "delta_4w": 0
+        "current": 98,
+        "delta_4w": -1
       },
       "price": {
         "median": 9994,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 4700,
+        "sold_count_6m": 22
       },
-      "scraped_at": "2026-10-25T17:12:14.584830+00:00"
+      "scraped_at": "2026-10-26T08:47:30.461145+00:00"
     },
     {
       "id": "mg-mgb-gt",
@@ -1929,16 +2003,18 @@
       "make": "MG",
       "years": "1965\u20131980",
       "signal": "watch",
-      "score": 7.1,
+      "score": 10.2,
       "supply": {
-        "current": 143,
-        "delta_4w": 0
+        "current": 141,
+        "delta_4w": -2
       },
       "price": {
-        "median": 9750,
-        "delta_pct": 0
+        "median": 9625,
+        "delta_pct": -1,
+        "sold_median_6m": 10200,
+        "sold_count_6m": 16
       },
-      "scraped_at": "2026-10-25T17:09:15.365314+00:00"
+      "scraped_at": "2026-10-26T08:05:24.260909+00:00"
     },
     {
       "id": "triumph-tr6",
@@ -1946,16 +2022,18 @@
       "make": "Triumph",
       "years": "1969\u20131976",
       "signal": "watch",
-      "score": 1.9,
+      "score": 3.1,
       "supply": {
-        "current": 185,
-        "delta_4w": 0
+        "current": 184,
+        "delta_4w": -1
       },
       "price": {
         "median": 18500,
-        "delta_pct": 0
+        "delta_pct": 0,
+        "sold_median_6m": 13250,
+        "sold_count_6m": 21
       },
-      "scraped_at": "2026-10-25T17:09:21.106040+00:00"
+      "scraped_at": "2026-10-26T08:06:49.938900+00:00"
     },
     {
       "id": "jaguar-xjs",
@@ -1963,16 +2041,18 @@
       "make": "Jaguar",
       "years": "1975\u20131996",
       "signal": "watch",
-      "score": 1.9,
+      "score": 3.1,
       "supply": {
-        "current": 185,
-        "delta_4w": 0
+        "current": 184,
+        "delta_4w": -1
       },
       "price": {
-        "median": 13991,
-        "delta_pct": 0
+        "median": 13495,
+        "delta_pct": -4,
+        "sold_median_6m": 9222,
+        "sold_count_6m": 29
       },
-      "scraped_at": "2026-10-25T17:12:09.048456+00:00"
+      "scraped_at": "2026-10-26T08:47:15.109508+00:00"
     }
   ]
 }
