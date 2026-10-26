@@ -20,6 +20,7 @@
       "model": "156 GTA",
       "years": [2002, 2005],
       "cc_search": "alfa romeo 156 gta",
+      "cc_year_from": 2002,
       "ebay_search": "Alfa Romeo 156 GTA",
       "bat_search": "alfa romeo 156 gta",
       "us_rare": true,
@@ -33,11 +34,12 @@
       "model": "RAV4",
       "years": [1994, 2000],
       "cc_search": "toyota rav4",
+      "cc_skip": true,
       "ebay_search": "Toyota RAV4 Mk1",
       "bat_search": "toyota rav4",
       "us_rare": false,
       "personal": true,
-      "notes": "Original 3-door. Personal interest."
+      "notes": "Original 3-door. Personal interest. C&C search matches all RAV4 generations; no Mk1s currently listed there."
     }
   ]
 }

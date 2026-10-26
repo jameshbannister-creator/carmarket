@@ -73,7 +73,7 @@ def load_prev_discoveries() -> dict[str, dict]:
 
 # ── Live listings ─────────────────────────────────────────────────────────────
 
-def _fetch_cc(page, make: str, query: str) -> dict:
+def _fetch_cc(page, make: str, query: str, year_from: int | None = None, year_to: int | None = None) -> dict:
     """Fetch listing count and asking prices from C&C search for a specific model.
 
     Strips the make name from the query (it is already handled by make=) and adds
@@ -119,20 +119,50 @@ def _fetch_cc(page, make: str, query: str) -> dict:
                 count = int(m.group(1).replace(",", ""))
                 break
 
-    raw_prices: list[str] = page.evaluate(
-        "() => [...document.querySelectorAll('*')]"
-        ".filter(el => el.children.length === 0 && el.innerText"
-        "  && /^£[\\d,]+$/.test(el.innerText.trim()))"
-        ".map(el => el.innerText.trim())"
-    )
-    prices: list[int] = []
-    for p_str in raw_prices:
-        try:
-            val = int(p_str.replace("£", "").replace(",", ""))
-            if 500 < val < 2_000_000:
-                prices.append(val)
-        except ValueError:
-            pass
+    if year_from or year_to:
+        # Pair listing h2 headings (starting with a 4-digit year) with price leaf
+        # elements positionally. C&C renders both in the same DOM order.
+        raw_pairs: list[dict] = page.evaluate(
+            "() => {"
+            "  const titles = [...document.querySelectorAll('h2')]"
+            "    .filter(el => /^\\d{4} /.test(el.innerText?.trim()));"
+            "  const priceEls = [...document.querySelectorAll('*')]"
+            "    .filter(el => el.children.length === 0"
+            "      && /^£[\\d,]+$/.test(el.innerText?.trim()));"
+            "  const results = [];"
+            "  for (let i = 0; i < Math.min(titles.length, priceEls.length); i++) {"
+            "    const yr = parseInt(titles[i].innerText.match(/^(\\d{4})/)[1]);"
+            "    const price = parseInt(priceEls[i].innerText.replace('£','').replace(/,/g,''));"
+            "    if (price > 500 && price < 2000000) results.push({year: yr, price});"
+            "  }"
+            "  return results;"
+            "}"
+        )
+        prices: list[int] = []
+        for pair in raw_pairs:
+            yr = pair.get("year")
+            price = pair.get("price", 0)
+            if year_from and yr and yr < year_from:
+                continue
+            if year_to and yr and yr > year_to:
+                continue
+            if 500 < price < 2_000_000:
+                prices.append(price)
+    else:
+        raw_prices: list[str] = page.evaluate(
+            "() => [...document.querySelectorAll('*')]"
+            ".filter(el => el.children.length === 0 && el.innerText"
+            "  && /^£[\\d,]+$/.test(el.innerText.trim()))"
+            ".map(el => el.innerText.trim())"
+        )
+        prices = []
+        for p_str in raw_prices:
+            try:
+                val = int(p_str.replace("£", "").replace(",", ""))
+                if 500 < val < 2_000_000:
+                    prices.append(val)
+            except ValueError:
+                pass
 
     return {"listing_count": count, "prices": prices}
 
@@ -874,9 +904,15 @@ def run() -> None:
             query = model.get("cc_search", model["name"])
             bat_query = model.get("bat_search", model.get("cc_search", model["name"]))
 
-            log.info("Scanning C&C live: %s (%s)", mid, query)
-            cc = _fetch_cc(page, make, query)
-            time.sleep(CRAWL_DELAY)
+            if model.get("cc_skip"):
+                log.info("Scanning C&C live: %s — skipped (cc_skip=true)", mid)
+                cc = {"listing_count": 0, "prices": []}
+            else:
+                log.info("Scanning C&C live: %s (%s)", mid, query)
+                cc = _fetch_cc(page, make, query,
+                               year_from=model.get("cc_year_from"),
+                               year_to=model.get("cc_year_to"))
+                time.sleep(CRAWL_DELAY)
 
             supply = cc["listing_count"]
             raw_prices = cc["prices"]

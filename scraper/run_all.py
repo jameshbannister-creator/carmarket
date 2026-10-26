@@ -203,10 +203,16 @@ def main() -> None:
         _page = _ctx.new_page()
         for _m in models_cfg:
             _mid = _m["id"]
+            if _m.get("cc_skip"):
+                log.info("C&C (Playwright): %s — skipped (cc_skip=true)", _mid)
+                cc_data[_mid] = {"listing_count": 0, "prices": []}
+                continue
             _make = _m.get("make", "")
             _q = _m.get("cc_search", _m["name"])
+            _yr_from = _m.get("cc_year_from")
+            _yr_to = _m.get("cc_year_to")
             log.info("C&C (Playwright): %s", _mid)
-            _result = discover._fetch_cc(_page, _make, _q)
+            _result = discover._fetch_cc(_page, _make, _q, year_from=_yr_from, year_to=_yr_to)
             cc_data[_mid] = _result
         _browser.close()
 
@@ -250,7 +256,7 @@ def main() -> None:
         prices = [p for p in cc.get("prices", []) if p > 0]
         gumtree_prices = [p for p in gumtree.get("prices", []) if p > 0]
         all_prices = prices + gumtree_prices
-        median_gbp = int(statistics.median(all_prices)) if all_prices else get_prev_price(prev, mid) or 0
+        median_gbp = int(statistics.median(all_prices)) if all_prices else ((get_prev_price(prev, mid) or 0) if supply_now > 0 else 0)
         gumtree_median = gumtree.get("median_price", 0)
         prev_price = get_prev_price(prev, mid) or median_gbp
         price_delta_pct = round((median_gbp - prev_price) / prev_price * 100) if prev_price else 0
