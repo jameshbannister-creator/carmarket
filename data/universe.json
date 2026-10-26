@@ -134,17 +134,6 @@
       ]
     },
     {
-      "id": "porsche-993-carrera",
-      "name": "Porsche 993 Carrera",
-      "make": "Porsche",
-      "cc_search": "porsche 993 carrera",
-      "ebay_search": "Porsche 993 Carrera",
-      "years": [
-        1993,
-        1998
-      ]
-    },
-    {
       "id": "porsche-boxster-s",
       "name": "Porsche 986 Boxster S",
       "make": "Porsche",
@@ -211,17 +200,6 @@
       ]
     },
     {
-      "id": "toyota-supra-mk4",
-      "name": "Toyota Supra MK4",
-      "make": "Toyota",
-      "cc_search": "toyota supra mk4",
-      "ebay_search": "Toyota Supra MK4 A80",
-      "years": [
-        1993,
-        2002
-      ]
-    },
-    {
       "id": "toyota-mr2-sw20",
       "name": "Toyota MR2 SW20",
       "make": "Toyota",
@@ -241,28 +219,6 @@
       "years": [
         2012,
         2021
-      ]
-    },
-    {
-      "id": "nissan-r32-gtr",
-      "name": "Nissan Skyline R32 GT-R",
-      "make": "Nissan",
-      "cc_search": "nissan r32 gtr",
-      "ebay_search": "Nissan Skyline R32 GTR",
-      "years": [
-        1989,
-        1994
-      ]
-    },
-    {
-      "id": "nissan-r33-gtr",
-      "name": "Nissan Skyline R33 GT-R",
-      "make": "Nissan",
-      "cc_search": "nissan r33 gtr",
-      "ebay_search": "Nissan Skyline R33 GTR",
-      "years": [
-        1995,
-        1998
       ]
     },
     {
@@ -563,17 +519,6 @@
       ]
     },
     {
-      "id": "lancia-delta-integrale",
-      "name": "Lancia Delta Integrale",
-      "make": "Lancia",
-      "cc_search": "lancia delta integrale",
-      "ebay_search": "Lancia Delta Integrale",
-      "years": [
-        1987,
-        1994
-      ]
-    },
-    {
       "id": "fiat-coupe-turbo",
       "name": "Fiat Coupe 20v Turbo",
       "make": "Fiat",
@@ -604,17 +549,6 @@
       "years": [
         1996,
         2000
-      ]
-    },
-    {
-      "id": "opel-omega-evo",
-      "name": "Opel Omega Evolution 500",
-      "make": "Opel",
-      "cc_search": "opel omega evolution",
-      "ebay_search": "Vauxhall Omega Evolution",
-      "years": [
-        1990,
-        1991
       ]
     },
     {
@@ -659,17 +593,6 @@
       "years": [
         1970,
         1996
-      ]
-    },
-    {
-      "id": "land-rover-defender",
-      "name": "Land Rover Defender 90/110",
-      "make": "Land Rover",
-      "cc_search": "land rover defender 90",
-      "ebay_search": "Land Rover Defender 90",
-      "years": [
-        1983,
-        2016
       ]
     },
     {
@@ -978,28 +901,6 @@
       "years": [
         2001,
         2006
-      ]
-    },
-    {
-      "id": "ford-escort-rs-cosworth",
-      "name": "Ford Escort RS Cosworth",
-      "make": "Ford",
-      "cc_search": "ford escort rs cosworth",
-      "ebay_search": "Ford Escort RS Cosworth",
-      "years": [
-        1992,
-        1996
-      ]
-    },
-    {
-      "id": "ford-sierra-rs-cosworth",
-      "name": "Ford Sierra RS Cosworth",
-      "make": "Ford",
-      "cc_search": "ford sierra rs cosworth",
-      "ebay_search": "Ford Sierra RS Cosworth",
-      "years": [
-        1986,
-        1990
       ]
     },
     {
