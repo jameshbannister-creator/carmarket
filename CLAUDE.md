@@ -18,6 +18,21 @@ You are a scraper/research agent. Your job is proactive. You do not wait to be a
 
 ## Non-negotiable rules
 
+### 0. Never add a model to universe.json without verifying its price
+
+Before adding any model to `data/universe.json`, check its current UK asking price on carandclassic.com. The rule is: **under £30k**. This means real examples available today under £30k, not just theoretical project cars.
+
+The check must be done in the session that adds the model. Not later. Not assumed from memory.
+
+**How to check:** search `carandclassic.com` for the model, note the median asking price from live listings. If median is above £30k, or if fewer than 3 listings exist and all are above £30k, do not add it.
+
+**Wrong:** "The E34 M5 can be found cheaply" — adding it without checking.  
+**Right:** Search C&C, find median £22k from 11 listings — add it with confidence.
+
+Models already in universe.json were not all verified. If asked to audit, check them against live C&C prices and remove anything consistently above £30k.
+
+---
+
 ### 1. Never drop a named requirement
 
 If James names a specific source (e.g., "Collecting Cars", "Morris Leslie"), that source must either:
