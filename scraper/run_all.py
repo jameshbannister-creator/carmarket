@@ -184,8 +184,31 @@ def main() -> None:
         log.info("No previous snapshot — first run, deltas will be zero")
 
     # Run scrapers
-    log.info("Running Car & Classic scraper…")
-    cc_data = cc_scraper.scrape(models_cfg)
+    # C&C requires Playwright (JS-rendered); requests-based cc_scraper gets 403d.
+    # Use discover._fetch_cc via a shared Playwright page instead.
+    log.info("Running Car & Classic scraper (Playwright)…")
+    from playwright.sync_api import sync_playwright as _sync_pw
+    cc_data: dict = {}
+    with _sync_pw() as _pw:
+        _browser = _pw.chromium.launch(headless=True)
+        _ctx = _browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/124.0.0.0 Safari/537.36"
+            ),
+            locale="en-GB",
+            viewport={"width": 1280, "height": 800},
+        )
+        _page = _ctx.new_page()
+        for _m in models_cfg:
+            _mid = _m["id"]
+            _make = _m.get("make", "")
+            _q = _m.get("cc_search", _m["name"])
+            log.info("C&C (Playwright): %s", _mid)
+            _result = discover._fetch_cc(_page, _make, _q)
+            cc_data[_mid] = _result
+        _browser.close()
 
     log.info("Running Bring a Trailer scraper…")
     bat_data = bat_scraper.scrape(models_cfg)
@@ -312,12 +335,12 @@ def main() -> None:
     rising_count = sum(1 for m in models_out if m["signal"] == "rising")
     log.info("Done. %d models. %d hot, %d rising, %d alerts.", len(models_out), hot_count, rising_count, len(alerts))
 
-    # Run discovery engine across the broader universe
-    log.info("Running discovery engine…")
-    try:
-        discover.run()
-    except Exception as exc:
-        log.error("Discovery engine failed (non-fatal): %s", exc)
+    if "--discover" in sys.argv:
+        log.info("Running discovery engine…")
+        try:
+            discover.run()
+        except Exception as exc:
+            log.error("Discovery engine failed (non-fatal): %s", exc)
 
 
 if __name__ == "__main__":

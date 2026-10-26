@@ -81,14 +81,17 @@ def _fetch_cc(page, make: str, query: str) -> dict:
     sidebar, which gives the model-filtered count rather than the inflated page
     total (e.g. "Showing 62 listings for BMW" vs the facet "3 Series: 22").
     """
-    make_lower = make.lower()
-    # Strip make name from front of query to avoid double-filtering noise
+    # C&C make slug: spaces → hyphens, lowercase; "Mercedes-Benz" → "mercedes"
+    make_slug = make.lower().replace(" ", "-")
+    make_slug = re.sub(r"-benz$", "", make_slug)
+    # Strip make name from front of query using the original display name (with spaces)
     q = query.strip()
-    if q.lower().startswith(make_lower):
-        q = q[len(make_lower):].strip()
-    make_param = make_lower.replace(" ", "+")
+    for prefix in (make.lower(), make_slug):
+        if q.lower().startswith(prefix):
+            q = q[len(prefix):].strip()
+            break
     q_param = q.replace(" ", "+")
-    url = f"{CC_BASE}?make={make_param}&q={q_param}&country=GB"
+    url = f"{CC_BASE}?make={make_slug}&q={q_param}&country=GB"
 
     try:
         page.goto(url, timeout=30_000, wait_until="domcontentloaded")

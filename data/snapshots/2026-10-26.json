@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T14:50:56.458005+00:00",
+  "generated_at": "2026-10-26T22:03:19.425310+00:00",
   "models": [
     {
       "id": "mercedes-w210-e55",
@@ -9,17 +9,19 @@
       "personal": true,
       "signal": "stable",
       "supply": {
-        "current": 0,
-        "cc": 0,
+        "current": 2,
+        "cc": 2,
         "gumtree": 0,
         "delta_4w": 0,
         "history": [
-          0
+          0,
+          0,
+          2
         ]
       },
       "gumtree_median": 0,
       "price": {
-        "median": 0,
+        "median": 9237,
         "delta_6mo": 0,
         "sold_median_6m": null,
         "sold_count_6m": 0
@@ -45,19 +47,21 @@
         "25yr"
       ],
       "personal": true,
-      "signal": "stable",
+      "signal": "watch",
       "supply": {
-        "current": 2,
-        "cc": 0,
+        "current": 5,
+        "cc": 3,
         "gumtree": 2,
         "delta_4w": 0,
         "history": [
-          2
+          2,
+          2,
+          5
         ]
       },
       "gumtree_median": 0,
       "price": {
-        "median": 0,
+        "median": 3450,
         "delta_6mo": 0,
         "sold_median_6m": null,
         "sold_count_6m": 0
@@ -83,17 +87,19 @@
       "personal": true,
       "signal": "stable",
       "supply": {
-        "current": 0,
-        "cc": 0,
+        "current": 7,
+        "cc": 7,
         "gumtree": 0,
         "delta_4w": 0,
         "history": [
-          0
+          0,
+          0,
+          7
         ]
       },
       "gumtree_median": 0,
       "price": {
-        "median": 0,
+        "median": 17495,
         "delta_6mo": 0,
         "sold_median_6m": null,
         "sold_count_6m": 0
