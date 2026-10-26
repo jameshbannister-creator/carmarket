@@ -74,10 +74,21 @@ def load_prev_discoveries() -> dict[str, dict]:
 # ── Live listings ─────────────────────────────────────────────────────────────
 
 def _fetch_cc(page, make: str, query: str) -> dict:
-    """Fetch listing count and asking prices from C&C search for a specific model."""
-    make_param = make.lower().replace(" ", "+")
-    query_param = query.replace(" ", "+")
-    url = f"{CC_BASE}?make={make_param}&q={query_param}"
+    """Fetch listing count and asking prices from C&C search for a specific model.
+
+    Strips the make name from the query (it is already handled by make=) and adds
+    country=GB. Reads the supply count from the first model-facet link in the
+    sidebar, which gives the model-filtered count rather than the inflated page
+    total (e.g. "Showing 62 listings for BMW" vs the facet "3 Series: 22").
+    """
+    make_lower = make.lower()
+    # Strip make name from front of query to avoid double-filtering noise
+    q = query.strip()
+    if q.lower().startswith(make_lower):
+        q = q[len(make_lower):].strip()
+    make_param = make_lower.replace(" ", "+")
+    q_param = q.replace(" ", "+")
+    url = f"{CC_BASE}?make={make_param}&q={q_param}&country=GB"
 
     try:
         page.goto(url, timeout=30_000, wait_until="domcontentloaded")
@@ -86,13 +97,24 @@ def _fetch_cc(page, make: str, query: str) -> dict:
         log.warning("C&C live fetch failed for '%s': %s", query, exc)
         return {"listing_count": 0, "prices": []}
 
+    # Read count from the first model facet link in the sidebar.
+    # These links carry the model-filtered total, e.g. "3 Series\n22".
+    # Fall back to the H2 "Showing X listings" if no facet is found.
     count = 0
-    for h2 in page.query_selector_all("h2"):
-        text = h2.inner_text()
-        m = re.search(r"([\d,]+)\s+listings?", text, re.IGNORECASE)
+    for el in page.query_selector_all("a[href*='model=']"):
+        text = el.inner_text().strip()
+        m = re.search(r"\n(\d[\d,]*)$", text)
         if m:
             count = int(m.group(1).replace(",", ""))
             break
+
+    if count == 0:
+        for h2 in page.query_selector_all("h2"):
+            text = h2.inner_text()
+            m = re.search(r"([\d,]+)\s+listings?", text, re.IGNORECASE)
+            if m:
+                count = int(m.group(1).replace(",", ""))
+                break
 
     raw_prices: list[str] = page.evaluate(
         "() => [...document.querySelectorAll('*')]"
