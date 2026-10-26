@@ -539,12 +539,22 @@ def _load_hnh_lots(page) -> list[dict]:
         try:
             page.goto(
                 HNH_ARCHIVE.format(year=yr),
-                timeout=20_000, wait_until="domcontentloaded",
+                timeout=30_000, wait_until="load",
             )
-            page.wait_for_timeout(1500)
+            page.wait_for_timeout(3000)
         except Exception as exc:
             log.warning("H&H archive fetch failed (%d): %s", yr, exc)
-            continue
+            # Try the page without year filter as fallback
+            try:
+                page.goto(
+                    "https://handh.co.uk/auctions/auction-results/"
+                    f"?sale_type=motor-cars&posts_per_page=24",
+                    timeout=30_000, wait_until="load",
+                )
+                page.wait_for_timeout(3000)
+            except Exception as exc2:
+                log.warning("H&H archive fallback also failed: %s", exc2)
+                continue
 
         entries = page.evaluate(
             "() => [...document.querySelectorAll('a[href*=\"/auction/\"]')]"
@@ -580,8 +590,8 @@ def _load_hnh_lots(page) -> list[dict]:
         full_url = f"{url}?pgn=1&order_by=lot&posts_per_page=300"
         log.info("H&H Classics: loading %s", url)
         try:
-            page.goto(full_url, timeout=30_000, wait_until="domcontentloaded")
-            page.wait_for_timeout(2000)
+            page.goto(full_url, timeout=30_000, wait_until="load")
+            page.wait_for_timeout(3000)
         except Exception as exc:
             log.warning("H&H lot page failed %s: %s", url, exc)
             continue
