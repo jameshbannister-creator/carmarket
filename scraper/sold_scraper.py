@@ -11,6 +11,8 @@ Sources:
   - Iconic Auctioneers (fmr. Silverstone)  (GBP, pre-fetched)
   - H&H Classics                           (GBP, pre-fetched)
   - Mathewsons                             (GBP, pre-fetched)
+  - Collecting Cars                        (GBP, UK only, Playwright + InstantSearch)
+  - Historics Auctioneers                  (GBP, A-series classic car auctions)
 """
 from __future__ import annotations
 
@@ -62,6 +64,10 @@ def scrape(models: list[dict]) -> dict[str, dict]:
         _load_hnh_lots(page)
         log.info("Pre-fetching Mathewsons lot data…")
         _load_mathewsons_lots(page)
+        log.info("Pre-fetching Historics Auctioneers lot data…")
+        import historics_scraper as _historics
+        _historics._load_lots(page)
+        import collecting_cars_scraper as _cc_cars
 
         for model in models:
             mid = model["id"]
@@ -86,8 +92,10 @@ def scrape(models: list[dict]) -> dict[str, dict]:
             iconic_sold = _search_iconic(make, keywords)
             hnh_sold = _search_hnh(make, keywords)
             mathewsons_sold = _search_mathewsons(make, keywords)
+            cc_cars_sold = _cc_cars.fetch_sold(page, query, keywords)
+            historics_sold = _historics.search(page, make, keywords)
 
-            all_sold = cc_sold + bat_sold + anglia_sold + ml_sold + iconic_sold + hnh_sold + mathewsons_sold
+            all_sold = cc_sold + bat_sold + anglia_sold + ml_sold + iconic_sold + hnh_sold + mathewsons_sold + cc_cars_sold + historics_sold
             sold_median = int(statistics.median(all_sold)) if all_sold else None
 
             results[mid] = {
@@ -98,11 +106,12 @@ def scrape(models: list[dict]) -> dict[str, dict]:
             if all_sold:
                 log.info(
                     "  %s: %d sold results, median £%s "
-                    "(C&C:%d BaT:%d Anglia:%d ML:%d Iconic:%d H&H:%d Math:%d)",
+                    "(C&C:%d BaT:%d Anglia:%d ML:%d Iconic:%d H&H:%d Math:%d CC:%d Hist:%d)",
                     mid, len(all_sold),
                     f"{sold_median:,}" if sold_median else "n/a",
                     len(cc_sold), len(bat_sold), len(anglia_sold), len(ml_sold),
                     len(iconic_sold), len(hnh_sold), len(mathewsons_sold),
+                    len(cc_cars_sold), len(historics_sold),
                 )
             else:
                 log.info("  %s: no sold results", mid)

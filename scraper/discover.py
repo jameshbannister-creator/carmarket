@@ -10,6 +10,8 @@ Data sources:
   - Sold prices:    iconicauctioneers.com/auction/archive-auctions-cars (fmr. Silverstone, pre-fetched)
   - Sold prices:    handh.co.uk/auctions/auction-results   (H&H Classics, pre-fetched)
   - Sold prices:    mathewsons.co.uk/auction-results       (Mathewsons, pre-fetched)
+  - Sold prices:    collectingcars.com/sold                (UK-only, Playwright + InstantSearch)
+  - Sold prices:    historics.co.uk/auction-results        (A-series auctions, Playwright)
 
 Uses cc_search field in universe.json for model-specific queries.
 Pinned models (data/models.json) are excluded — they have their own tracked section.
@@ -837,6 +839,9 @@ def run() -> None:
         _load_hnh_lots(page)
         log.info("Pre-loading Mathewsons lot data…")
         _load_mathewsons_lots(page)
+        log.info("Pre-loading Historics Auctioneers lot data…")
+        import historics_scraper as _historics
+        _historics._load_lots(page)
 
         for model in candidates:
             mid = model["id"]
@@ -887,18 +892,27 @@ def run() -> None:
             # Sold prices: Mathewsons (pre-fetched cache)
             mathewsons_sold = _search_mathewsons(make, keywords)
 
-            all_sold = cc_sold + bat_sold + anglia_sold + ml_sold + iconic_sold + hnh_sold + mathewsons_sold
+            # Sold prices: Collecting Cars (UK only, Playwright)
+            import collecting_cars_scraper as _cc_cars
+            cc_cars_sold = _cc_cars.fetch_sold(page, query, keywords)
+            time.sleep(2.0)
+
+            # Sold prices: Historics Auctioneers (pre-fetched cache)
+            historics_sold = _historics.search(page, make, keywords)
+
+            all_sold = cc_sold + bat_sold + anglia_sold + ml_sold + iconic_sold + hnh_sold + mathewsons_sold + cc_cars_sold + historics_sold
             sold_median = int(statistics.median(all_sold)) if all_sold else None
             sold_count_6m = len(all_sold)
 
             if sold_count_6m:
                 log.info(
                     "  sold (6m): %d results, median £%s "
-                    "(C&C:%d BaT:%d Anglia:%d ML:%d Iconic:%d H&H:%d Math:%d)",
+                    "(C&C:%d BaT:%d Anglia:%d ML:%d Iconic:%d H&H:%d Math:%d CC:%d Hist:%d)",
                     sold_count_6m,
                     f"{sold_median:,}",
                     len(cc_sold), len(bat_sold), len(anglia_sold), len(ml_sold),
                     len(iconic_sold), len(hnh_sold), len(mathewsons_sold),
+                    len(cc_cars_sold), len(historics_sold),
                 )
 
             prev = prev_map.get(mid)

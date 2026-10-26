@@ -62,22 +62,22 @@ Do not ask James which auction houses exist. Do not wait to be told. If he alrea
 - Iconic Auctioneers (fmr. Silverstone Auctions) — implemented
 - H&H Classics — implemented
 - Mathewsons — implemented
-- Collecting Cars — NOT YET implemented. Sold prices hidden behind login for filtered search. Embedded JS (`window[Symbol.for("InstantSearchInitialResults")]`) contains `priceSold` for UK lots in the first 48 results, but no server-side filtering by make is available without the Typesense API key. Needs further investigation.
+- Collecting Cars — implemented (`collecting_cars_scraper.py`). Playwright + InstantSearch URL filtering: `/sold?refinementList[countryCode][0]=GB&query=<model>`. GB-only sold prices, 48 per query, price visible in `window[Symbol.for("InstantSearchInitialResults")]`.
+- Historics at Brooklands — implemented (`historics_scraper.py`). Playwright, A-series classic car auctions only. 96 lots per page (page 2 of large auctions not yet handled). Sold prices in HTML as "Sold £X,XXX".
 - Brightwells — no sold prices shown
 - Coys — Cloudflare blocked
 - Ewbanks — viable but low volume, complex archive structure — not yet implemented
 - Barons — rebranded, no longer auction
 
-**UK auction houses not yet investigated — research these before claiming coverage is complete:**
-- Historics at Brooklands
-- Silverstone Classic (separate from Iconic Auctioneers)
-- Bonhams UK
-- RM Sotheby's UK (premium end)
-- Cheffins (confirm no classic cars dept)
-- i-bidder (aggregator — check if useful)
-- Charterhouse Auctioneers
-- Quantam Auctions
-- CA Auctions (Classic Auctions)
+**UK auction houses investigated and ruled out:**
+- Silverstone Classic — event website only, no auction platform. Redirects to silverstone.co.uk.
+- Bonhams UK — premium only, very few sub-£30k cars, JS search doesn't filter by UK motor cars reliably. Not worth implementing.
+- RM Sotheby's UK — premium only, JS-rendered, sub-£30k lots very rare. Not worth implementing.
+- Cheffins — property/farm machinery auctioneer, no classic cars department.
+- i-bidder — general trade aggregator (MOD Land Rovers, factory clearance), not classic cars.
+- CA Auctions — domain does not resolve.
+- Quantam Auctions — domain does not resolve.
+- Charterhouse Classic Cars — lists all lots on carandclassic.co.uk, already covered by C&C scraper.
 
 ### 3. Do the work, don't describe the work
 
