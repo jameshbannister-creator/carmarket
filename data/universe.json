@@ -1,161 +1,1512 @@
 {
-  "description": "Scan universe — broad list of models the discovery engine checks weekly. Models that surface strong signals get promoted to the dashboard Radar section.",
+  "description": "Scan universe \u2014 broad list of models the discovery engine checks weekly. Models that surface strong signals get promoted to the dashboard Radar section.",
   "models": [
-    {"id": "bmw-e34-m5",         "name": "BMW E34 M5",                  "make": "BMW",           "cc_search": "bmw e34 m5",               "ebay_search": "BMW E34 M5",                 "years": [1988, 1995]},
-    {"id": "bmw-e36-m3",         "name": "BMW E36 M3",                  "make": "BMW",           "cc_search": "bmw e36 m3",               "ebay_search": "BMW E36 M3",                 "years": [1992, 1999]},
-    {"id": "bmw-e39-m5",         "name": "BMW E39 M5",                  "make": "BMW",           "cc_search": "bmw e39 m5",               "ebay_search": "BMW E39 M5",                 "years": [1998, 2004]},
-    {"id": "bmw-m635csi",        "name": "BMW M635 CSi",                "make": "BMW",           "cc_search": "bmw m635",                 "ebay_search": "BMW M635 CSi",               "years": [1983, 1989]},
-    {"id": "bmw-e46-m3",         "name": "BMW E46 M3",                  "make": "BMW",           "cc_search": "bmw e46 m3",               "ebay_search": "BMW E46 M3",                 "years": [2000, 2006]},
-    {"id": "mercedes-w124-e60",  "name": "Mercedes E60 AMG (W124)",     "make": "Mercedes-Benz", "cc_search": "mercedes e60 amg w124",    "ebay_search": "Mercedes E60 AMG W124",      "years": [1994, 1996]},
-    {"id": "mercedes-w201-190e", "name": "Mercedes 190E 2.3-16",        "make": "Mercedes-Benz", "cc_search": "mercedes 190e 2.3-16",     "ebay_search": "Mercedes 190E 2.3 16",       "years": [1984, 1993]},
-    {"id": "mercedes-w126-500se","name": "Mercedes 500 SEC (W126)",     "make": "Mercedes-Benz", "cc_search": "mercedes 500 sec w126",    "ebay_search": "Mercedes 500 SEC W126",      "years": [1981, 1991]},
-    {"id": "mercedes-w129-600sl","name": "Mercedes 600 SL (R129)",      "make": "Mercedes-Benz", "cc_search": "mercedes 600 sl r129",     "ebay_search": "Mercedes 600 SL R129",       "years": [1992, 1998]},
-    {"id": "mercedes-w211-e55",  "name": "Mercedes E55 AMG (W211)",     "make": "Mercedes-Benz", "cc_search": "mercedes e55 amg w211",    "ebay_search": "Mercedes E55 AMG W211",      "years": [2002, 2006]},
-    {"id": "porsche-944-turbo",  "name": "Porsche 944 Turbo",           "make": "Porsche",       "cc_search": "porsche 944 turbo",        "ebay_search": "Porsche 944 Turbo",          "years": [1985, 1991]},
-    {"id": "porsche-928-s4",     "name": "Porsche 928 S4",              "make": "Porsche",       "cc_search": "porsche 928 s4",           "ebay_search": "Porsche 928 S4",             "years": [1987, 1995]},
-    {"id": "porsche-964-rs",     "name": "Porsche 911 964 RS",          "make": "Porsche",       "cc_search": "porsche 964 rs",           "ebay_search": "Porsche 911 964 RS",         "years": [1991, 1994]},
-    {"id": "porsche-993-carrera","name": "Porsche 993 Carrera",         "make": "Porsche",       "cc_search": "porsche 993 carrera",      "ebay_search": "Porsche 993 Carrera",        "years": [1993, 1998]},
-    {"id": "porsche-boxster-s",  "name": "Porsche 986 Boxster S",       "make": "Porsche",       "cc_search": "porsche boxster 986 s",    "ebay_search": "Porsche 986 Boxster S",      "years": [1999, 2004]},
-    {"id": "audi-rs2-avant",     "name": "Audi RS2 Avant",              "make": "Audi",          "cc_search": "audi rs2 avant",           "ebay_search": "Audi RS2 Avant",             "years": [1994, 1995]},
-    {"id": "audi-ur-quattro",    "name": "Audi Ur-Quattro",             "make": "Audi",          "cc_search": "audi quattro ur",          "ebay_search": "Audi Ur Quattro",            "years": [1980, 1991]},
-    {"id": "audi-s2-coupe",      "name": "Audi S2 Coupe",               "make": "Audi",          "cc_search": "audi s2 coupe",            "ebay_search": "Audi S2 Coupe",              "years": [1990, 1995]},
-    {"id": "audi-b5-rs4",        "name": "Audi B5 RS4",                 "make": "Audi",          "cc_search": "audi rs4 b5",              "ebay_search": "Audi RS4 B5",                "years": [2000, 2001]},
-    {"id": "vw-corrado-vr6",     "name": "VW Corrado VR6",              "make": "Volkswagen",    "cc_search": "volkswagen corrado vr6",   "ebay_search": "VW Corrado VR6",             "years": [1991, 1995]},
-    {"id": "toyota-supra-mk4",   "name": "Toyota Supra MK4",            "make": "Toyota",        "cc_search": "toyota supra mk4",         "ebay_search": "Toyota Supra MK4 A80",       "years": [1993, 2002]},
-    {"id": "toyota-mr2-sw20",    "name": "Toyota MR2 SW20",             "make": "Toyota",        "cc_search": "toyota mr2 sw20",          "ebay_search": "Toyota MR2 SW20",            "years": [1989, 1999]},
-    {"id": "toyota-gt86",        "name": "Toyota GT86",                 "make": "Toyota",        "cc_search": "toyota gt86",              "ebay_search": "Toyota GT86",                "years": [2012, 2021]},
-    {"id": "nissan-r32-gtr",     "name": "Nissan Skyline R32 GT-R",     "make": "Nissan",        "cc_search": "nissan r32 gtr",           "ebay_search": "Nissan Skyline R32 GTR",     "years": [1989, 1994]},
-    {"id": "nissan-r33-gtr",     "name": "Nissan Skyline R33 GT-R",     "make": "Nissan",        "cc_search": "nissan r33 gtr",           "ebay_search": "Nissan Skyline R33 GTR",     "years": [1995, 1998]},
-    {"id": "nissan-200sx-s14",   "name": "Nissan 200SX S14",            "make": "Nissan",        "cc_search": "nissan 200sx s14",         "ebay_search": "Nissan 200SX S14",           "years": [1993, 1999]},
-    {"id": "mitsubishi-evo6",    "name": "Mitsubishi Lancer Evo VI",    "make": "Mitsubishi",    "cc_search": "mitsubishi evo 6",         "ebay_search": "Mitsubishi Lancer Evo 6",    "years": [1999, 2001]},
-    {"id": "mitsubishi-evo4",    "name": "Mitsubishi Lancer Evo IV",    "make": "Mitsubishi",    "cc_search": "mitsubishi evo 4",         "ebay_search": "Mitsubishi Lancer Evo 4",    "years": [1996, 1998]},
-    {"id": "subaru-p1-wrx",      "name": "Subaru Impreza P1",           "make": "Subaru",        "cc_search": "subaru impreza p1",        "ebay_search": "Subaru Impreza P1",          "years": [2000, 2001]},
-    {"id": "subaru-sti-blobeye", "name": "Subaru Impreza STi Blobeye", "make": "Subaru",        "cc_search": "subaru impreza sti blobeye","ebay_search": "Subaru Impreza STi Blobeye", "years": [2003, 2005]},
-    {"id": "honda-civic-ek9",    "name": "Honda Civic Type R EK9",      "make": "Honda",         "cc_search": "honda civic type r ek9",   "ebay_search": "Honda Civic Type R EK9",     "years": [1997, 2000]},
-    {"id": "honda-integra-dc2",  "name": "Honda Integra Type R DC2",    "make": "Honda",         "cc_search": "honda integra dc2 type r", "ebay_search": "Honda Integra Type R DC2",   "years": [1995, 2001]},
-    {"id": "honda-s2000",        "name": "Honda S2000",                 "make": "Honda",         "cc_search": "honda s2000",              "ebay_search": "Honda S2000",                "years": [1999, 2009]},
-    {"id": "mazda-mx5-na",       "name": "Mazda MX-5 NA",               "make": "Mazda",         "cc_search": "mazda mx5 na eunos",       "ebay_search": "Mazda MX5 NA Eunos",         "years": [1989, 1998]},
-    {"id": "ford-escort-rs2000", "name": "Ford Escort RS2000",          "make": "Ford",          "cc_search": "ford escort rs2000",       "ebay_search": "Ford Escort RS2000",         "years": [1991, 1996]},
-    {"id": "ford-puma",          "name": "Ford Puma Racing",            "make": "Ford",          "cc_search": "ford puma racing",         "ebay_search": "Ford Puma Racing",           "years": [1999, 2001]},
-    {"id": "ford-focus-rs-mk1",  "name": "Ford Focus RS Mk1",           "make": "Ford",          "cc_search": "ford focus rs mk1",        "ebay_search": "Ford Focus RS Mk1",          "years": [2002, 2003]},
-    {"id": "renault-clio-v6",    "name": "Renault Clio V6",             "make": "Renault",       "cc_search": "renault clio v6",          "ebay_search": "Renault Clio V6",            "years": [2001, 2005]},
-    {"id": "renault-clio-wms2",  "name": "Renault Clio Williams S2",    "make": "Renault",       "cc_search": "renault clio williams",    "ebay_search": "Renault Clio Williams",      "years": [1993, 1998]},
-    {"id": "renault-5-gt-turbo", "name": "Renault 5 GT Turbo",          "make": "Renault",       "cc_search": "renault 5 gt turbo",       "ebay_search": "Renault 5 GT Turbo",         "years": [1985, 1991]},
-    {"id": "peugeot-205-gti",    "name": "Peugeot 205 GTI",             "make": "Peugeot",       "cc_search": "peugeot 205 gti",          "ebay_search": "Peugeot 205 GTI",            "years": [1984, 1994]},
-    {"id": "peugeot-306-rallye", "name": "Peugeot 306 Rallye",          "make": "Peugeot",       "cc_search": "peugeot 306 rallye",       "ebay_search": "Peugeot 306 Rallye",         "years": [1993, 2000]},
-    {"id": "citroen-saxo-vts",   "name": "Citroen Saxo VTS",            "make": "Citroen",       "cc_search": "citroen saxo vts",         "ebay_search": "Citroen Saxo VTS",           "years": [1996, 2003]},
-    {"id": "ferrari-348",        "name": "Ferrari 348",                 "make": "Ferrari",       "cc_search": "ferrari 348",              "ebay_search": "Ferrari 348",                "years": [1989, 1995]},
-    {"id": "ferrari-355",        "name": "Ferrari F355",                "make": "Ferrari",       "cc_search": "ferrari f355",             "ebay_search": "Ferrari F355",               "years": [1994, 1999]},
-    {"id": "ferrari-360",        "name": "Ferrari 360 Modena",          "make": "Ferrari",       "cc_search": "ferrari 360 modena",       "ebay_search": "Ferrari 360 Modena",         "years": [1999, 2005]},
-    {"id": "lamborghini-diablo", "name": "Lamborghini Diablo",          "make": "Lamborghini",   "cc_search": "lamborghini diablo",       "ebay_search": "Lamborghini Diablo",         "years": [1990, 2001]},
-    {"id": "de-tomaso-pantera",  "name": "De Tomaso Pantera",           "make": "De Tomaso",     "cc_search": "de tomaso pantera",        "ebay_search": "De Tomaso Pantera",          "years": [1971, 1993]},
-    {"id": "lotus-esprit-v8",    "name": "Lotus Esprit V8",             "make": "Lotus",         "cc_search": "lotus esprit v8",          "ebay_search": "Lotus Esprit V8",            "years": [1996, 2004]},
-    {"id": "lotus-elise-s1",     "name": "Lotus Elise S1",              "make": "Lotus",         "cc_search": "lotus elise s1",           "ebay_search": "Lotus Elise S1",             "years": [1996, 2000]},
-    {"id": "tvr-griffith-500",   "name": "TVR Griffith 500",            "make": "TVR",           "cc_search": "tvr griffith 500",         "ebay_search": "TVR Griffith 500",           "years": [1990, 2002]},
-    {"id": "tvr-tuscan",         "name": "TVR Tuscan",                  "make": "TVR",           "cc_search": "tvr tuscan",               "ebay_search": "TVR Tuscan",                 "years": [1999, 2006]},
-    {"id": "morgan-plus-8",      "name": "Morgan Plus 8",               "make": "Morgan",        "cc_search": "morgan plus 8",            "ebay_search": "Morgan Plus 8",              "years": [1968, 2004]},
-    {"id": "mg-mgb-gt",          "name": "MG MGB GT",                   "make": "MG",            "cc_search": "mg mgb gt",                "ebay_search": "MG MGB GT",                  "years": [1965, 1980]},
-    {"id": "triumph-tr6",        "name": "Triumph TR6",                 "make": "Triumph",       "cc_search": "triumph tr6",              "ebay_search": "Triumph TR6",                "years": [1969, 1976]},
-    {"id": "alfa-spider-916",    "name": "Alfa Romeo Spider 916",       "make": "Alfa Romeo",    "cc_search": "alfa romeo spider 916",    "ebay_search": "Alfa Romeo Spider 916",      "years": [1994, 2005]},
-    {"id": "alfa-156-gta",       "name": "Alfa Romeo 156 GTA",          "make": "Alfa Romeo",    "cc_search": "alfa romeo 156 gta",       "ebay_search": "Alfa Romeo 156 GTA",         "years": [2001, 2005]},
-    {"id": "lancia-delta-integrale","name":"Lancia Delta Integrale",    "make": "Lancia",        "cc_search": "lancia delta integrale",   "ebay_search": "Lancia Delta Integrale",     "years": [1987, 1994]},
-    {"id": "fiat-coupe-turbo",   "name": "Fiat Coupe 20v Turbo",        "make": "Fiat",          "cc_search": "fiat coupe turbo 20v",     "ebay_search": "Fiat Coupe 20v Turbo",       "years": [1994, 2000]},
-    {"id": "volvo-850-t5r",      "name": "Volvo 850 T5-R",              "make": "Volvo",         "cc_search": "volvo 850 t5-r",           "ebay_search": "Volvo 850 T5R",              "years": [1994, 1997]},
-    {"id": "volvo-s70-v70-t5",  "name": "Volvo S70/V70 T5",            "make": "Volvo",         "cc_search": "volvo v70 t5",             "ebay_search": "Volvo V70 T5",               "years": [1996, 2000]},
-    {"id": "opel-omega-evo",     "name": "Opel Omega Evolution 500",    "make": "Opel",          "cc_search": "opel omega evolution",     "ebay_search": "Vauxhall Omega Evolution",   "years": [1990, 1991]},
-    {"id": "vauxhall-cavalier-gsi","name":"Vauxhall Cavalier GSi 2000", "make": "Vauxhall",      "cc_search": "vauxhall cavalier gsi 2000","ebay_search":"Vauxhall Cavalier GSi",      "years": [1988, 1992]},
-    {"id": "vauxhall-astra-gsi", "name": "Vauxhall Astra GSi",          "make": "Vauxhall",      "cc_search": "vauxhall astra gsi",       "ebay_search": "Vauxhall Astra GSi",         "years": [1988, 1991]},
-    {"id": "ford-capri-280",     "name": "Ford Capri 280 Brooklands",   "make": "Ford",          "cc_search": "ford capri 280 brooklands","ebay_search": "Ford Capri 280 Brooklands",  "years": [1986, 1987]},
-    {"id": "range-rover-classic","name": "Range Rover Classic V8",      "make": "Land Rover",    "cc_search": "range rover classic v8",   "ebay_search": "Range Rover Classic V8",     "years": [1970, 1996]},
-
-    {"id": "land-rover-defender",   "name": "Land Rover Defender 90/110", "make": "Land Rover",    "cc_search": "land rover defender 90",   "ebay_search": "Land Rover Defender 90",     "years": [1983, 2016]},
-    {"id": "land-rover-discovery-1","name": "Land Rover Discovery 1 V8",  "make": "Land Rover",    "cc_search": "land rover discovery 1",   "ebay_search": "Land Rover Discovery 1",     "years": [1989, 1998]},
-    {"id": "jeep-cherokee-xj",      "name": "Jeep Cherokee XJ 4.0",       "make": "Jeep",          "cc_search": "jeep cherokee xj",         "ebay_search": "Jeep Cherokee XJ 4.0",       "years": [1984, 2001]},
-    {"id": "toyota-land-cruiser-80","name": "Toyota Land Cruiser 80",      "make": "Toyota",        "cc_search": "toyota land cruiser 80",   "ebay_search": "Toyota Land Cruiser 80",     "years": [1990, 1997]},
-    {"id": "toyota-land-cruiser-90","name": "Toyota Land Cruiser Prado 90","make": "Toyota",        "cc_search": "toyota land cruiser prado","ebay_search": "Toyota Land Cruiser Prado",  "years": [1996, 2002]},
-    {"id": "toyota-hilux-surf",     "name": "Toyota Hilux Surf",           "make": "Toyota",        "cc_search": "toyota hilux surf",        "ebay_search": "Toyota Hilux Surf",          "years": [1988, 2002]},
-    {"id": "mitsubishi-shogun-mk2", "name": "Mitsubishi Shogun Mk2",       "make": "Mitsubishi",    "cc_search": "mitsubishi shogun lwb",    "ebay_search": "Mitsubishi Shogun Mk2",      "years": [1991, 2000]},
-    {"id": "isuzu-trooper",         "name": "Isuzu Trooper",               "make": "Isuzu",         "cc_search": "isuzu trooper",            "ebay_search": "Isuzu Trooper",              "years": [1981, 2002]},
-    {"id": "suzuki-vitara",         "name": "Suzuki SJ / Vitara",          "make": "Suzuki",        "cc_search": "suzuki sj vitara",         "ebay_search": "Suzuki SJ Vitara",           "years": [1981, 1998]},
-
-    {"id": "mercedes-r129-sl",      "name": "Mercedes SL (R129)",          "make": "Mercedes-Benz", "cc_search": "mercedes sl r129",         "ebay_search": "Mercedes SL R129 300 500",   "years": [1989, 2002]},
-    {"id": "mercedes-slk-r170",     "name": "Mercedes SLK (R170)",         "make": "Mercedes-Benz", "cc_search": "mercedes slk r170",        "ebay_search": "Mercedes SLK R170",          "years": [1996, 2004]},
-    {"id": "mercedes-c36-amg",      "name": "Mercedes C36 AMG (W202)",     "make": "Mercedes-Benz", "cc_search": "mercedes c36 amg",         "ebay_search": "Mercedes C36 AMG W202",      "years": [1993, 1997]},
-    {"id": "mercedes-c43-amg",      "name": "Mercedes C43 AMG (W202)",     "make": "Mercedes-Benz", "cc_search": "mercedes c43 amg",         "ebay_search": "Mercedes C43 AMG W202",      "years": [1997, 2000]},
-
-    {"id": "bmw-e30-325i",          "name": "BMW E30 325i",                "make": "BMW",           "cc_search": "bmw e30 325i",             "ebay_search": "BMW E30 325i",               "years": [1985, 1994]},
-    {"id": "bmw-850i",              "name": "BMW 850i (E31)",              "make": "BMW",           "cc_search": "bmw 850i e31",             "ebay_search": "BMW 850i E31",               "years": [1989, 1999]},
-    {"id": "bmw-z3",                "name": "BMW Z3",                      "make": "BMW",           "cc_search": "bmw z3 roadster",          "ebay_search": "BMW Z3",                     "years": [1996, 2002]},
-    {"id": "bmw-z3-m-roadster",     "name": "BMW Z3 M Roadster",           "make": "BMW",           "cc_search": "bmw z3 m roadster",        "ebay_search": "BMW Z3 M Roadster",          "years": [1997, 2002]},
-
-    {"id": "porsche-914",           "name": "Porsche 914",                 "make": "Porsche",       "cc_search": "porsche 914",              "ebay_search": "Porsche 914",                "years": [1969, 1976]},
-    {"id": "porsche-924-turbo",     "name": "Porsche 924 Turbo",           "make": "Porsche",       "cc_search": "porsche 924 turbo",        "ebay_search": "Porsche 924 Turbo",          "years": [1979, 1982]},
-    {"id": "porsche-968",           "name": "Porsche 968",                 "make": "Porsche",       "cc_search": "porsche 968",              "ebay_search": "Porsche 968",                "years": [1991, 1995]},
-
-    {"id": "jaguar-xjs",            "name": "Jaguar XJ-S",                 "make": "Jaguar",        "cc_search": "jaguar xjs",               "ebay_search": "Jaguar XJS",                 "years": [1975, 1996]},
-    {"id": "jaguar-xk8",            "name": "Jaguar XK8",                  "make": "Jaguar",        "cc_search": "jaguar xk8",               "ebay_search": "Jaguar XK8",                 "years": [1996, 2006]},
-    {"id": "jaguar-xj6-x300",       "name": "Jaguar XJ6 / XJR (X300)",    "make": "Jaguar",        "cc_search": "jaguar xj6 x300",          "ebay_search": "Jaguar XJ6 X300",            "years": [1994, 1997]},
-
-    {"id": "vw-golf-gti-mk1",       "name": "VW Golf GTI Mk1",            "make": "Volkswagen",    "cc_search": "volkswagen golf gti mk1",  "ebay_search": "VW Golf GTI Mk1",            "years": [1976, 1984]},
-    {"id": "vw-golf-gti-mk2",       "name": "VW Golf GTI Mk2",            "make": "Volkswagen",    "cc_search": "volkswagen golf gti mk2",  "ebay_search": "VW Golf GTI Mk2",            "years": [1984, 1992]},
-    {"id": "vw-golf-vr6-mk3",       "name": "VW Golf VR6 Mk3",            "make": "Volkswagen",    "cc_search": "volkswagen golf vr6 mk3",  "ebay_search": "VW Golf VR6 Mk3",            "years": [1991, 1999]},
-    {"id": "vw-scirocco-mk2",       "name": "VW Scirocco Mk2",            "make": "Volkswagen",    "cc_search": "volkswagen scirocco mk2",  "ebay_search": "VW Scirocco Mk2",            "years": [1981, 1992]},
-    {"id": "seat-ibiza-cupra",      "name": "SEAT Ibiza Cupra",           "make": "SEAT",          "cc_search": "seat ibiza cupra",         "ebay_search": "SEAT Ibiza Cupra",           "years": [1998, 2008]},
-    {"id": "skoda-octavia-vrs-mk1", "name": "Skoda Octavia vRS Mk1",     "make": "Skoda",         "cc_search": "skoda octavia vrs mk1",    "ebay_search": "Skoda Octavia vRS Mk1",      "years": [2001, 2006]},
-
-    {"id": "ford-escort-rs-cosworth","name":"Ford Escort RS Cosworth",    "make": "Ford",          "cc_search": "ford escort rs cosworth",  "ebay_search": "Ford Escort RS Cosworth",    "years": [1992, 1996]},
-    {"id": "ford-sierra-rs-cosworth","name":"Ford Sierra RS Cosworth",    "make": "Ford",          "cc_search": "ford sierra rs cosworth",  "ebay_search": "Ford Sierra RS Cosworth",    "years": [1986, 1990]},
-    {"id": "ford-escort-rs-turbo",  "name": "Ford Escort RS Turbo",      "make": "Ford",          "cc_search": "ford escort rs turbo",     "ebay_search": "Ford Escort RS Turbo",       "years": [1984, 1990]},
-    {"id": "ford-fiesta-xr2i",      "name": "Ford Fiesta XR2i",          "make": "Ford",          "cc_search": "ford fiesta xr2i",         "ebay_search": "Ford Fiesta XR2i",           "years": [1990, 1995]},
-    {"id": "ford-mustang-foxbody",  "name": "Ford Mustang Foxbody",      "make": "Ford",          "cc_search": "ford mustang foxbody",     "ebay_search": "Ford Mustang Foxbody 5.0",   "years": [1979, 1993]},
-
-    {"id": "tvr-chimaera",          "name": "TVR Chimaera",              "make": "TVR",           "cc_search": "tvr chimaera",             "ebay_search": "TVR Chimaera",               "years": [1992, 2003]},
-    {"id": "caterham-seven",        "name": "Caterham Seven",            "make": "Caterham",      "cc_search": "caterham seven",           "ebay_search": "Caterham Seven",             "years": [1990, 2010]},
-    {"id": "mg-tf",                 "name": "MGF / MG TF",               "make": "MG",            "cc_search": "mg tf mgf",                "ebay_search": "MGF MG TF",                  "years": [1995, 2005]},
-    {"id": "morgan-plus-4",         "name": "Morgan Plus 4",             "make": "Morgan",        "cc_search": "morgan plus 4",            "ebay_search": "Morgan Plus 4",              "years": [1955, 2000]},
-    {"id": "rover-220-turbo",       "name": "Rover 220 Turbo Coupe",     "make": "Rover",         "cc_search": "rover 220 turbo coupe",    "ebay_search": "Rover 220 Turbo Coupe",      "years": [1992, 1999]},
-
-    {"id": "toyota-ae86",           "name": "Toyota AE86 (Corolla GT)",  "make": "Toyota",        "cc_search": "toyota corolla ae86",      "ebay_search": "Toyota AE86 Corolla",        "years": [1983, 1987]},
-    {"id": "toyota-starlet-gt",     "name": "Toyota Starlet GT Turbo",   "make": "Toyota",        "cc_search": "toyota starlet gt turbo",  "ebay_search": "Toyota Starlet GT Turbo",    "years": [1989, 1999]},
-    {"id": "toyota-celica-gt4",     "name": "Toyota Celica GT-Four",     "make": "Toyota",        "cc_search": "toyota celica gt four",    "ebay_search": "Toyota Celica GT Four ST185","years": [1989, 1999]},
-    {"id": "toyota-supra-mk3",      "name": "Toyota Supra Mk3 (A70)",    "make": "Toyota",        "cc_search": "toyota supra a70",         "ebay_search": "Toyota Supra A70",           "years": [1986, 1993]},
-    {"id": "toyota-soarer",         "name": "Toyota Soarer (UZZ32)",     "make": "Toyota",        "cc_search": "toyota soarer",            "ebay_search": "Toyota Soarer",              "years": [1991, 2000]},
-    {"id": "honda-crx",             "name": "Honda CRX VTEC",            "make": "Honda",         "cc_search": "honda crx vtec",           "ebay_search": "Honda CRX EE8",              "years": [1987, 1991]},
-    {"id": "honda-prelude-5th",     "name": "Honda Prelude 5th Gen",     "make": "Honda",         "cc_search": "honda prelude h22",        "ebay_search": "Honda Prelude H22A",         "years": [1996, 2001]},
-    {"id": "honda-beat",            "name": "Honda Beat (JDM kei)",      "make": "Honda",         "cc_search": "honda beat pp1",           "ebay_search": "Honda Beat PP1",             "years": [1991, 1996]},
-    {"id": "mazda-rx7-fc",          "name": "Mazda RX-7 FC",             "make": "Mazda",         "cc_search": "mazda rx7 fc",             "ebay_search": "Mazda RX7 FC",               "years": [1985, 1991]},
-    {"id": "mazda-rx7-fd",          "name": "Mazda RX-7 FD",             "make": "Mazda",         "cc_search": "mazda rx7 fd",             "ebay_search": "Mazda RX7 FD",               "years": [1991, 2002]},
-    {"id": "mazda-323-gtr",         "name": "Mazda 323 GTR",             "make": "Mazda",         "cc_search": "mazda 323 gtr turbo",      "ebay_search": "Mazda 323 GTR",              "years": [1989, 1994]},
-    {"id": "mitsubishi-fto",        "name": "Mitsubishi FTO",            "make": "Mitsubishi",    "cc_search": "mitsubishi fto",           "ebay_search": "Mitsubishi FTO",             "years": [1994, 2000]},
-    {"id": "mitsubishi-gto",        "name": "Mitsubishi GTO / 3000GT",   "make": "Mitsubishi",    "cc_search": "mitsubishi gto 3000gt",    "ebay_search": "Mitsubishi GTO 3000GT",      "years": [1990, 2001]},
-    {"id": "nissan-skyline-r32-gtst","name":"Nissan Skyline R32 GTS-T",  "make": "Nissan",        "cc_search": "nissan skyline r32 gtst",  "ebay_search": "Nissan Skyline R32 GTS-T",   "years": [1989, 1994]},
-    {"id": "nissan-pulsar-gtir",    "name": "Nissan Pulsar GTI-R",       "make": "Nissan",        "cc_search": "nissan pulsar gtir",       "ebay_search": "Nissan Pulsar GTI-R",        "years": [1990, 1994]},
-    {"id": "nissan-primera-gt",     "name": "Nissan Primera GT P10",     "make": "Nissan",        "cc_search": "nissan primera gt",        "ebay_search": "Nissan Primera GT P10",      "years": [1990, 1996]},
-    {"id": "subaru-legacy-rs",      "name": "Subaru Legacy RS",          "make": "Subaru",        "cc_search": "subaru legacy rs turbo",   "ebay_search": "Subaru Legacy RS Turbo",     "years": [1989, 1994]},
-    {"id": "subaru-impreza-wrx",    "name": "Subaru Impreza WRX",        "make": "Subaru",        "cc_search": "subaru impreza wrx",       "ebay_search": "Subaru Impreza WRX",         "years": [2001, 2007]},
-    {"id": "daihatsu-charade-gtti", "name": "Daihatsu Charade GTti",     "make": "Daihatsu",      "cc_search": "daihatsu charade gtti",    "ebay_search": "Daihatsu Charade GTti",      "years": [1987, 1993]},
-
-    {"id": "renault-megane-rs-mk1", "name": "Renault Megane RS (172/182)","make": "Renault",      "cc_search": "renault megane rs 172",    "ebay_search": "Renault Megane RS 172 182",  "years": [2002, 2008]},
-    {"id": "peugeot-306-gti6",      "name": "Peugeot 306 GTI-6",         "make": "Peugeot",       "cc_search": "peugeot 306 gti6",         "ebay_search": "Peugeot 306 GTI-6",          "years": [1996, 2001]},
-    {"id": "peugeot-106-rallye",    "name": "Peugeot 106 Rallye S2",     "make": "Peugeot",       "cc_search": "peugeot 106 rallye",       "ebay_search": "Peugeot 106 Rallye",         "years": [1994, 2003]},
-    {"id": "citroen-bx-gti-16v",    "name": "Citroën BX GTI 16v",        "make": "Citroen",       "cc_search": "citroen bx gti 16v",       "ebay_search": "Citroen BX GTI 16v",         "years": [1987, 1993]},
-    {"id": "renault-alpine-a610",   "name": "Renault Alpine A610",        "make": "Renault",       "cc_search": "renault alpine a610",      "ebay_search": "Alpine A610",                "years": [1991, 1995]},
-
-    {"id": "alfa-gtv-916",          "name": "Alfa Romeo GTV (916)",       "make": "Alfa Romeo",    "cc_search": "alfa romeo gtv 916",       "ebay_search": "Alfa Romeo GTV 916",         "years": [1994, 2005]},
-    {"id": "alfa-75-v6",            "name": "Alfa Romeo 75 V6",           "make": "Alfa Romeo",    "cc_search": "alfa romeo 75 v6",         "ebay_search": "Alfa Romeo 75 V6",           "years": [1985, 1992]},
-    {"id": "alfa-brera",            "name": "Alfa Romeo Brera",           "make": "Alfa Romeo",    "cc_search": "alfa romeo brera",         "ebay_search": "Alfa Romeo Brera",           "years": [2005, 2011]},
-    {"id": "fiat-barchetta",        "name": "Fiat Barchetta",             "make": "Fiat",          "cc_search": "fiat barchetta",           "ebay_search": "Fiat Barchetta",             "years": [1995, 2005]},
-    {"id": "fiat-uno-turbo",        "name": "Fiat Uno Turbo",             "make": "Fiat",          "cc_search": "fiat uno turbo",           "ebay_search": "Fiat Uno Turbo",             "years": [1985, 1989]},
-    {"id": "lancia-montecarlo",     "name": "Lancia Montecarlo",          "make": "Lancia",        "cc_search": "lancia montecarlo",        "ebay_search": "Lancia Montecarlo Beta",     "years": [1975, 1981]},
-    {"id": "maserati-biturbo",      "name": "Maserati Biturbo",           "make": "Maserati",      "cc_search": "maserati biturbo",         "ebay_search": "Maserati Biturbo",           "years": [1981, 1994]},
-
-    {"id": "saab-900-turbo",        "name": "Saab 900 Turbo (classic)",  "make": "Saab",          "cc_search": "saab 900 turbo classic",   "ebay_search": "Saab 900 Turbo Classic",     "years": [1978, 1993]},
-    {"id": "saab-9000-aero",        "name": "Saab 9000 Aero",             "make": "Saab",          "cc_search": "saab 9000 aero",           "ebay_search": "Saab 9000 Aero",             "years": [1993, 1998]},
-    {"id": "volvo-c70-t5",          "name": "Volvo C70 T5",               "make": "Volvo",         "cc_search": "volvo c70 t5",             "ebay_search": "Volvo C70 T5",               "years": [1997, 2005]},
-    {"id": "vauxhall-calibra-turbo","name": "Vauxhall Calibra Turbo",    "make": "Vauxhall",      "cc_search": "vauxhall calibra turbo",   "ebay_search": "Vauxhall Calibra Turbo",     "years": [1992, 1997]},
-    {"id": "vauxhall-nova-gsi",     "name": "Vauxhall Nova GSi",          "make": "Vauxhall",      "cc_search": "vauxhall nova gsi",        "ebay_search": "Vauxhall Nova GSi",          "years": [1983, 1993]},
-
-    {"id": "corvette-c4",           "name": "Chevrolet Corvette C4",      "make": "Chevrolet",     "cc_search": "chevrolet corvette c4",    "ebay_search": "Chevrolet Corvette C4",      "years": [1984, 1996]},
-    {"id": "pontiac-trans-am",      "name": "Pontiac Firebird / Trans Am","make": "Pontiac",       "cc_search": "pontiac firebird trans am","ebay_search": "Pontiac Firebird Trans Am",   "years": [1970, 2002]}
+    {
+      "id": "bmw-e34-m5",
+      "name": "BMW E34 M5",
+      "make": "BMW",
+      "cc_search": "bmw e34 m5",
+      "ebay_search": "BMW E34 M5",
+      "years": [
+        1988,
+        1995
+      ]
+    },
+    {
+      "id": "bmw-e36-m3",
+      "name": "BMW E36 M3",
+      "make": "BMW",
+      "cc_search": "bmw e36 m3",
+      "ebay_search": "BMW E36 M3",
+      "years": [
+        1992,
+        1999
+      ]
+    },
+    {
+      "id": "bmw-e39-m5",
+      "name": "BMW E39 M5",
+      "make": "BMW",
+      "cc_search": "bmw e39 m5",
+      "ebay_search": "BMW E39 M5",
+      "years": [
+        1998,
+        2004
+      ]
+    },
+    {
+      "id": "bmw-m635csi",
+      "name": "BMW M635 CSi",
+      "make": "BMW",
+      "cc_search": "bmw m635",
+      "ebay_search": "BMW M635 CSi",
+      "years": [
+        1983,
+        1989
+      ]
+    },
+    {
+      "id": "bmw-e46-m3",
+      "name": "BMW E46 M3",
+      "make": "BMW",
+      "cc_search": "bmw e46 m3",
+      "ebay_search": "BMW E46 M3",
+      "years": [
+        2000,
+        2006
+      ]
+    },
+    {
+      "id": "mercedes-w124-e60",
+      "name": "Mercedes E60 AMG (W124)",
+      "make": "Mercedes-Benz",
+      "cc_search": "mercedes e60 amg w124",
+      "ebay_search": "Mercedes E60 AMG W124",
+      "years": [
+        1994,
+        1996
+      ]
+    },
+    {
+      "id": "mercedes-w201-190e",
+      "name": "Mercedes 190E 2.3-16",
+      "make": "Mercedes-Benz",
+      "cc_search": "mercedes 190e 2.3-16",
+      "ebay_search": "Mercedes 190E 2.3 16",
+      "years": [
+        1984,
+        1993
+      ]
+    },
+    {
+      "id": "mercedes-w126-500se",
+      "name": "Mercedes 500 SEC (W126)",
+      "make": "Mercedes-Benz",
+      "cc_search": "mercedes 500 sec w126",
+      "ebay_search": "Mercedes 500 SEC W126",
+      "years": [
+        1981,
+        1991
+      ]
+    },
+    {
+      "id": "mercedes-w129-600sl",
+      "name": "Mercedes 600 SL (R129)",
+      "make": "Mercedes-Benz",
+      "cc_search": "mercedes 600 sl r129",
+      "ebay_search": "Mercedes 600 SL R129",
+      "years": [
+        1992,
+        1998
+      ]
+    },
+    {
+      "id": "mercedes-w211-e55",
+      "name": "Mercedes E55 AMG (W211)",
+      "make": "Mercedes-Benz",
+      "cc_search": "mercedes e55 amg w211",
+      "ebay_search": "Mercedes E55 AMG W211",
+      "years": [
+        2002,
+        2006
+      ]
+    },
+    {
+      "id": "porsche-944-turbo",
+      "name": "Porsche 944 Turbo",
+      "make": "Porsche",
+      "cc_search": "porsche 944 turbo",
+      "ebay_search": "Porsche 944 Turbo",
+      "years": [
+        1985,
+        1991
+      ]
+    },
+    {
+      "id": "porsche-928-s4",
+      "name": "Porsche 928 S4",
+      "make": "Porsche",
+      "cc_search": "porsche 928 s4",
+      "ebay_search": "Porsche 928 S4",
+      "years": [
+        1987,
+        1995
+      ]
+    },
+    {
+      "id": "porsche-993-carrera",
+      "name": "Porsche 993 Carrera",
+      "make": "Porsche",
+      "cc_search": "porsche 993 carrera",
+      "ebay_search": "Porsche 993 Carrera",
+      "years": [
+        1993,
+        1998
+      ]
+    },
+    {
+      "id": "porsche-boxster-s",
+      "name": "Porsche 986 Boxster S",
+      "make": "Porsche",
+      "cc_search": "porsche boxster 986 s",
+      "ebay_search": "Porsche 986 Boxster S",
+      "years": [
+        1999,
+        2004
+      ]
+    },
+    {
+      "id": "audi-rs2-avant",
+      "name": "Audi RS2 Avant",
+      "make": "Audi",
+      "cc_search": "audi rs2 avant",
+      "ebay_search": "Audi RS2 Avant",
+      "years": [
+        1994,
+        1995
+      ]
+    },
+    {
+      "id": "audi-ur-quattro",
+      "name": "Audi Ur-Quattro",
+      "make": "Audi",
+      "cc_search": "audi quattro ur",
+      "ebay_search": "Audi Ur Quattro",
+      "years": [
+        1980,
+        1991
+      ]
+    },
+    {
+      "id": "audi-s2-coupe",
+      "name": "Audi S2 Coupe",
+      "make": "Audi",
+      "cc_search": "audi s2 coupe",
+      "ebay_search": "Audi S2 Coupe",
+      "years": [
+        1990,
+        1995
+      ]
+    },
+    {
+      "id": "audi-b5-rs4",
+      "name": "Audi B5 RS4",
+      "make": "Audi",
+      "cc_search": "audi rs4 b5",
+      "ebay_search": "Audi RS4 B5",
+      "years": [
+        2000,
+        2001
+      ]
+    },
+    {
+      "id": "vw-corrado-vr6",
+      "name": "VW Corrado VR6",
+      "make": "Volkswagen",
+      "cc_search": "volkswagen corrado vr6",
+      "ebay_search": "VW Corrado VR6",
+      "years": [
+        1991,
+        1995
+      ]
+    },
+    {
+      "id": "toyota-supra-mk4",
+      "name": "Toyota Supra MK4",
+      "make": "Toyota",
+      "cc_search": "toyota supra mk4",
+      "ebay_search": "Toyota Supra MK4 A80",
+      "years": [
+        1993,
+        2002
+      ]
+    },
+    {
+      "id": "toyota-mr2-sw20",
+      "name": "Toyota MR2 SW20",
+      "make": "Toyota",
+      "cc_search": "toyota mr2 sw20",
+      "ebay_search": "Toyota MR2 SW20",
+      "years": [
+        1989,
+        1999
+      ]
+    },
+    {
+      "id": "toyota-gt86",
+      "name": "Toyota GT86",
+      "make": "Toyota",
+      "cc_search": "toyota gt86",
+      "ebay_search": "Toyota GT86",
+      "years": [
+        2012,
+        2021
+      ]
+    },
+    {
+      "id": "nissan-r32-gtr",
+      "name": "Nissan Skyline R32 GT-R",
+      "make": "Nissan",
+      "cc_search": "nissan r32 gtr",
+      "ebay_search": "Nissan Skyline R32 GTR",
+      "years": [
+        1989,
+        1994
+      ]
+    },
+    {
+      "id": "nissan-r33-gtr",
+      "name": "Nissan Skyline R33 GT-R",
+      "make": "Nissan",
+      "cc_search": "nissan r33 gtr",
+      "ebay_search": "Nissan Skyline R33 GTR",
+      "years": [
+        1995,
+        1998
+      ]
+    },
+    {
+      "id": "nissan-200sx-s14",
+      "name": "Nissan 200SX S14",
+      "make": "Nissan",
+      "cc_search": "nissan 200sx s14",
+      "ebay_search": "Nissan 200SX S14",
+      "years": [
+        1993,
+        1999
+      ]
+    },
+    {
+      "id": "mitsubishi-evo6",
+      "name": "Mitsubishi Lancer Evo VI",
+      "make": "Mitsubishi",
+      "cc_search": "mitsubishi evo 6",
+      "ebay_search": "Mitsubishi Lancer Evo 6",
+      "years": [
+        1999,
+        2001
+      ]
+    },
+    {
+      "id": "mitsubishi-evo4",
+      "name": "Mitsubishi Lancer Evo IV",
+      "make": "Mitsubishi",
+      "cc_search": "mitsubishi evo 4",
+      "ebay_search": "Mitsubishi Lancer Evo 4",
+      "years": [
+        1996,
+        1998
+      ]
+    },
+    {
+      "id": "subaru-p1-wrx",
+      "name": "Subaru Impreza P1",
+      "make": "Subaru",
+      "cc_search": "subaru impreza p1",
+      "ebay_search": "Subaru Impreza P1",
+      "years": [
+        2000,
+        2001
+      ]
+    },
+    {
+      "id": "subaru-sti-blobeye",
+      "name": "Subaru Impreza STi Blobeye",
+      "make": "Subaru",
+      "cc_search": "subaru impreza sti blobeye",
+      "ebay_search": "Subaru Impreza STi Blobeye",
+      "years": [
+        2003,
+        2005
+      ]
+    },
+    {
+      "id": "honda-civic-ek9",
+      "name": "Honda Civic Type R EK9",
+      "make": "Honda",
+      "cc_search": "honda civic type r ek9",
+      "ebay_search": "Honda Civic Type R EK9",
+      "years": [
+        1997,
+        2000
+      ]
+    },
+    {
+      "id": "honda-integra-dc2",
+      "name": "Honda Integra Type R DC2",
+      "make": "Honda",
+      "cc_search": "honda integra dc2 type r",
+      "ebay_search": "Honda Integra Type R DC2",
+      "years": [
+        1995,
+        2001
+      ]
+    },
+    {
+      "id": "honda-s2000",
+      "name": "Honda S2000",
+      "make": "Honda",
+      "cc_search": "honda s2000",
+      "ebay_search": "Honda S2000",
+      "years": [
+        1999,
+        2009
+      ]
+    },
+    {
+      "id": "mazda-mx5-na",
+      "name": "Mazda MX-5 NA",
+      "make": "Mazda",
+      "cc_search": "mazda mx5 na eunos",
+      "ebay_search": "Mazda MX5 NA Eunos",
+      "years": [
+        1989,
+        1998
+      ]
+    },
+    {
+      "id": "ford-escort-rs2000",
+      "name": "Ford Escort RS2000",
+      "make": "Ford",
+      "cc_search": "ford escort rs2000",
+      "ebay_search": "Ford Escort RS2000",
+      "years": [
+        1991,
+        1996
+      ]
+    },
+    {
+      "id": "ford-puma",
+      "name": "Ford Puma Racing",
+      "make": "Ford",
+      "cc_search": "ford puma racing",
+      "ebay_search": "Ford Puma Racing",
+      "years": [
+        1999,
+        2001
+      ]
+    },
+    {
+      "id": "ford-focus-rs-mk1",
+      "name": "Ford Focus RS Mk1",
+      "make": "Ford",
+      "cc_search": "ford focus rs mk1",
+      "ebay_search": "Ford Focus RS Mk1",
+      "years": [
+        2002,
+        2003
+      ]
+    },
+    {
+      "id": "renault-clio-v6",
+      "name": "Renault Clio V6",
+      "make": "Renault",
+      "cc_search": "renault clio v6",
+      "ebay_search": "Renault Clio V6",
+      "years": [
+        2001,
+        2005
+      ]
+    },
+    {
+      "id": "renault-clio-wms2",
+      "name": "Renault Clio Williams S2",
+      "make": "Renault",
+      "cc_search": "renault clio williams",
+      "ebay_search": "Renault Clio Williams",
+      "years": [
+        1993,
+        1998
+      ]
+    },
+    {
+      "id": "renault-5-gt-turbo",
+      "name": "Renault 5 GT Turbo",
+      "make": "Renault",
+      "cc_search": "renault 5 gt turbo",
+      "ebay_search": "Renault 5 GT Turbo",
+      "years": [
+        1985,
+        1991
+      ]
+    },
+    {
+      "id": "peugeot-205-gti",
+      "name": "Peugeot 205 GTI",
+      "make": "Peugeot",
+      "cc_search": "peugeot 205 gti",
+      "ebay_search": "Peugeot 205 GTI",
+      "years": [
+        1984,
+        1994
+      ]
+    },
+    {
+      "id": "peugeot-306-rallye",
+      "name": "Peugeot 306 Rallye",
+      "make": "Peugeot",
+      "cc_search": "peugeot 306 rallye",
+      "ebay_search": "Peugeot 306 Rallye",
+      "years": [
+        1993,
+        2000
+      ]
+    },
+    {
+      "id": "citroen-saxo-vts",
+      "name": "Citroen Saxo VTS",
+      "make": "Citroen",
+      "cc_search": "citroen saxo vts",
+      "ebay_search": "Citroen Saxo VTS",
+      "years": [
+        1996,
+        2003
+      ]
+    },
+    {
+      "id": "lotus-esprit-v8",
+      "name": "Lotus Esprit V8",
+      "make": "Lotus",
+      "cc_search": "lotus esprit v8",
+      "ebay_search": "Lotus Esprit V8",
+      "years": [
+        1996,
+        2004
+      ]
+    },
+    {
+      "id": "lotus-elise-s1",
+      "name": "Lotus Elise S1",
+      "make": "Lotus",
+      "cc_search": "lotus elise s1",
+      "ebay_search": "Lotus Elise S1",
+      "years": [
+        1996,
+        2000
+      ]
+    },
+    {
+      "id": "tvr-griffith-500",
+      "name": "TVR Griffith 500",
+      "make": "TVR",
+      "cc_search": "tvr griffith 500",
+      "ebay_search": "TVR Griffith 500",
+      "years": [
+        1990,
+        2002
+      ]
+    },
+    {
+      "id": "tvr-tuscan",
+      "name": "TVR Tuscan",
+      "make": "TVR",
+      "cc_search": "tvr tuscan",
+      "ebay_search": "TVR Tuscan",
+      "years": [
+        1999,
+        2006
+      ]
+    },
+    {
+      "id": "morgan-plus-8",
+      "name": "Morgan Plus 8",
+      "make": "Morgan",
+      "cc_search": "morgan plus 8",
+      "ebay_search": "Morgan Plus 8",
+      "years": [
+        1968,
+        2004
+      ]
+    },
+    {
+      "id": "mg-mgb-gt",
+      "name": "MG MGB GT",
+      "make": "MG",
+      "cc_search": "mg mgb gt",
+      "ebay_search": "MG MGB GT",
+      "years": [
+        1965,
+        1980
+      ]
+    },
+    {
+      "id": "triumph-tr6",
+      "name": "Triumph TR6",
+      "make": "Triumph",
+      "cc_search": "triumph tr6",
+      "ebay_search": "Triumph TR6",
+      "years": [
+        1969,
+        1976
+      ]
+    },
+    {
+      "id": "alfa-spider-916",
+      "name": "Alfa Romeo Spider 916",
+      "make": "Alfa Romeo",
+      "cc_search": "alfa romeo spider 916",
+      "ebay_search": "Alfa Romeo Spider 916",
+      "years": [
+        1994,
+        2005
+      ]
+    },
+    {
+      "id": "alfa-156-gta",
+      "name": "Alfa Romeo 156 GTA",
+      "make": "Alfa Romeo",
+      "cc_search": "alfa romeo 156 gta",
+      "ebay_search": "Alfa Romeo 156 GTA",
+      "years": [
+        2001,
+        2005
+      ]
+    },
+    {
+      "id": "lancia-delta-integrale",
+      "name": "Lancia Delta Integrale",
+      "make": "Lancia",
+      "cc_search": "lancia delta integrale",
+      "ebay_search": "Lancia Delta Integrale",
+      "years": [
+        1987,
+        1994
+      ]
+    },
+    {
+      "id": "fiat-coupe-turbo",
+      "name": "Fiat Coupe 20v Turbo",
+      "make": "Fiat",
+      "cc_search": "fiat coupe turbo 20v",
+      "ebay_search": "Fiat Coupe 20v Turbo",
+      "years": [
+        1994,
+        2000
+      ]
+    },
+    {
+      "id": "volvo-850-t5r",
+      "name": "Volvo 850 T5-R",
+      "make": "Volvo",
+      "cc_search": "volvo 850 t5-r",
+      "ebay_search": "Volvo 850 T5R",
+      "years": [
+        1994,
+        1997
+      ]
+    },
+    {
+      "id": "volvo-s70-v70-t5",
+      "name": "Volvo S70/V70 T5",
+      "make": "Volvo",
+      "cc_search": "volvo v70 t5",
+      "ebay_search": "Volvo V70 T5",
+      "years": [
+        1996,
+        2000
+      ]
+    },
+    {
+      "id": "opel-omega-evo",
+      "name": "Opel Omega Evolution 500",
+      "make": "Opel",
+      "cc_search": "opel omega evolution",
+      "ebay_search": "Vauxhall Omega Evolution",
+      "years": [
+        1990,
+        1991
+      ]
+    },
+    {
+      "id": "vauxhall-cavalier-gsi",
+      "name": "Vauxhall Cavalier GSi 2000",
+      "make": "Vauxhall",
+      "cc_search": "vauxhall cavalier gsi 2000",
+      "ebay_search": "Vauxhall Cavalier GSi",
+      "years": [
+        1988,
+        1992
+      ]
+    },
+    {
+      "id": "vauxhall-astra-gsi",
+      "name": "Vauxhall Astra GSi",
+      "make": "Vauxhall",
+      "cc_search": "vauxhall astra gsi",
+      "ebay_search": "Vauxhall Astra GSi",
+      "years": [
+        1988,
+        1991
+      ]
+    },
+    {
+      "id": "ford-capri-280",
+      "name": "Ford Capri 280 Brooklands",
+      "make": "Ford",
+      "cc_search": "ford capri 280 brooklands",
+      "ebay_search": "Ford Capri 280 Brooklands",
+      "years": [
+        1986,
+        1987
+      ]
+    },
+    {
+      "id": "range-rover-classic",
+      "name": "Range Rover Classic V8",
+      "make": "Land Rover",
+      "cc_search": "range rover classic v8",
+      "ebay_search": "Range Rover Classic V8",
+      "years": [
+        1970,
+        1996
+      ]
+    },
+    {
+      "id": "land-rover-defender",
+      "name": "Land Rover Defender 90/110",
+      "make": "Land Rover",
+      "cc_search": "land rover defender 90",
+      "ebay_search": "Land Rover Defender 90",
+      "years": [
+        1983,
+        2016
+      ]
+    },
+    {
+      "id": "land-rover-discovery-1",
+      "name": "Land Rover Discovery 1 V8",
+      "make": "Land Rover",
+      "cc_search": "land rover discovery 1",
+      "ebay_search": "Land Rover Discovery 1",
+      "years": [
+        1989,
+        1998
+      ]
+    },
+    {
+      "id": "jeep-cherokee-xj",
+      "name": "Jeep Cherokee XJ 4.0",
+      "make": "Jeep",
+      "cc_search": "jeep cherokee xj",
+      "ebay_search": "Jeep Cherokee XJ 4.0",
+      "years": [
+        1984,
+        2001
+      ]
+    },
+    {
+      "id": "toyota-land-cruiser-80",
+      "name": "Toyota Land Cruiser 80",
+      "make": "Toyota",
+      "cc_search": "toyota land cruiser 80",
+      "ebay_search": "Toyota Land Cruiser 80",
+      "years": [
+        1990,
+        1997
+      ]
+    },
+    {
+      "id": "toyota-land-cruiser-90",
+      "name": "Toyota Land Cruiser Prado 90",
+      "make": "Toyota",
+      "cc_search": "toyota land cruiser prado",
+      "ebay_search": "Toyota Land Cruiser Prado",
+      "years": [
+        1996,
+        2002
+      ]
+    },
+    {
+      "id": "toyota-hilux-surf",
+      "name": "Toyota Hilux Surf",
+      "make": "Toyota",
+      "cc_search": "toyota hilux surf",
+      "ebay_search": "Toyota Hilux Surf",
+      "years": [
+        1988,
+        2002
+      ]
+    },
+    {
+      "id": "mitsubishi-shogun-mk2",
+      "name": "Mitsubishi Shogun Mk2",
+      "make": "Mitsubishi",
+      "cc_search": "mitsubishi shogun lwb",
+      "ebay_search": "Mitsubishi Shogun Mk2",
+      "years": [
+        1991,
+        2000
+      ]
+    },
+    {
+      "id": "isuzu-trooper",
+      "name": "Isuzu Trooper",
+      "make": "Isuzu",
+      "cc_search": "isuzu trooper",
+      "ebay_search": "Isuzu Trooper",
+      "years": [
+        1981,
+        2002
+      ]
+    },
+    {
+      "id": "suzuki-vitara",
+      "name": "Suzuki SJ / Vitara",
+      "make": "Suzuki",
+      "cc_search": "suzuki sj vitara",
+      "ebay_search": "Suzuki SJ Vitara",
+      "years": [
+        1981,
+        1998
+      ]
+    },
+    {
+      "id": "mercedes-r129-sl",
+      "name": "Mercedes SL (R129)",
+      "make": "Mercedes-Benz",
+      "cc_search": "mercedes sl r129",
+      "ebay_search": "Mercedes SL R129 300 500",
+      "years": [
+        1989,
+        2002
+      ]
+    },
+    {
+      "id": "mercedes-slk-r170",
+      "name": "Mercedes SLK (R170)",
+      "make": "Mercedes-Benz",
+      "cc_search": "mercedes slk r170",
+      "ebay_search": "Mercedes SLK R170",
+      "years": [
+        1996,
+        2004
+      ]
+    },
+    {
+      "id": "mercedes-c36-amg",
+      "name": "Mercedes C36 AMG (W202)",
+      "make": "Mercedes-Benz",
+      "cc_search": "mercedes c36 amg",
+      "ebay_search": "Mercedes C36 AMG W202",
+      "years": [
+        1993,
+        1997
+      ]
+    },
+    {
+      "id": "mercedes-c43-amg",
+      "name": "Mercedes C43 AMG (W202)",
+      "make": "Mercedes-Benz",
+      "cc_search": "mercedes c43 amg",
+      "ebay_search": "Mercedes C43 AMG W202",
+      "years": [
+        1997,
+        2000
+      ]
+    },
+    {
+      "id": "bmw-e30-325i",
+      "name": "BMW E30 325i",
+      "make": "BMW",
+      "cc_search": "bmw e30 325i",
+      "ebay_search": "BMW E30 325i",
+      "years": [
+        1985,
+        1994
+      ]
+    },
+    {
+      "id": "bmw-850i",
+      "name": "BMW 850i (E31)",
+      "make": "BMW",
+      "cc_search": "bmw 850i e31",
+      "ebay_search": "BMW 850i E31",
+      "years": [
+        1989,
+        1999
+      ]
+    },
+    {
+      "id": "bmw-z3",
+      "name": "BMW Z3",
+      "make": "BMW",
+      "cc_search": "bmw z3 roadster",
+      "ebay_search": "BMW Z3",
+      "years": [
+        1996,
+        2002
+      ]
+    },
+    {
+      "id": "bmw-z3-m-roadster",
+      "name": "BMW Z3 M Roadster",
+      "make": "BMW",
+      "cc_search": "bmw z3 m roadster",
+      "ebay_search": "BMW Z3 M Roadster",
+      "years": [
+        1997,
+        2002
+      ]
+    },
+    {
+      "id": "porsche-914",
+      "name": "Porsche 914",
+      "make": "Porsche",
+      "cc_search": "porsche 914",
+      "ebay_search": "Porsche 914",
+      "years": [
+        1969,
+        1976
+      ]
+    },
+    {
+      "id": "porsche-924-turbo",
+      "name": "Porsche 924 Turbo",
+      "make": "Porsche",
+      "cc_search": "porsche 924 turbo",
+      "ebay_search": "Porsche 924 Turbo",
+      "years": [
+        1979,
+        1982
+      ]
+    },
+    {
+      "id": "porsche-968",
+      "name": "Porsche 968",
+      "make": "Porsche",
+      "cc_search": "porsche 968",
+      "ebay_search": "Porsche 968",
+      "years": [
+        1991,
+        1995
+      ]
+    },
+    {
+      "id": "jaguar-xjs",
+      "name": "Jaguar XJ-S",
+      "make": "Jaguar",
+      "cc_search": "jaguar xjs",
+      "ebay_search": "Jaguar XJS",
+      "years": [
+        1975,
+        1996
+      ]
+    },
+    {
+      "id": "jaguar-xk8",
+      "name": "Jaguar XK8",
+      "make": "Jaguar",
+      "cc_search": "jaguar xk8",
+      "ebay_search": "Jaguar XK8",
+      "years": [
+        1996,
+        2006
+      ]
+    },
+    {
+      "id": "jaguar-xj6-x300",
+      "name": "Jaguar XJ6 / XJR (X300)",
+      "make": "Jaguar",
+      "cc_search": "jaguar xj6 x300",
+      "ebay_search": "Jaguar XJ6 X300",
+      "years": [
+        1994,
+        1997
+      ]
+    },
+    {
+      "id": "vw-golf-gti-mk1",
+      "name": "VW Golf GTI Mk1",
+      "make": "Volkswagen",
+      "cc_search": "volkswagen golf gti mk1",
+      "ebay_search": "VW Golf GTI Mk1",
+      "years": [
+        1976,
+        1984
+      ]
+    },
+    {
+      "id": "vw-golf-gti-mk2",
+      "name": "VW Golf GTI Mk2",
+      "make": "Volkswagen",
+      "cc_search": "volkswagen golf gti mk2",
+      "ebay_search": "VW Golf GTI Mk2",
+      "years": [
+        1984,
+        1992
+      ]
+    },
+    {
+      "id": "vw-golf-vr6-mk3",
+      "name": "VW Golf VR6 Mk3",
+      "make": "Volkswagen",
+      "cc_search": "volkswagen golf vr6 mk3",
+      "ebay_search": "VW Golf VR6 Mk3",
+      "years": [
+        1991,
+        1999
+      ]
+    },
+    {
+      "id": "vw-scirocco-mk2",
+      "name": "VW Scirocco Mk2",
+      "make": "Volkswagen",
+      "cc_search": "volkswagen scirocco mk2",
+      "ebay_search": "VW Scirocco Mk2",
+      "years": [
+        1981,
+        1992
+      ]
+    },
+    {
+      "id": "seat-ibiza-cupra",
+      "name": "SEAT Ibiza Cupra",
+      "make": "SEAT",
+      "cc_search": "seat ibiza cupra",
+      "ebay_search": "SEAT Ibiza Cupra",
+      "years": [
+        1998,
+        2008
+      ]
+    },
+    {
+      "id": "skoda-octavia-vrs-mk1",
+      "name": "Skoda Octavia vRS Mk1",
+      "make": "Skoda",
+      "cc_search": "skoda octavia vrs mk1",
+      "ebay_search": "Skoda Octavia vRS Mk1",
+      "years": [
+        2001,
+        2006
+      ]
+    },
+    {
+      "id": "ford-escort-rs-cosworth",
+      "name": "Ford Escort RS Cosworth",
+      "make": "Ford",
+      "cc_search": "ford escort rs cosworth",
+      "ebay_search": "Ford Escort RS Cosworth",
+      "years": [
+        1992,
+        1996
+      ]
+    },
+    {
+      "id": "ford-sierra-rs-cosworth",
+      "name": "Ford Sierra RS Cosworth",
+      "make": "Ford",
+      "cc_search": "ford sierra rs cosworth",
+      "ebay_search": "Ford Sierra RS Cosworth",
+      "years": [
+        1986,
+        1990
+      ]
+    },
+    {
+      "id": "ford-escort-rs-turbo",
+      "name": "Ford Escort RS Turbo",
+      "make": "Ford",
+      "cc_search": "ford escort rs turbo",
+      "ebay_search": "Ford Escort RS Turbo",
+      "years": [
+        1984,
+        1990
+      ]
+    },
+    {
+      "id": "ford-fiesta-xr2i",
+      "name": "Ford Fiesta XR2i",
+      "make": "Ford",
+      "cc_search": "ford fiesta xr2i",
+      "ebay_search": "Ford Fiesta XR2i",
+      "years": [
+        1990,
+        1995
+      ]
+    },
+    {
+      "id": "ford-mustang-foxbody",
+      "name": "Ford Mustang Foxbody",
+      "make": "Ford",
+      "cc_search": "ford mustang foxbody",
+      "ebay_search": "Ford Mustang Foxbody 5.0",
+      "years": [
+        1979,
+        1993
+      ]
+    },
+    {
+      "id": "tvr-chimaera",
+      "name": "TVR Chimaera",
+      "make": "TVR",
+      "cc_search": "tvr chimaera",
+      "ebay_search": "TVR Chimaera",
+      "years": [
+        1992,
+        2003
+      ]
+    },
+    {
+      "id": "caterham-seven",
+      "name": "Caterham Seven",
+      "make": "Caterham",
+      "cc_search": "caterham seven",
+      "ebay_search": "Caterham Seven",
+      "years": [
+        1990,
+        2010
+      ]
+    },
+    {
+      "id": "mg-tf",
+      "name": "MGF / MG TF",
+      "make": "MG",
+      "cc_search": "mg tf mgf",
+      "ebay_search": "MGF MG TF",
+      "years": [
+        1995,
+        2005
+      ]
+    },
+    {
+      "id": "morgan-plus-4",
+      "name": "Morgan Plus 4",
+      "make": "Morgan",
+      "cc_search": "morgan plus 4",
+      "ebay_search": "Morgan Plus 4",
+      "years": [
+        1955,
+        2000
+      ]
+    },
+    {
+      "id": "rover-220-turbo",
+      "name": "Rover 220 Turbo Coupe",
+      "make": "Rover",
+      "cc_search": "rover 220 turbo coupe",
+      "ebay_search": "Rover 220 Turbo Coupe",
+      "years": [
+        1992,
+        1999
+      ]
+    },
+    {
+      "id": "toyota-ae86",
+      "name": "Toyota AE86 (Corolla GT)",
+      "make": "Toyota",
+      "cc_search": "toyota corolla ae86",
+      "ebay_search": "Toyota AE86 Corolla",
+      "years": [
+        1983,
+        1987
+      ]
+    },
+    {
+      "id": "toyota-starlet-gt",
+      "name": "Toyota Starlet GT Turbo",
+      "make": "Toyota",
+      "cc_search": "toyota starlet gt turbo",
+      "ebay_search": "Toyota Starlet GT Turbo",
+      "years": [
+        1989,
+        1999
+      ]
+    },
+    {
+      "id": "toyota-celica-gt4",
+      "name": "Toyota Celica GT-Four",
+      "make": "Toyota",
+      "cc_search": "toyota celica gt four",
+      "ebay_search": "Toyota Celica GT Four ST185",
+      "years": [
+        1989,
+        1999
+      ]
+    },
+    {
+      "id": "toyota-supra-mk3",
+      "name": "Toyota Supra Mk3 (A70)",
+      "make": "Toyota",
+      "cc_search": "toyota supra a70",
+      "ebay_search": "Toyota Supra A70",
+      "years": [
+        1986,
+        1993
+      ]
+    },
+    {
+      "id": "toyota-soarer",
+      "name": "Toyota Soarer (UZZ32)",
+      "make": "Toyota",
+      "cc_search": "toyota soarer",
+      "ebay_search": "Toyota Soarer",
+      "years": [
+        1991,
+        2000
+      ]
+    },
+    {
+      "id": "honda-crx",
+      "name": "Honda CRX VTEC",
+      "make": "Honda",
+      "cc_search": "honda crx vtec",
+      "ebay_search": "Honda CRX EE8",
+      "years": [
+        1987,
+        1991
+      ]
+    },
+    {
+      "id": "honda-prelude-5th",
+      "name": "Honda Prelude 5th Gen",
+      "make": "Honda",
+      "cc_search": "honda prelude h22",
+      "ebay_search": "Honda Prelude H22A",
+      "years": [
+        1996,
+        2001
+      ]
+    },
+    {
+      "id": "honda-beat",
+      "name": "Honda Beat (JDM kei)",
+      "make": "Honda",
+      "cc_search": "honda beat pp1",
+      "ebay_search": "Honda Beat PP1",
+      "years": [
+        1991,
+        1996
+      ]
+    },
+    {
+      "id": "mazda-rx7-fc",
+      "name": "Mazda RX-7 FC",
+      "make": "Mazda",
+      "cc_search": "mazda rx7 fc",
+      "ebay_search": "Mazda RX7 FC",
+      "years": [
+        1985,
+        1991
+      ]
+    },
+    {
+      "id": "mazda-rx7-fd",
+      "name": "Mazda RX-7 FD",
+      "make": "Mazda",
+      "cc_search": "mazda rx7 fd",
+      "ebay_search": "Mazda RX7 FD",
+      "years": [
+        1991,
+        2002
+      ]
+    },
+    {
+      "id": "mazda-323-gtr",
+      "name": "Mazda 323 GTR",
+      "make": "Mazda",
+      "cc_search": "mazda 323 gtr turbo",
+      "ebay_search": "Mazda 323 GTR",
+      "years": [
+        1989,
+        1994
+      ]
+    },
+    {
+      "id": "mitsubishi-fto",
+      "name": "Mitsubishi FTO",
+      "make": "Mitsubishi",
+      "cc_search": "mitsubishi fto",
+      "ebay_search": "Mitsubishi FTO",
+      "years": [
+        1994,
+        2000
+      ]
+    },
+    {
+      "id": "mitsubishi-gto",
+      "name": "Mitsubishi GTO / 3000GT",
+      "make": "Mitsubishi",
+      "cc_search": "mitsubishi gto 3000gt",
+      "ebay_search": "Mitsubishi GTO 3000GT",
+      "years": [
+        1990,
+        2001
+      ]
+    },
+    {
+      "id": "nissan-skyline-r32-gtst",
+      "name": "Nissan Skyline R32 GTS-T",
+      "make": "Nissan",
+      "cc_search": "nissan skyline r32 gtst",
+      "ebay_search": "Nissan Skyline R32 GTS-T",
+      "years": [
+        1989,
+        1994
+      ]
+    },
+    {
+      "id": "nissan-pulsar-gtir",
+      "name": "Nissan Pulsar GTI-R",
+      "make": "Nissan",
+      "cc_search": "nissan pulsar gtir",
+      "ebay_search": "Nissan Pulsar GTI-R",
+      "years": [
+        1990,
+        1994
+      ]
+    },
+    {
+      "id": "nissan-primera-gt",
+      "name": "Nissan Primera GT P10",
+      "make": "Nissan",
+      "cc_search": "nissan primera gt",
+      "ebay_search": "Nissan Primera GT P10",
+      "years": [
+        1990,
+        1996
+      ]
+    },
+    {
+      "id": "subaru-legacy-rs",
+      "name": "Subaru Legacy RS",
+      "make": "Subaru",
+      "cc_search": "subaru legacy rs turbo",
+      "ebay_search": "Subaru Legacy RS Turbo",
+      "years": [
+        1989,
+        1994
+      ]
+    },
+    {
+      "id": "subaru-impreza-wrx",
+      "name": "Subaru Impreza WRX",
+      "make": "Subaru",
+      "cc_search": "subaru impreza wrx",
+      "ebay_search": "Subaru Impreza WRX",
+      "years": [
+        2001,
+        2007
+      ]
+    },
+    {
+      "id": "daihatsu-charade-gtti",
+      "name": "Daihatsu Charade GTti",
+      "make": "Daihatsu",
+      "cc_search": "daihatsu charade gtti",
+      "ebay_search": "Daihatsu Charade GTti",
+      "years": [
+        1987,
+        1993
+      ]
+    },
+    {
+      "id": "renault-megane-rs-mk1",
+      "name": "Renault Megane RS (172/182)",
+      "make": "Renault",
+      "cc_search": "renault megane rs 172",
+      "ebay_search": "Renault Megane RS 172 182",
+      "years": [
+        2002,
+        2008
+      ]
+    },
+    {
+      "id": "peugeot-306-gti6",
+      "name": "Peugeot 306 GTI-6",
+      "make": "Peugeot",
+      "cc_search": "peugeot 306 gti6",
+      "ebay_search": "Peugeot 306 GTI-6",
+      "years": [
+        1996,
+        2001
+      ]
+    },
+    {
+      "id": "peugeot-106-rallye",
+      "name": "Peugeot 106 Rallye S2",
+      "make": "Peugeot",
+      "cc_search": "peugeot 106 rallye",
+      "ebay_search": "Peugeot 106 Rallye",
+      "years": [
+        1994,
+        2003
+      ]
+    },
+    {
+      "id": "citroen-bx-gti-16v",
+      "name": "Citro\u00ebn BX GTI 16v",
+      "make": "Citroen",
+      "cc_search": "citroen bx gti 16v",
+      "ebay_search": "Citroen BX GTI 16v",
+      "years": [
+        1987,
+        1993
+      ]
+    },
+    {
+      "id": "renault-alpine-a610",
+      "name": "Renault Alpine A610",
+      "make": "Renault",
+      "cc_search": "renault alpine a610",
+      "ebay_search": "Alpine A610",
+      "years": [
+        1991,
+        1995
+      ]
+    },
+    {
+      "id": "alfa-gtv-916",
+      "name": "Alfa Romeo GTV (916)",
+      "make": "Alfa Romeo",
+      "cc_search": "alfa romeo gtv 916",
+      "ebay_search": "Alfa Romeo GTV 916",
+      "years": [
+        1994,
+        2005
+      ]
+    },
+    {
+      "id": "alfa-75-v6",
+      "name": "Alfa Romeo 75 V6",
+      "make": "Alfa Romeo",
+      "cc_search": "alfa romeo 75 v6",
+      "ebay_search": "Alfa Romeo 75 V6",
+      "years": [
+        1985,
+        1992
+      ]
+    },
+    {
+      "id": "alfa-brera",
+      "name": "Alfa Romeo Brera",
+      "make": "Alfa Romeo",
+      "cc_search": "alfa romeo brera",
+      "ebay_search": "Alfa Romeo Brera",
+      "years": [
+        2005,
+        2011
+      ]
+    },
+    {
+      "id": "fiat-barchetta",
+      "name": "Fiat Barchetta",
+      "make": "Fiat",
+      "cc_search": "fiat barchetta",
+      "ebay_search": "Fiat Barchetta",
+      "years": [
+        1995,
+        2005
+      ]
+    },
+    {
+      "id": "fiat-uno-turbo",
+      "name": "Fiat Uno Turbo",
+      "make": "Fiat",
+      "cc_search": "fiat uno turbo",
+      "ebay_search": "Fiat Uno Turbo",
+      "years": [
+        1985,
+        1989
+      ]
+    },
+    {
+      "id": "lancia-montecarlo",
+      "name": "Lancia Montecarlo",
+      "make": "Lancia",
+      "cc_search": "lancia montecarlo",
+      "ebay_search": "Lancia Montecarlo Beta",
+      "years": [
+        1975,
+        1981
+      ]
+    },
+    {
+      "id": "maserati-biturbo",
+      "name": "Maserati Biturbo",
+      "make": "Maserati",
+      "cc_search": "maserati biturbo",
+      "ebay_search": "Maserati Biturbo",
+      "years": [
+        1981,
+        1994
+      ]
+    },
+    {
+      "id": "saab-900-turbo",
+      "name": "Saab 900 Turbo (classic)",
+      "make": "Saab",
+      "cc_search": "saab 900 turbo classic",
+      "ebay_search": "Saab 900 Turbo Classic",
+      "years": [
+        1978,
+        1993
+      ]
+    },
+    {
+      "id": "saab-9000-aero",
+      "name": "Saab 9000 Aero",
+      "make": "Saab",
+      "cc_search": "saab 9000 aero",
+      "ebay_search": "Saab 9000 Aero",
+      "years": [
+        1993,
+        1998
+      ]
+    },
+    {
+      "id": "volvo-c70-t5",
+      "name": "Volvo C70 T5",
+      "make": "Volvo",
+      "cc_search": "volvo c70 t5",
+      "ebay_search": "Volvo C70 T5",
+      "years": [
+        1997,
+        2005
+      ]
+    },
+    {
+      "id": "vauxhall-calibra-turbo",
+      "name": "Vauxhall Calibra Turbo",
+      "make": "Vauxhall",
+      "cc_search": "vauxhall calibra turbo",
+      "ebay_search": "Vauxhall Calibra Turbo",
+      "years": [
+        1992,
+        1997
+      ]
+    },
+    {
+      "id": "vauxhall-nova-gsi",
+      "name": "Vauxhall Nova GSi",
+      "make": "Vauxhall",
+      "cc_search": "vauxhall nova gsi",
+      "ebay_search": "Vauxhall Nova GSi",
+      "years": [
+        1983,
+        1993
+      ]
+    },
+    {
+      "id": "corvette-c4",
+      "name": "Chevrolet Corvette C4",
+      "make": "Chevrolet",
+      "cc_search": "chevrolet corvette c4",
+      "ebay_search": "Chevrolet Corvette C4",
+      "years": [
+        1984,
+        1996
+      ]
+    },
+    {
+      "id": "pontiac-trans-am",
+      "name": "Pontiac Firebird / Trans Am",
+      "make": "Pontiac",
+      "cc_search": "pontiac firebird trans am",
+      "ebay_search": "Pontiac Firebird Trans Am",
+      "years": [
+        1970,
+        2002
+      ]
+    }
   ]
 }
