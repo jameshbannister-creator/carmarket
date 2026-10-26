@@ -518,6 +518,7 @@
             <th>Model</th>
             <th>Supply</th>
             <th>Med. Price</th>
+            <th>Sold (6m)</th>
             <th>4W Change</th>
             <th>Score</th>
             <th>Signal</th>
@@ -847,6 +848,9 @@ function radarRow(m) {
     </td>
     <td>
       ${m.price.median ? `<div class="price-main">£${m.price.median.toLocaleString('en-GB')}</div>` : '<div class="price-main" style="color:var(--text-2)">—</div>'}
+    </td>
+    <td>
+      ${m.price && m.price.sold_median_6m ? `<div class="price-main">£${m.price.sold_median_6m.toLocaleString('en-GB')}</div><div class="model-years">${m.price.sold_count_6m} lots</div>` : '<div class="price-main" style="color:var(--text-2)">—</div>'}
     </td>
     <td>${changeText}</td>
     <td>
