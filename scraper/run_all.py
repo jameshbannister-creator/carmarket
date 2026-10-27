@@ -348,6 +348,12 @@ def main() -> None:
         except Exception as exc:
             log.error("Discovery engine failed (non-fatal): %s", exc)
 
+    try:
+        import notify
+        notify.main()
+    except Exception as exc:
+        log.warning("Notification failed (non-fatal): %s", exc)
+
 
 if __name__ == "__main__":
     try:
