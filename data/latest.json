@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T22:16:23.583144+00:00",
+  "generated_at": "2026-11-02T17:47:38.491274+00:00",
   "models": [
     {
       "id": "mercedes-w210-e55",
@@ -9,21 +9,17 @@
       "personal": true,
       "signal": "stable",
       "supply": {
-        "current": 2,
-        "cc": 2,
+        "current": 0,
+        "cc": 0,
         "gumtree": 0,
-        "delta_4w": 2,
+        "delta_4w": 0,
         "history": [
-          0,
-          0,
-          2,
-          2,
-          2
+          0
         ]
       },
       "gumtree_median": 0,
       "price": {
-        "median": 9237,
+        "median": 0,
         "delta_6mo": 0,
         "sold_median_6m": null,
         "sold_count_6m": 0
@@ -49,24 +45,20 @@
         "25yr"
       ],
       "personal": true,
-      "signal": "rising",
+      "signal": "stable",
       "supply": {
-        "current": 5,
-        "cc": 3,
+        "current": 8,
+        "cc": 6,
         "gumtree": 2,
-        "delta_4w": 3,
+        "delta_4w": 0,
         "history": [
-          2,
-          2,
-          5,
-          5,
-          5
+          8
         ]
       },
       "gumtree_median": 0,
       "price": {
-        "median": 5875,
-        "delta_6mo": 70,
+        "median": 9624,
+        "delta_6mo": 0,
         "sold_median_6m": null,
         "sold_count_6m": 0
       },
@@ -96,10 +88,6 @@
         "gumtree": 0,
         "delta_4w": 0,
         "history": [
-          0,
-          0,
-          7,
-          0,
           0
         ]
       },
@@ -124,11 +112,5 @@
       "alerts": []
     }
   ],
-  "alerts": [
-    {
-      "type": "rising",
-      "text": "<strong>Alfa Romeo 156 GTA:</strong> Supply tightening. Price up 70% over 6 months.",
-      "time": "Today"
-    }
-  ]
+  "alerts": []
 }
