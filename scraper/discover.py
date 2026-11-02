@@ -848,11 +848,15 @@ def score_model(current: dict, prev: dict | None) -> float:
 
 
 def signal_label(score: float, supply: int) -> str:
-    if score >= 60 or supply < 10:
+    if supply == 0:
+        return "stable"
+    if score >= 60 or (supply < 10 and score >= 40):
         return "hot"
-    if score >= 35 or supply < 30:
+    if score >= 35 or (supply < 30 and score >= 20):
         return "rising"
-    return "watch"
+    if score >= 15:
+        return "watch"
+    return "stable"
 
 
 # ── Main run ──────────────────────────────────────────────────────────────────
