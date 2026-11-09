@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T17:47:38.491274+00:00",
+  "generated_at": "2026-11-09T18:15:23.260562+00:00",
   "models": [
     {
       "id": "mercedes-w210-e55",
@@ -9,17 +9,17 @@
       "personal": true,
       "signal": "stable",
       "supply": {
-        "current": 0,
-        "cc": 0,
+        "current": 2,
+        "cc": 2,
         "gumtree": 0,
         "delta_4w": 0,
         "history": [
-          0
+          2
         ]
       },
       "gumtree_median": 0,
       "price": {
-        "median": 0,
+        "median": 9237,
         "delta_6mo": 0,
         "sold_median_6m": null,
         "sold_count_6m": 0
@@ -47,17 +47,17 @@
       "personal": true,
       "signal": "stable",
       "supply": {
-        "current": 8,
-        "cc": 6,
+        "current": 4,
+        "cc": 2,
         "gumtree": 2,
         "delta_4w": 0,
         "history": [
-          8
+          4
         ]
       },
       "gumtree_median": 0,
       "price": {
-        "median": 9624,
+        "median": 12995,
         "delta_6mo": 0,
         "sold_median_6m": null,
         "sold_count_6m": 0
