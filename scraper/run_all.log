@@ -1,0 +1,4 @@
+shell-init: error retrieving current directory: getcwd: cannot access parent directories: Operation not permitted
+/bin/bash: /Users/james/Downloads/carmarket/scraper/run_weekly.sh: Operation not permitted
+shell-init: error retrieving current directory: getcwd: cannot access parent directories: Operation not permitted
+/bin/bash: /Users/james/Downloads/carmarket/scraper/run_weekly.sh: Operation not permitted
